@@ -8,7 +8,12 @@ import { ButtonModel } from '../models';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-  @Input() buttons: ButtonModel[];
+  show = false;
+  buttons: ButtonModel[] = [
+    { icon: 'dialpad', content: 'Redial' },
+    { icon: 'voicemail', content: 'Check voicemail' },
+    { icon: 'notifications_off', content: 'Disable alerts' },
+  ];
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,2 +1,30 @@
-<app-toolbar></app-toolbar>
-<app-side-nav></app-side-nav>
+<app-nav></app-nav>
+<div class="sidenav-container">
+  <app-side-nav-sm (toggleExpantion)="this.show = !this.show"></app-side-nav-sm>
+  <app-side-nav-exp [show]="show"></app-side-nav-exp>
+  <p style="margin-top: 60px;">
+    ALELELELELALA, consectetur adipiscing elit. Aenean lorem augue, imperdiet a
+    risus sed, viverra consectetur sem. Praesent porttitor libero vitae
+    vestibulum euismod. Ut id feugiat lectus. Donec id pulvinar sem. Suspendisse
+    hendrerit arcu auctor turpis dapibus, scelerisque sollicitudin lacus
+    porttitor. Proin bibendum justo iaculis turpis pharetra mattis. Integer
+    dignissim, ipsum vel lacinia euismod, magna ligula sollicitudin erat, vitae
+    rutrum libero ipsum in diam. Vivamus diam justo, luctus in orci id, posuere
+    maximus odio. Pellentesque habitant morbi tristique senectus et netus et
+    malesuada fames ac turpis egestas. Morbi malesuada sollicitudin semper. Duis
+    efficitur ex ipsum, ut faucibus sem varius vel. Donec eu congue risus.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+    ac turpis egestas. Aenean leo purus, faucibus sed diam eget, elementum
+    dignissim nunc. Sed cursus laoreet risus, vel sagittis ante consequat ac. In
+    et lectus nec massa iaculis cursus nec ut lorem. Vestibulum vel sem
+    venenatis, sagittis justo nec, vulputate sem. Aliquam imperdiet consectetur
+    tortor eget venenatis. Sed tempor rhoncus erat, vel aliquet eros dictum in.
+    Curabitur porttitor pellentesque mauris, vel placerat metus elementum et. Ut
+    nec est ullamcorper, luctus elit pharetra, egestas lorem. Sed euismod sit
+    amet odio sed lacinia. Cras metus ex, tempus eu tempus ac, tincidunt gravida
+    turpis. Suspendisse id scelerisque nulla. Nullam pellentesque a sapien in
+    sagittis. Aenean dolor turpis, posuere id enim vitae, posuere scelerisque
+    nunc. Curabitur porttitor sapien augue, non scelerisque arcu accumsan
+    imperdiet. Proin ac magna eu nibh convallis ultrices quis vel elit.
+  </p>
+</div>

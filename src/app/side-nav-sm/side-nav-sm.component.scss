@@ -1,0 +1,18 @@
+.side-nav-sm {
+  background-color: bisque;
+  margin-top: 54px;
+  height: calc(100vh - 54px);
+  width: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  cursor: pointer;
+}
+
+mat-icon {
+  margin-top: 16px;
+  cursor: pointer;
+}

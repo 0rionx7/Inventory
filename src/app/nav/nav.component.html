@@ -1,12 +1,14 @@
-<mat-menu #menu="matMenu">
-  <ng-container *ngFor="let btn of buttons">
-    <button mat-menu-item>
+<div class="main-header">
+  <div style="flex: 1;"></div>
+  <button mat-button class="btn menu-button" (click)="show = !show">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>
+<ng-container *ngIf="show">
+  <div class="dropdown">
+    <button *ngFor="let btn of buttons">
       <mat-icon>{{ btn.icon }}</mat-icon>
       <span>{{ btn.content }}</span>
     </button>
-  </ng-container>
-</mat-menu>
-
-<button mat-icon-button [matMenuTriggerFor]="menu">
-  <mat-icon>more_vert</mat-icon><span>menu</span>
-</button>
+  </div>
+</ng-container>
