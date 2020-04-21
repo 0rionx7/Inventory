@@ -1,46 +1,24 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {
-  trigger,
-  style,
-  state,
-  transition,
-  animate,
-} from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+
+import { SidenavService } from '../sidenav.service';
+import { toggleArrowAnimations } from '../mainAnimations.';
 
 @Component({
   selector: 'app-side-nav-sm',
   templateUrl: './side-nav-sm.component.html',
   styleUrls: ['./side-nav-sm.component.scss'],
-  animations: [
-    trigger('toggle', [
-      state(
-        'closed',
-        style({
-          transform: 'translateX(0)',
-          margin: '8px',
-        })
-      ),
-      state(
-        'opened',
-        style({
-          transform: 'translateX(240px) rotate(180deg)',
-          margin: '8px',
-        })
-      ),
-      transition('opened <=> closed', animate('0.3s')),
-    ]),
-  ],
+  animations: toggleArrowAnimations,
 })
 export class SideNavSmComponent implements OnInit {
-  @Output() toggleExpantion = new EventEmitter<void>();
-  toggle = 'closed';
+  icons = this.sidenavService.icons;
+  toggle = 'right';
 
-  constructor() {}
+  constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {}
 
-  onToggle() {
-    this.toggle = this.toggle === 'closed' ? 'opened' : 'closed';
-    this.toggleExpantion.emit();
+  onToggle(): void {
+    this.toggle = this.toggle === 'right' ? 'left' : 'right';
+    this.sidenavService.arrowClicked();
   }
 }

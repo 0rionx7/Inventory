@@ -1,17 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { mainAnimations } from '../mainAnimations.';
+import { sidenavAnimations } from '../mainAnimations.';
+import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-side-nav-exp',
   templateUrl: './side-nav-exp.component.html',
   styleUrls: ['./side-nav-exp.component.scss'],
-  animations: mainAnimations,
+  animations: sidenavAnimations,
 })
 export class SideNavExpComponent implements OnInit {
-  @Input() show: boolean;
-
-  constructor() {}
+  $show = this.sidenavService.expand;
+  menuItems = this.sidenavService.menuItems;
+  constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {}
+
+  onClick(): void {}
 }

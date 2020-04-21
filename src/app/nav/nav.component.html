@@ -1,14 +1,8 @@
 <div class="main-header">
   <div style="flex: 1;"></div>
-  <button mat-button class="btn menu-button" (click)="show = !show">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</div>
-<ng-container *ngIf="show">
-  <div class="dropdown">
-    <button *ngFor="let btn of buttons">
-      <mat-icon>{{ btn.icon }}</mat-icon>
-      <span>{{ btn.content }}</span>
-    </button>
+  <div class="login-btn" (click)="onLogin()">
+    <span>Login </span>
+    <mat-icon>person</mat-icon>
   </div>
-</ng-container>
+</div>
+<ng-container *ngIf="show"> </ng-container>

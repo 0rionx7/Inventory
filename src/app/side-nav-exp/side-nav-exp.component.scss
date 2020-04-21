@@ -1,14 +1,10 @@
 .side-nav-exp {
   background-color: rgb(224, 197, 163);
-  margin-top: 54px;
-  height: calc(100vh - 54px);
+  margin-top: 52px;
+  height: calc(100vh - 52px);
   width: 255px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   white-space: nowrap;
-}
-
-p {
-  line-height: 24px;
 }

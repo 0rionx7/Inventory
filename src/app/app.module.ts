@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { MaterialModule } from './material.module';
 import { SideNavSmComponent } from './side-nav-sm/side-nav-sm.component';
 import { SideNavExpComponent } from './side-nav-exp/side-nav-exp.component';
+import { SideNavExpContentComponent } from './side-nav-exp-content/side-nav-exp-content.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SideNavExpComponent } from './side-nav-exp/side-nav-exp.component';
     NavComponent,
     SideNavSmComponent,
     SideNavExpComponent,
+    SideNavExpContentComponent,
   ],
   imports: [
     BrowserModule,

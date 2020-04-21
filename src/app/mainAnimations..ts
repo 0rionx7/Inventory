@@ -9,7 +9,7 @@ import {
   group,
 } from '@angular/animations';
 
-export const mainAnimations = [
+export const sidenavAnimations = [
   trigger('expandSidenav', [
     state(
       'false',
@@ -41,9 +41,29 @@ export const mainAnimations = [
       'true',
       style({
         opacity: 1,
-        padding: '0 0 0 13px',
+        padding: '0 13px 0 13px',
       })
     ),
     transition('false <=> true', animate('0.3s')),
+  ]),
+];
+
+export const toggleArrowAnimations = [
+  trigger('toggleArrow', [
+    state(
+      'right',
+      style({
+        transform: 'translateX(0)',
+        margin: '8px',
+      })
+    ),
+    state(
+      'left',
+      style({
+        transform: 'translateX(240px) rotate(180deg)',
+        margin: '8px',
+      })
+    ),
+    transition('left <=> right', animate('0.3s')),
   ]),
 ];

@@ -1,9 +1,10 @@
-<div [@expandSidenav]="show" class="side-nav-exp">
-  <div [@contentVisibility]="show">
-    <p>sjsakfsfd sdfsfs f</p>
-    <p>sjsakfsfd sdfsfs f</p>
-    <p>sjsakfsfd sdfsfs f</p>
-    <p>sjsakfsfd sdfsfs f</p>
+<div [@expandSidenav]="$show | async" class="side-nav-exp">
+  <div [@contentVisibility]="$show | async">
+    <app-side-nav-exp-content
+      *ngFor="let menu of menuItems; index as i"
+      [menuItem]="menu"
+      [index]="i"
+    ></app-side-nav-exp-content>
   </div>
   <div class="divider" style="margin-bottom: 40px;"></div>
 </div>
