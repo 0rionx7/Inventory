@@ -1,0 +1,58 @@
+.form-layout {
+  background: rgba(36, 90, 90, 0.8);
+  width: 350px;
+  height: 210px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0);
+  border: 1px solid wheat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logbox {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 34px;
+  width: 230px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.btn-group {
+  margin-top: 4px;
+  text-align: center;
+}
+
+label {
+  color: wheat;
+  font-weight: 500;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.btn.red {
+  background-color: rgba(240, 69, 69, 0.938);
+}
+
+.btn.green {
+  background-color: rgba(45, 184, 17, 0.938);
+}

@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './components/nav.component';
 import { MaterialModule } from './material.module';
-import { SideNavSmComponent } from './side-nav-sm/side-nav-sm.component';
-import { SideNavExpComponent } from './side-nav-exp/side-nav-exp.component';
-import { SideNavExpContentComponent } from './side-nav-exp-content/side-nav-exp-content.component';
+import { SideNavSmComponent } from './components/side-nav-sm.component';
+import { SideNavExpComponent } from './components/side-nav-exp.component';
+import { SideNavExpContentComponent } from './components/side-nav-exp-content.component';
+import { LoginComponent } from './login/login.component';
+import { ReqInterceptor } from './shared/request.interceptor';
+import { NavigationComponent } from './containers/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +22,20 @@ import { SideNavExpContentComponent } from './side-nav-exp-content/side-nav-exp-
     SideNavSmComponent,
     SideNavExpComponent,
     SideNavExpContentComponent,
+    LoginComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ReqInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

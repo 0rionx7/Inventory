@@ -1,0 +1,34 @@
+<div>
+  <form
+    #loginform="ngForm"
+    (ngSubmit)="onSubmit(loginform)"
+    class="form-layout"
+  >
+    <div class="logbox">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        ngModel
+        autocomplete="on"
+        required
+      />
+      <label for="password">Password</label>
+      <input
+        type="text"
+        id="password"
+        name="password"
+        ngModel
+        autocomplete="on"
+        required
+      />
+      <div class="btn-group">
+        <button class="btn green">Login</button>
+        <button type="button" class="btn red" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

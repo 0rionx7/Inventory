@@ -41,7 +41,6 @@ export const sidenavAnimations = [
       'true',
       style({
         opacity: 1,
-        padding: '0 13px 0 13px',
       })
     ),
     transition('false <=> true', animate('0.3s')),
