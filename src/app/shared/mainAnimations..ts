@@ -59,10 +59,28 @@ export const toggleArrowAnimations = [
     state(
       'left',
       style({
-        transform: 'translateX(240px) rotate(180deg)',
+        transform: 'rotate(180deg)',
         margin: '8px',
       })
     ),
     transition('left <=> right', animate('0.3s')),
+  ]),
+];
+
+export const mainContent = [
+  trigger('expandSidenav', [
+    state(
+      'false',
+      style({
+        'padding-left': '54px',
+      })
+    ),
+    state(
+      'true',
+      style({
+        'padding-left': '309px',
+      })
+    ),
+    transition('false <=> true', [animate('0.3s ease-in-out')]),
   ]),
 ];

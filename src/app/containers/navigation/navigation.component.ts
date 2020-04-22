@@ -1,36 +1,35 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { SidenavService } from 'src/app/shared/sidenav.service';
-import { menuItems, icons } from 'src/app/shared/menuItems';
 
 @Component({
   selector: 'app-navigation',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-nav (showLogin)="onShowLogin()"></app-nav>
-    <div style="display:flex">
-      <app-side-nav-sm
-        [$chosen]="$chosen"
-        [icons]="icons"
-        [toggle]="arrow"
-        (arrowClicked)="onExpandSidenav()"
-        (iconClicked)="onIconClicked($event)"
-      ></app-side-nav-sm>
-      <app-side-nav-exp
-        [$chosen]="$chosen"
-        [menuItems]="menuItems"
-        [$show]="$show"
-        (expandMenu)="onExpandMenu($event)"
-        (closeNav)="onExpandSidenav()"
-      ></app-side-nav-exp>
-    </div>
+    <app-side-nav-sm
+      [$selected]="$selected"
+      [arrowToggle]="arrow"
+      (arrowClicked)="onExpandSidenav()"
+      (iconClicked)="onIconClicked($event)"
+    ></app-side-nav-sm>
+    <app-side-nav-exp
+      [$selected]="$selected"
+      [$expand]="$expand"
+      (expandMenu)="onExpandMenu($event)"
+      (closeNav)="onExpandSidenav()"
+    ></app-side-nav-exp>
   `,
 })
 export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
-  $chosen = this.sidenavService.menu;
-  $show = this.sidenavService.expand;
-  menuItems = menuItems;
-  icons = icons;
+  $selected = this.sidenavService.menu;
+  $expand = this.sidenavService.expand;
   loginDiag = false;
   arrow = 'right';
   constructor(private sidenavService: SidenavService) {}

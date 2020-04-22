@@ -3,6 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { toggleArrowAnimations } from '../shared/mainAnimations.';
+import { icons, menuItems } from '../shared/menuItems';
+import { MenuItem } from '../shared/models';
 
 @Component({
   selector: 'app-side-nav-sm',
@@ -11,28 +13,37 @@ import { toggleArrowAnimations } from '../shared/mainAnimations.';
       <div
         class="sm-icons"
         *ngFor="let icon of icons; index as i"
+        [routerLink]="menuItems[i]?.title"
         [style.backgroundColor]="
-          i === ($chosen | async) ? '#aa977e' : 'transparent'
+          i === ($selected | async) ? '#aa977e' : 'transparent'
         "
       >
         <mat-icon (click)="iconClicked.emit(i)">{{ icon }}</mat-icon>
       </div>
       <div class="divider"></div>
       <div (click)="arrowClicked.emit()" class="arrow">
-        <a><mat-icon [@toggleArrow]="toggle">keyboard_arrow_right</mat-icon></a>
+        <a
+          ><mat-icon [@toggleArrow]="arrowToggle"
+            >keyboard_arrow_right</mat-icon
+          ></a
+        >
       </div>
     </div>
   `,
   styles: [
     `
       .side-nav-sm {
-        background-color: bisque;
-        margin-top: 52px;
-        height: calc(100vh - 52px);
-        width: 54px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        z-index: 2;
+        height: calc(100% - 52px);
+        width: 54px;
+        background-color: bisque;
+        overflow-y: auto;
       }
 
       .arrow {
@@ -57,11 +68,12 @@ import { toggleArrowAnimations } from '../shared/mainAnimations.';
   animations: toggleArrowAnimations,
 })
 export class SideNavSmComponent implements OnInit {
-  @Input() $chosen: Observable<number>;
-  @Input() icons: Array<string>;
-  @Input() toggle: string;
+  @Input() $selected: Observable<number>;
+  @Input() arrowToggle: string;
   @Output() arrowClicked = new EventEmitter<void>();
   @Output() iconClicked = new EventEmitter<number>();
+  icons: Array<string> = icons;
+  menuItems: MenuItem[] = menuItems;
 
   constructor() {}
 

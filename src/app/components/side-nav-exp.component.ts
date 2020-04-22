@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy,
   Output,
   EventEmitter,
 } from '@angular/core';
@@ -11,47 +10,57 @@ import { Observable } from 'rxjs';
 
 import { sidenavAnimations } from '../shared/mainAnimations.';
 import { MenuItem } from '../shared/models';
+import { menuItems } from '../shared/menuItems';
 
 @Component({
   selector: 'app-side-nav-exp',
   template: `
-    <div [@expandSidenav]="$show | async" class="side-nav-exp">
-      <div [@contentVisibility]="$show | async">
+    <div [@expandSidenav]="$expand | async" class="side-nav-exp">
+      <div [@contentVisibility]="$expand | async">
         <app-side-nav-exp-content
-          *ngFor="let menu of menuItems; index as i"
-          [menuItem]="menu"
+          *ngFor="let menuItem of menuItems; index as i"
+          [menuItem]="menuItem"
           [index]="i"
-          [$chosen]="$chosen"
+          [$selected]="$selected"
           (expandMenu)="expandMenu.emit($event)"
         ></app-side-nav-exp-content>
       </div>
       <div class="divider"></div>
-      <div style="height:40px;cursor:pointer" (click)="closeNav.emit()"></div>
+      <div class="arrow" (click)="closeNav.emit()">
+        <mat-icon style="margin: 8px;">keyboard_arrow_left</mat-icon>
+      </div>
     </div>
   `,
   styles: [
     `
       .side-nav-exp {
-        background-color: rgb(224, 197, 163);
-        margin-top: 52px;
-        height: calc(100vh - 52px);
-        width: 255px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        position: fixed;
+        top: 52px;
+        left: 54px;
+        height: calc(100% - 52px);
+        width: 255px;
+        background-color: rgb(224, 197, 163);
         white-space: nowrap;
+        overflow: hidden;
+        overflow-y: auto;
+      }
+      .arrow {
+        height: 40px;
+        cursor: pointer;
+        text-align: center;
       }
     `,
   ],
   animations: sidenavAnimations,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavExpComponent implements OnInit {
-  @Input() menuItems: MenuItem;
-  @Input() $chosen: Observable<number>;
-  @Input() $show: Observable<boolean>;
+  @Input() $selected: Observable<number>;
+  @Input() $expand: Observable<boolean>;
   @Output() expandMenu = new EventEmitter<number>();
-  @Output() closeNav = new EventEmitter<number>();
+  @Output() closeNav = new EventEmitter<void>();
+  menuItems: MenuItem[] = menuItems;
   constructor() {}
 
   ngOnInit(): void {}

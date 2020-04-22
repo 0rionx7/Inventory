@@ -14,6 +14,7 @@ import { SideNavExpContentComponent } from './components/side-nav-exp-content.co
 import { LoginComponent } from './login/login.component';
 import { ReqInterceptor } from './shared/request.interceptor';
 import { NavigationComponent } from './containers/navigation/navigation.component';
+import { MainContentComponent } from './content/main-content/main-content.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NavigationComponent } from './containers/navigation/navigation.componen
     SideNavExpContentComponent,
     LoginComponent,
     NavigationComponent,
+    MainContentComponent,
   ],
   imports: [
     BrowserModule,

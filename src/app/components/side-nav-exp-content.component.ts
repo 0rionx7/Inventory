@@ -8,23 +8,24 @@ import { MenuItem } from '../shared/models';
   selector: 'app-side-nav-exp-content',
   template: `
     <p
+      [routerLink]="title"
       (click)="expandMenu.emit(index)"
       [style.backgroundColor]="
-        index === ($chosen | async) ? '#aa977e' : 'transparent'
+        index === ($selected | async) ? '#aa977e' : 'transparent'
       "
     >
-      {{ menuItem.title }}
+      {{ title }}
     </p>
-    <div *ngIf="index === ($chosen | async)" style="margin-left: 30px;">
-      <p *ngFor="let submenu of menuItem.subMenus">{{ submenu }}</p>
+    <div *ngIf="index === ($selected | async)" style="margin-left: 30px;">
+      <p *ngFor="let submenu of subMenus">{{ submenu }}</p>
     </div>
   `,
   styles: [
     `
       p {
+        padding: 0 13px 0 13px;
         line-height: 24px;
         cursor: pointer;
-        padding: 0 13px 0 13px;
       }
     `,
   ],
@@ -32,9 +33,17 @@ import { MenuItem } from '../shared/models';
 export class SideNavExpContentComponent implements OnInit {
   @Input() menuItem: MenuItem;
   @Input() index: number;
-  @Input() $chosen: Observable<number>;
+  @Input() $selected: Observable<number>;
   @Output() expandMenu = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  get title(): string {
+    return this.menuItem.title;
+  }
+
+  get subMenus(): Array<string> {
+    return this.menuItem.subMenus;
+  }
 }

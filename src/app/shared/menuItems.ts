@@ -16,15 +16,19 @@ export const menuItems: MenuItem[] = [
     subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
   },
   {
-    title: 'AleLaMachine',
+    title: 'AleLaMachine1',
     subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
   },
   {
-    title: 'AleLaMachine',
+    title: 'AleLaMachine2',
     subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
   },
   {
-    title: 'AleLaMachine',
+    title: 'AleLaMachine3',
+    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+  },
+  {
+    title: 'AleLaMachine4',
     subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
   },
   {

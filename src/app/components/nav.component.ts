@@ -5,7 +5,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   template: `
     <div class="main-header">
       <div style="flex: 1;"></div>
-      <div class="login-btn" (click)="this.showLogin.emit()">
+      <div class="login-el" (click)="this.showLogin.emit()">
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>
@@ -14,23 +14,23 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styles: [
     `
       .main-header {
-        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        width: 100vw;
         height: 52px;
         padding: 0.5rem 1rem;
         background-color: #8b8e7f;
         box-shadow: 0px 2px 13px 1px rgba(0, 0, 0, 0.75);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        display: flex;
-        align-items: center;
       }
 
-      .login-btn {
-        font-weight: 500;
+      .login-el {
         display: flex;
         align-items: center;
+        font-weight: 500;
         cursor: pointer;
       }
     `,
