@@ -10,13 +10,9 @@ import { SidenavService } from './shared/sidenav.service';
   animations: mainContent,
 })
 export class AppComponent implements OnInit {
-  @HostListener('window:orientationchange')
-  onOrientationChange() {
-    this.pushMainContent = screen.availWidth < 420 ? false : true;
-  }
   @HostListener('window:resize')
-  onWindowResize() {
-    this.pushMainContent = window.innerWidth < 820 ? false : true;
+  onWindowChange() {
+    this.pushMainContent = window.innerWidth > 420 && screen.availWidth > 420;
   }
   $show = this.sidenavService.expand;
   pushMainContent: boolean;
