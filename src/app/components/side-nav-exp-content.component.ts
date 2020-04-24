@@ -10,6 +10,7 @@ import { MenuItem } from '../shared/models';
     <p
       [routerLink]="title"
       (click)="expandMenu.emit(index)"
+      class="menu"
       [style.backgroundColor]="
         index === ($selected | async) ? '#aa977e' : 'transparent'
       "
@@ -21,6 +22,7 @@ import { MenuItem } from '../shared/models';
         *ngFor="let submenu of subMenus; index as i"
         [routerLink]="[title, i]"
         [state]="{ main: title, sub: submenu }"
+        class="menu"
       >
         {{ submenu }}
       </p>
@@ -32,6 +34,10 @@ import { MenuItem } from '../shared/models';
         padding: 0 13px 0 13px;
         line-height: 24px;
         cursor: pointer;
+      }
+      .menu:focus {
+        background-color: #aa977e;
+        outline: none;
       }
     `,
   ],

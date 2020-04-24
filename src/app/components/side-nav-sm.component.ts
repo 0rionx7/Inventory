@@ -13,7 +13,7 @@ import { MenuItem } from '../shared/models';
       <div
         class="sm-icons"
         *ngFor="let icon of icons; index as i"
-        [routerLink]="menuItems[i]?.title"
+        [routerLink]="menuItems[i].title"
         [style.backgroundColor]="
           i === ($selected | async) ? '#aa977e' : 'transparent'
         "
@@ -40,16 +40,14 @@ import { MenuItem } from '../shared/models';
         z-index: 2;
         height: 100%;
         width: 54px;
-        background-color: bisque;
         overflow-y: auto;
+        background-color: bisque;
       }
-
       .arrow {
         cursor: pointer;
         align-self: stretch;
         text-align: center;
       }
-
       .sm-icons {
         display: flex;
         flex-direction: column;
@@ -57,7 +55,9 @@ import { MenuItem } from '../shared/models';
         align-self: stretch;
         margin-top: 16px;
       }
-
+      .sm-icons:focus {
+        outline: none;
+      }
       mat-icon {
         cursor: pointer;
       }

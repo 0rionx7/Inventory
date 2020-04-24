@@ -18,6 +18,11 @@
       autocomplete="on"
       required
     />
+    <code
+      *ngIf="loginform.invalid"
+      style="color: rgb(230, 108, 38); align-self: center;"
+      >There is something Wrong</code
+    >
     <div class="btn-group">
       <button class="btn green">Login</button>
       <button type="button" class="btn red" (click)="onCancel()">

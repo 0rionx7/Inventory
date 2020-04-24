@@ -1,8 +1,4 @@
 .modal {
-  background: rgb(49, 46, 46, 0.4);
-  margin-top: 52px;
-  width: 100vw;
-  height: calc(100vh - 52px);
   position: fixed;
   top: 0;
   left: 0;
@@ -10,4 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: calc(100vh - 52px);
+  margin-top: 52px;
+  background: rgb(49, 46, 46, 0.4);
 }

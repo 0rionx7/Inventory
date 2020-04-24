@@ -23,7 +23,5 @@ export class LoginComponent implements OnInit {
       .subscribe(console.log);
   }
 
-  onCancel() {
-    this.authService.store().subscribe(console.log);
-  }
+  onCancel() {}
 }

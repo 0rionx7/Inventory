@@ -32,10 +32,10 @@ import { menuItems } from '../shared/menuItems';
         flex-direction: column;
         height: 100%;
         width: 255px;
-        background-color: rgb(224, 197, 163);
         white-space: nowrap;
         overflow: hidden;
         overflow-y: auto;
+        background-color: rgb(224, 197, 163);
       }
       .arrow {
         height: 40px;
