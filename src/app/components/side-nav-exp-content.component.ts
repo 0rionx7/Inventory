@@ -17,7 +17,13 @@ import { MenuItem } from '../shared/models';
       {{ title }}
     </p>
     <div *ngIf="index === ($selected | async)" style="margin-left: 30px;">
-      <p *ngFor="let submenu of subMenus">{{ submenu }}</p>
+      <p
+        *ngFor="let submenu of subMenus; index as i"
+        [routerLink]="[title, i]"
+        [state]="{ main: title, sub: submenu }"
+      >
+        {{ submenu }}
+      </p>
     </div>
   `,
   styles: [

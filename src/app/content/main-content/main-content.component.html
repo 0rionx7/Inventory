@@ -1,6 +1,6 @@
-<div style="margin-top: 60px; overflow: auto;">
+<div style="margin-top: 60px; overflow: auto;" *ngIf="!outlet.isActivated">
   <p>
-    123456 789//// //ALELELEL ELALA,///// ///////////////consectetur a augue,
+    123456 789//// //ALELELEL ELALA,///// ///////// //////consec tetur a augue,
     imperdiet a risus sed, viverra consectetur sem. Praesent porttitor libero
     vitae vestibulum euismod. Ut id feugiat lectus. Donec id pulvinar sem.
     Suspendisse hendrerit arcu auctor turpis dapibus, scelerisque sollicitudin
@@ -39,5 +39,6 @@
     nunc. Curabitur porttitor sapien augue, non scelerisque arcu accumsan
     imperdiet. Proin ac magna eu nibh convallis ultrices quis vel elit.
   </p>
-  <h1>{{ number }}</h1>
+  <h1>{{ ($number | async).no }}</h1>
 </div>
+<router-outlet #outlet="outlet"></router-outlet>

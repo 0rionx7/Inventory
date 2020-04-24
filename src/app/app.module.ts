@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ReqInterceptor } from './shared/request.interceptor';
 import { NavigationComponent } from './containers/navigation/navigation.component';
 import { MainContentComponent } from './content/main-content/main-content.component';
+import { SubcontentComponent } from './content/subcontent/subcontent.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MainContentComponent } from './content/main-content/main-content.compon
     LoginComponent,
     NavigationComponent,
     MainContentComponent,
+    SubcontentComponent,
   ],
   imports: [
     BrowserModule,

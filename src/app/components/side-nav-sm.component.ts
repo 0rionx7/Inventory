@@ -23,7 +23,8 @@ import { MenuItem } from '../shared/models';
       <div class="divider"></div>
       <div (click)="arrowClicked.emit()" class="arrow">
         <a
-          ><mat-icon [@toggleArrow]="arrowToggle"
+          ><mat-icon
+            [@toggleArrow]="{ value: arrowToggle, params: { ale: 0.3 } }"
             >keyboard_arrow_right</mat-icon
           ></a
         >
@@ -36,11 +37,8 @@ import { MenuItem } from '../shared/models';
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: fixed;
-        top: 52px;
-        left: 0;
         z-index: 2;
-        height: calc(100% - 52px);
+        height: 100%;
         width: 54px;
         background-color: bisque;
         overflow-y: auto;

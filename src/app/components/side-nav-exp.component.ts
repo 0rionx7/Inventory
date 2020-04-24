@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -36,10 +30,7 @@ import { menuItems } from '../shared/menuItems';
       .side-nav-exp {
         display: flex;
         flex-direction: column;
-        position: fixed;
-        top: 52px;
-        left: 54px;
-        height: calc(100% - 52px);
+        height: 100%;
         width: 255px;
         background-color: rgb(224, 197, 163);
         white-space: nowrap;

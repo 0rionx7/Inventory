@@ -63,10 +63,12 @@ export const toggleArrowAnimations = [
         margin: '8px',
       })
     ),
-    transition('left <=> right', animate('0.3s')),
+    transition('left <=> right', animate('{{ ale }}s'), {
+      params: { ale: 1 },
+    }),
   ]),
 ];
-
+const tes = 'right';
 export const mainContent = [
   trigger('expandSidenav', [
     state(

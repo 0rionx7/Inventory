@@ -13,34 +13,34 @@ export const icons = [
 export const menuItems: MenuItem[] = [
   {
     title: 'AleLaMachine',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine1',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine2',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine3',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine4',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     title: 'AleLaMachine',
-    subMenus: ['adadasd', 'adasdasdasd', 'adadadads'],
+    subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
 ];

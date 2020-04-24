@@ -12,19 +12,32 @@ import { SidenavService } from 'src/app/shared/sidenav.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-nav (showLogin)="onShowLogin()"></app-nav>
-    <app-side-nav-sm
-      [$selected]="$selected"
-      [arrowToggle]="arrow"
-      (arrowClicked)="onExpandSidenav()"
-      (iconClicked)="onIconClicked($event)"
-    ></app-side-nav-sm>
-    <app-side-nav-exp
-      [$selected]="$selected"
-      [$expand]="$expand"
-      (expandMenu)="onExpandMenu($event)"
-      (closeNav)="onExpandSidenav()"
-    ></app-side-nav-exp>
+    <div class="side-nav">
+      <app-side-nav-sm
+        [$selected]="$selected"
+        [arrowToggle]="arrow"
+        (arrowClicked)="onExpandSidenav()"
+        (iconClicked)="onIconClicked($event)"
+      ></app-side-nav-sm>
+      <app-side-nav-exp
+        [$selected]="$selected"
+        [$expand]="$expand"
+        (expandMenu)="onExpandMenu($event)"
+        (closeNav)="onExpandSidenav()"
+      ></app-side-nav-exp>
+    </div>
   `,
+  styles: [
+    `
+      .side-nav {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        display: flex;
+        height: calc(100% - 52px);
+      }
+    `,
+  ],
 })
 export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();

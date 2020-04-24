@@ -7,10 +7,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent implements OnInit {
-  number;
+  $number = this.route.data;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((data) => (this.number = data.no));
   }
 }
