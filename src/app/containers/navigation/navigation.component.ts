@@ -11,7 +11,10 @@ import { SidenavService } from 'src/app/shared/sidenav.service';
   selector: 'app-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-nav (showLogin)="onShowLogin()"></app-nav>
+    <app-nav
+      (showLogin)="onShowLogin()"
+      (showEditMenu)="showEditMenu.emit()"
+    ></app-nav>
     <div class="side-nav">
       <app-side-nav-sm
         [$selected]="$selected"
@@ -41,6 +44,7 @@ import { SidenavService } from 'src/app/shared/sidenav.service';
 })
 export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
+  @Output() showEditMenu = new EventEmitter<boolean>();
   $selected = this.sidenavService.menu;
   $expand = this.sidenavService.expand;
   loginDiag = false;

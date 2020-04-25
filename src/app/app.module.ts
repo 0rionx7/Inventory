@@ -16,6 +16,7 @@ import { ReqInterceptor } from './shared/request.interceptor';
 import { NavigationComponent } from './containers/navigation/navigation.component';
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
+import { EditMenuComponent } from './edit-menu/edit-menu.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SubcontentComponent } from './content/subcontent/subcontent.component';
     NavigationComponent,
     MainContentComponent,
     SubcontentComponent,
+    EditMenuComponent,
   ],
   imports: [
     BrowserModule,

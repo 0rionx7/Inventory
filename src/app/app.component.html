@@ -1,8 +1,14 @@
+<div class="modal edit" *ngIf="editMenu">
+  <app-edit-menu></app-edit-menu>
+</div>
 <div class="modal" *ngIf="loginDiag">
   <app-login></app-login>
 </div>
 <div style="display: flex;">
-  <app-navigation (showLogin)="onShowLogin()"></app-navigation>
+  <app-navigation
+    (showLogin)="loginDiag = !loginDiag"
+    (showEditMenu)="editMenu = !editMenu"
+  ></app-navigation>
   <div [@expandSidenav]="pushMainContent && ($show | async)">
     <router-outlet></router-outlet>
   </div>

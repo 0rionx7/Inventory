@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   $show = this.sidenavService.expand;
   pushMainContent: boolean;
   loginDiag = false;
+  editMenu = true;
   constructor(
     private sidenavService: SidenavService,
     private route: ActivatedRoute
@@ -26,9 +27,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth < 420 ? false : true;
     this.route.url.subscribe(console.log);
-  }
-
-  onShowLogin(): void {
-    this.loginDiag = !this.loginDiag;
   }
 }

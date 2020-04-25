@@ -5,7 +5,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   template: `
     <div class="main-header">
       <div style="flex: 1;"></div>
-      <div class="login-el" (click)="this.showLogin.emit()">
+      <div class="nav-el" (click)="this.showEditMenu.emit()">
+        <span>Manage </span>
+        <mat-icon>playlist_add</mat-icon>
+      </div>
+      <div class="nav-el" (click)="this.showLogin.emit()">
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>
@@ -27,17 +31,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
         box-shadow: 0px 2px 13px 1px rgba(0, 0, 0, 0.75);
       }
 
-      .login-el {
+      .nav-el {
         display: flex;
         align-items: center;
+        margin-left: 15px;
         font-weight: 500;
         cursor: pointer;
+      }
+      mat-icon {
+        margin-left: 4px;
       }
     `,
   ],
 })
 export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
+  @Output() showEditMenu = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
