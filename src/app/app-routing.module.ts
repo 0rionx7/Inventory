@@ -41,6 +41,24 @@ const routes: Routes = [
     data: { no: 4 },
     children: childs,
   },
+  {
+    path: 'AleLaMachine5',
+    component: MainContentComponent,
+    data: { no: 5 },
+    children: childs,
+  },
+  {
+    path: 'AleLaMachine6',
+    component: MainContentComponent,
+    data: { no: 6 },
+    children: childs,
+  },
+  {
+    path: 'AleLaMachine7',
+    component: MainContentComponent,
+    data: { no: 7 },
+    children: childs,
+  },
 ];
 
 @NgModule({

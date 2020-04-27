@@ -32,15 +32,15 @@ export const menuItems: MenuItem[] = [
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    mainMenu: 'AleLaMachine',
+    mainMenu: 'AleLaMachine5',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    mainMenu: 'AleLaMachine',
+    mainMenu: 'AleLaMachine6',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    mainMenu: 'AleLaMachine',
+    mainMenu: 'AleLaMachine7',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
 ];

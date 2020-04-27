@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   $show = this.sidenavService.expand;
   pushMainContent: boolean;
   loginDiag = false;
-  editMenu = false;
+  editMenu = true;
   constructor(
     private sidenavService: SidenavService,
     private firestore: AngularFirestore
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth < 420 ? false : true;
+    // this.firestore.doc('menuItems/subMenu').set({ menuItems: menuItems });
     this.firestore
       .collection('menuItems')
       .snapshotChanges()

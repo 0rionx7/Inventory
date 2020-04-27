@@ -13,7 +13,7 @@ import { MenuItem } from '../shared/models';
       <div
         class="sm-icons"
         *ngFor="let icon of icons; index as i"
-        [routerLink]="menuItems[i].title"
+        [routerLink]="menuItems[i].mainMenu"
         [style.backgroundColor]="
           i === ($selected | async) ? '#aa977e' : 'transparent'
         "

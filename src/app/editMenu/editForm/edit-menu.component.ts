@@ -5,8 +5,15 @@ import {
   Output,
   EventEmitter,
   Input,
+  ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
@@ -18,26 +25,27 @@ import { MenuItem } from '../../shared/models';
   styleUrls: ['./edit-menu.component.scss'],
 })
 export class EditMenuComponent implements OnInit, OnDestroy {
+  @ViewChild('subMenusNo', { static: true }) subMenusNo: FormControl;
+  @ViewChild('selectedMain', { static: true }) selectedMain: FormControl;
   @Input() menuItems: MenuItem[];
   @Output() closeForm = new EventEmitter<void>();
   editMenuForm: FormGroup;
   valueSub: Subscription;
+  checked = false;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.editMenuForm = this.fb.group({
       mainMenu: ['', Validators.required],
-      subMenusNo: [0, Validators.required],
       subMenus: this.fb.array([]),
     });
     this.addSubMenus();
-    this.valueSub = this.editMenuForm
-      .get('subMenusNo')
-      .valueChanges.subscribe((_) => this.addSubMenus());
-  }
-
-  get mainMenus(): FormArray {
-    return this.editMenuForm.get('mainMenus') as FormArray;
+    this.valueSub = this.subMenusNo.valueChanges.subscribe((_) =>
+      this.addSubMenus()
+    );
+    this.selectedMain.valueChanges.subscribe((value) =>
+      this.editMenuForm.patchValue({ mainMenu: value.mainMenu })
+    );
   }
 
   get subMenus(): FormArray {
@@ -47,7 +55,7 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   addSubMenus(): void {
     if (this.subMenus.controls.every((control) => control.value === null))
       this.subMenus.clear();
-    for (let i = 0; i < this.editMenuForm.get('subMenusNo').value; i++)
+    for (let i = 0; i < this.subMenusNo.value; i++)
       this.subMenus.push(this.fb.control(null, Validators.required));
   }
 
@@ -56,9 +64,14 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   //   }
   onSubmit(f): void {
     console.log(f);
+    // this.editMenuForm.get();
   }
 
   ngOnDestroy(): void {
     this.valueSub.unsubscribe();
+  }
+
+  onSelect() {
+    console.log('aleeee');
   }
 }

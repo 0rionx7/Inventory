@@ -1,4 +1,4 @@
 export interface MenuItem {
-  title: string;
+  mainMenu: string;
   subMenus: Array<string>;
 }

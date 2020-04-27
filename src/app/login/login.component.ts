@@ -7,7 +7,6 @@ import { AuthService } from '../shared/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  preserveWhitespaces: true,
 })
 export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) {}

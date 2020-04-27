@@ -6,14 +6,30 @@
   >
     <label for="mainMenu">MainMenu</label>
     <input id="mainMenu" formControlName="mainMenu" required />
+    <select
+      id="mainMenu"
+      ngModel
+      #selectedMain="ngModel"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <option
+        *ngFor="let menuItem of menuItems"
+        [ngValue]="menuItem"
+        (click)="checked = !checked"
+        >{{ menuItem.mainMenu }}</option
+      >
+    </select>
     <label for="subMenusNo">SubMenus No.</label>
     <select
-      formControlName="subMenusNo"
       class="drop-down"
       id="subMenusNo"
-      required
+      [ngModel]="0"
+      [ngModelOptions]="{ standalone: true }"
+      #subMenusNo="ngModel"
     >
-      <option *ngFor="let i of [1, 2, 3, 4, 5]" [ngValue]="i">{{ i }}</option>
+      <option *ngFor="let i of [0, 1, 2, 3, 4, 5]" [ngValue]="i">{{
+        i
+      }}</option>
     </select>
     <label for="subMenu">SubMenu</label>
     <div formArrayName="subMenus">
