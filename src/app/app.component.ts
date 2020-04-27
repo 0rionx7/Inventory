@@ -1,8 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+
 import { mainContent } from './shared/mainAnimations.';
 import { SidenavService } from './shared/sidenav.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MenuItem } from './shared/models';
+import { menuItems } from './shared/menuItems';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +19,22 @@ export class AppComponent implements OnInit {
   onWindowChange() {
     this.pushMainContent = window.innerWidth > 620 && screen.availWidth > 420;
   }
+  menuItems: MenuItem;
   $show = this.sidenavService.expand;
   pushMainContent: boolean;
   loginDiag = false;
-  editMenu = true;
+  editMenu = false;
   constructor(
     private sidenavService: SidenavService,
-    private route: ActivatedRoute
+    private firestore: AngularFirestore
   ) {}
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth < 420 ? false : true;
-    this.route.url.subscribe(console.log);
+    this.firestore
+      .collection('menuItems')
+      .snapshotChanges()
+      .pipe(map((data) => data[0].payload.doc.data()['menuItems']))
+      .subscribe((data) => (this.menuItems = data));
   }
 }

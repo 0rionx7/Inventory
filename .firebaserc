@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angulargeohttp": {
+      "hosting": {
+        "Inventory": [
+          "angulargeohttp"
+        ]
+      }
+    }
+  }
+}

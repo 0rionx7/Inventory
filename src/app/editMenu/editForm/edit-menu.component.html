@@ -1,0 +1,35 @@
+<div class="container">
+  <form
+    [formGroup]="editMenuForm"
+    (ngSubmit)="onSubmit(editMenuForm)"
+    class="form-layout"
+  >
+    <label for="mainMenu">MainMenu</label>
+    <input id="mainMenu" formControlName="mainMenu" required />
+    <label for="subMenusNo">SubMenus No.</label>
+    <select
+      formControlName="subMenusNo"
+      class="drop-down"
+      id="subMenusNo"
+      required
+    >
+      <option *ngFor="let i of [1, 2, 3, 4, 5]" [ngValue]="i">{{ i }}</option>
+    </select>
+    <label for="subMenu">SubMenu</label>
+    <div formArrayName="subMenus">
+      <input
+        *ngFor="let subMenu of subMenus.controls; index as i"
+        [formControlName]="i"
+        type="text"
+        id="subMenu"
+        required
+      />
+    </div>
+    <div class="btn-group">
+      <button class="btn green">Submit</button>
+      <button type="button" class="btn red" (click)="closeForm.emit()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

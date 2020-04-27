@@ -3,13 +3,15 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 
 import { SidenavService } from 'src/app/shared/sidenav.service';
+import { MenuItem } from '../../shared/models';
 
 @Component({
   selector: 'app-navigation',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-nav
       (showLogin)="onShowLogin()"
@@ -23,6 +25,7 @@ import { SidenavService } from 'src/app/shared/sidenav.service';
         (iconClicked)="onIconClicked($event)"
       ></app-side-nav-sm>
       <app-side-nav-exp
+        [menuItems]="menuItems"
         [$selected]="$selected"
         [$expand]="$expand"
         (expandMenu)="onExpandMenu($event)"
@@ -45,11 +48,14 @@ import { SidenavService } from 'src/app/shared/sidenav.service';
 export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
   @Output() showEditMenu = new EventEmitter<boolean>();
+  @Input() menuItems: MenuItem[];
   $selected = this.sidenavService.menu;
   $expand = this.sidenavService.expand;
   loginDiag = false;
   arrow = 'right';
   constructor(private sidenavService: SidenavService) {}
+
+  ngOnInit(): void {}
 
   onShowLogin(): void {
     this.showLogin.emit((this.loginDiag = !this.loginDiag));

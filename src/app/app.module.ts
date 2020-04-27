@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AngularFireModule } from '@angular/fire';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +18,9 @@ import { ReqInterceptor } from './shared/request.interceptor';
 import { NavigationComponent } from './containers/navigation/navigation.component';
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
-import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { EditMenuComponent } from './editMenu/editForm/edit-menu.component';
+import { environment } from 'src/environments/environment';
+import { ArrayInputComponent } from './editMenu/array-input/array-input.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +34,17 @@ import { EditMenuComponent } from './edit-menu/edit-menu.component';
     MainContentComponent,
     SubcontentComponent,
     EditMenuComponent,
+    ArrayInputComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ReqInterceptor, multi: true },

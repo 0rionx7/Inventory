@@ -1,11 +1,15 @@
 <div class="modal edit" *ngIf="editMenu">
-  <app-edit-menu></app-edit-menu>
+  <app-edit-menu
+    [menuItems]="menuItems"
+    (closeForm)="editMenu = !editMenu"
+  ></app-edit-menu>
 </div>
 <div class="modal" *ngIf="loginDiag">
   <app-login></app-login>
 </div>
 <div style="display: flex;">
   <app-navigation
+    [menuItems]="menuItems"
     (showLogin)="loginDiag = !loginDiag"
     (showEditMenu)="editMenu = !editMenu"
   ></app-navigation>

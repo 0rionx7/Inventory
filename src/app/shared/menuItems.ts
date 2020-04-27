@@ -12,35 +12,35 @@ export const icons = [
 ];
 export const menuItems: MenuItem[] = [
   {
-    title: 'AleLaMachine',
+    mainMenu: 'AleLaMachine',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine1',
+    mainMenu: 'AleLaMachine1',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine2',
+    mainMenu: 'AleLaMachine2',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine3',
+    mainMenu: 'AleLaMachine3',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine4',
+    mainMenu: 'AleLaMachine4',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine',
+    mainMenu: 'AleLaMachine',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine',
+    mainMenu: 'AleLaMachine',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
-    title: 'AleLaMachine',
+    mainMenu: 'AleLaMachine',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
 ];

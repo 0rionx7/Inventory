@@ -36,7 +36,7 @@ import { MenuItem } from '../shared/models';
         cursor: pointer;
       }
       .menu:focus {
-        background-color: #aa977e;
+        background-color: #aa977e !important;
         outline: none;
       }
     `,
@@ -52,7 +52,7 @@ export class SideNavExpContentComponent implements OnInit {
   ngOnInit(): void {}
 
   get title(): string {
-    return this.menuItem.title;
+    return this.menuItem.mainMenu;
   }
 
   get subMenus(): Array<string> {

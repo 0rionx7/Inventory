@@ -2,9 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { sidenavAnimations } from '../shared/mainAnimations.';
 import { MenuItem } from '../shared/models';
-import { menuItems } from '../shared/menuItems';
+import { sidenavAnimations } from '../shared/mainAnimations.';
 
 @Component({
   selector: 'app-side-nav-exp',
@@ -47,11 +46,11 @@ import { menuItems } from '../shared/menuItems';
   animations: sidenavAnimations,
 })
 export class SideNavExpComponent implements OnInit {
+  @Input() menuItems: MenuItem[];
   @Input() $selected: Observable<number>;
   @Input() $expand: Observable<boolean>;
   @Output() expandMenu = new EventEmitter<number>();
   @Output() closeNav = new EventEmitter<void>();
-  menuItems: MenuItem[] = menuItems;
   constructor() {}
 
   ngOnInit(): void {}
