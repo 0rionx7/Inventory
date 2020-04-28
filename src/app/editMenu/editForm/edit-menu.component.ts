@@ -15,6 +15,7 @@ import {
   FormControl,
 } from '@angular/forms';
 
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 
 import { MenuItem } from '../../shared/models';
@@ -31,8 +32,9 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   @Output() closeForm = new EventEmitter<void>();
   editMenuForm: FormGroup;
   valueSub: Subscription;
+  valueSub2: Subscription;
   checked = false;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
     this.editMenuForm = this.fb.group({
@@ -40,16 +42,24 @@ export class EditMenuComponent implements OnInit, OnDestroy {
       subMenus: this.fb.array([]),
     });
     this.addSubMenus();
-    this.valueSub = this.subMenusNo.valueChanges.subscribe((_) =>
-      this.addSubMenus()
-    );
-    this.selectedMain.valueChanges.subscribe((value) =>
-      this.editMenuForm.patchValue({ mainMenu: value.mainMenu })
-    );
+    this.valueSub = this.subMenusNo.valueChanges.subscribe((_) => {
+      this.addSubMenus();
+    });
+    this.valueSub2 = this.selectedMain.valueChanges.subscribe((value) => {
+      if (value) this.fillForm(value);
+    });
   }
 
   get subMenus(): FormArray {
     return this.editMenuForm.get('subMenus') as FormArray;
+  }
+
+  fillForm(value: MenuItem) {
+    this.subMenus.clear();
+    value.subMenus.forEach((_) =>
+      this.subMenus.push(this.fb.control(null, Validators.required))
+    );
+    this.editMenuForm.patchValue(value);
   }
 
   addSubMenus(): void {
@@ -59,19 +69,14 @@ export class EditMenuComponent implements OnInit, OnDestroy {
       this.subMenus.push(this.fb.control(null, Validators.required));
   }
 
-  //   patchForm(items:MenuItem[]):void {
-  // items.forEach(item=> this.)
-  //   }
-  onSubmit(f): void {
-    console.log(f);
-    // this.editMenuForm.get();
+  onSubmit(editMenuForm: FormGroup): void {
+    this.firestore
+      .doc('menuItems/sideMenu')
+      .set({ test: 'ale' }, { merge: true });
   }
 
   ngOnDestroy(): void {
     this.valueSub.unsubscribe();
-  }
-
-  onSelect() {
-    console.log('aleeee');
+    this.valueSub2.unsubscribe();
   }
 }

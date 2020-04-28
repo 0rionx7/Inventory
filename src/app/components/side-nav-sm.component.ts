@@ -13,7 +13,7 @@ import { MenuItem } from '../shared/models';
       <div
         class="sm-icons"
         *ngFor="let icon of icons; index as i"
-        [routerLink]="menuItems[i].mainMenu"
+        [routerLink]="enuItems[i].mainMenu"
         [style.backgroundColor]="
           i === ($selected | async) ? '#aa977e' : 'transparent'
         "
@@ -71,7 +71,7 @@ export class SideNavSmComponent implements OnInit {
   @Output() arrowClicked = new EventEmitter<void>();
   @Output() iconClicked = new EventEmitter<number>();
   icons: Array<string> = icons;
-  menuItems: MenuItem[] = menuItems;
+  enuItems: MenuItem[] = menuItems;
 
   constructor() {}
 

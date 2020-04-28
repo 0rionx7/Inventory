@@ -4,6 +4,10 @@
     (ngSubmit)="onSubmit(editMenuForm)"
     class="form-layout"
   >
+    <h3 style="align-self: center;">
+      {{ selectedMain.value ? 'Edit : ' : 'Add'
+      }}{{ selectedMain.value?.mainMenu }}
+    </h3>
     <label for="mainMenu">MainMenu</label>
     <input id="mainMenu" formControlName="mainMenu" required />
     <select
@@ -24,8 +28,8 @@
       class="drop-down"
       id="subMenusNo"
       [ngModel]="0"
-      [ngModelOptions]="{ standalone: true }"
       #subMenusNo="ngModel"
+      [ngModelOptions]="{ standalone: true }"
     >
       <option *ngFor="let i of [0, 1, 2, 3, 4, 5]" [ngValue]="i">{{
         i

@@ -12,12 +12,6 @@ const childs = [
 const routes: Routes = [
   { path: '', component: MainContentComponent },
   {
-    path: 'AleLaMachine',
-    component: MainContentComponent,
-    data: { no: 'Ale' },
-    children: childs,
-  },
-  {
     path: 'AleLaMachine1',
     component: MainContentComponent,
     data: { no: 1 },
