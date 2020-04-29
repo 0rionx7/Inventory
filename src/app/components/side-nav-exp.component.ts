@@ -11,7 +11,7 @@ import { sidenavAnimations } from '../shared/mainAnimations.';
     <div [@expandSidenav]="$expand | async" class="side-nav-exp">
       <div [@contentVisibility]="$expand | async">
         <app-side-nav-exp-content
-          *ngFor="let menuItem of menuItems; index as i"
+          *ngFor="let menuItem of menuItems"
           [menuItem]="menuItem"
           [selected]="selected"
         ></app-side-nav-exp-content>

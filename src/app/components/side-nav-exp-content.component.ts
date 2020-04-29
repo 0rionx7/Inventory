@@ -18,7 +18,7 @@ import { subContent } from '../shared/mainAnimations.';
       <mat-icon
         *ngIf="menuItem.subMenus.length !== 0"
         [@subArrow]="menuItem.mainMenu === selected[0] ? 'down' : 'right'"
-        style="margin-right: 13px;"
+        style="margin-right: 14px;"
         >keyboard_arrow_right</mat-icon
       >
     </div>

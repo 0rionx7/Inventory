@@ -29,7 +29,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
         height: 52px;
         padding: 0.5rem 1rem;
         background-color: #8b8e7f;
-        box-shadow: 0px 2px 13px 1px rgba(0, 0, 0, 0.75);
+        box-shadow: 1px 1px 9px 4px rgba(0, 0, 0, 0.75);
       }
 
       .nav-el {
