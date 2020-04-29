@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { toggleArrowAnimations } from '../shared/mainAnimations.';
-import { icons, menuItems } from '../shared/menuItems';
 import { MenuItem } from '../shared/models';
 
 @Component({
@@ -12,13 +9,14 @@ import { MenuItem } from '../shared/models';
     <div class="side-nav-sm">
       <div
         class="sm-icons"
-        *ngFor="let icon of icons; index as i"
-        [routerLink]="enuItems[i].mainMenu"
+        *ngFor="let menuItem of menuItems"
+        (click)="iconClicked.emit(menuItem.mainMenu)"
+        [routerLink]="menuItem.mainMenu"
         [style.backgroundColor]="
-          i === ($selected | async) ? '#aa977e' : 'transparent'
+          menuItem.mainMenu === selected ? '#aa977e' : 'transparent'
         "
       >
-        <mat-icon (click)="iconClicked.emit(i)">{{ icon }}</mat-icon>
+        <mat-icon>{{ menuItem.icon }}</mat-icon>
       </div>
       <div class="divider"></div>
       <div (click)="arrowClicked.emit()" class="arrow">
@@ -54,24 +52,19 @@ import { MenuItem } from '../shared/models';
         align-items: center;
         align-self: stretch;
         margin-top: 16px;
-      }
-      .sm-icons:focus {
-        outline: none;
-      }
-      mat-icon {
         cursor: pointer;
+        outline: none;
       }
     `,
   ],
   animations: toggleArrowAnimations,
 })
 export class SideNavSmComponent implements OnInit {
-  @Input() $selected: Observable<number>;
-  @Input() arrowToggle: string;
   @Output() arrowClicked = new EventEmitter<void>();
-  @Output() iconClicked = new EventEmitter<number>();
-  icons: Array<string> = icons;
-  enuItems: MenuItem[] = menuItems;
+  @Output() iconClicked = new EventEmitter<string>();
+  @Input() menuItems: MenuItem[];
+  @Input() selected: string;
+  @Input() arrowToggle: string;
 
   constructor() {}
 

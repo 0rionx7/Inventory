@@ -13,9 +13,7 @@ import { sidenavAnimations } from '../shared/mainAnimations.';
         <app-side-nav-exp-content
           *ngFor="let menuItem of menuItems; index as i"
           [menuItem]="menuItem"
-          [index]="i"
-          [$selected]="$selected"
-          (expandMenu)="expandMenu.emit($event)"
+          [selected]="selected"
         ></app-side-nav-exp-content>
       </div>
       <div class="divider"></div>
@@ -46,11 +44,10 @@ import { sidenavAnimations } from '../shared/mainAnimations.';
   animations: sidenavAnimations,
 })
 export class SideNavExpComponent implements OnInit {
-  @Input() menuItems: MenuItem[];
-  @Input() $selected: Observable<number>;
-  @Input() $expand: Observable<boolean>;
-  @Output() expandMenu = new EventEmitter<number>();
   @Output() closeNav = new EventEmitter<void>();
+  @Input() $expand: Observable<boolean>;
+  @Input() menuItems: MenuItem[];
+  @Input() selected: string[];
   constructor() {}
 
   ngOnInit(): void {}

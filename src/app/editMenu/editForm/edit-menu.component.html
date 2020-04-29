@@ -16,13 +16,12 @@
       #selectedMain="ngModel"
       [ngModelOptions]="{ standalone: true }"
     >
-      <option
-        *ngFor="let menuItem of menuItems"
-        [ngValue]="menuItem"
-        (click)="checked = !checked"
-        >{{ menuItem.mainMenu }}</option
-      >
+      <option *ngFor="let menuItem of menuItems" [ngValue]="menuItem">{{
+        menuItem.mainMenu
+      }}</option>
     </select>
+    <label for="icon">Icon</label>
+    <input id="icon" formControlName="icon" required />
     <label for="subMenusNo">SubMenus No.</label>
     <select
       class="drop-down"
@@ -46,7 +45,9 @@
       />
     </div>
     <div class="btn-group">
-      <button class="btn green">Submit</button>
+      <button class="btn green">
+        {{ selectedMain.value ? 'Edit' : 'Add' }}
+      </button>
       <button type="button" class="btn red" (click)="closeForm.emit()">
         Cancel
       </button>

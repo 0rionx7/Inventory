@@ -1,28 +1,40 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MenuItem } from '../shared/models';
+import { subContent } from '../shared/mainAnimations.';
 
 @Component({
   selector: 'app-side-nav-exp-content',
   template: `
-    <p
-      [routerLink]="title"
-      (click)="expandMenu.emit(index)"
-      class="menu"
+    <div
+      class="menu-title"
       [style.backgroundColor]="
-        index === ($selected | async) ? '#aa977e' : 'transparent'
+        menuItem.mainMenu === selected[0] ? '#aa977e' : 'transparent'
       "
     >
-      {{ title }}
-    </p>
-    <div *ngIf="index === ($selected | async)" style="margin-left: 30px;">
+      <p [routerLink]="title" class="title">
+        {{ title }}
+      </p>
+      <mat-icon
+        *ngIf="menuItem.subMenus.length !== 0"
+        [@subArrow]="menuItem.mainMenu === selected[0] ? 'down' : 'right'"
+        style="margin-right: 13px;"
+        >keyboard_arrow_right</mat-icon
+      >
+    </div>
+    <div
+      *ngIf="menuItem.mainMenu === selected[0]"
+      @subContent
+      style="margin-left: 30px; overflow: hidden;"
+    >
       <p
-        *ngFor="let submenu of subMenus; index as i"
-        [routerLink]="[title, i]"
+        *ngFor="let submenu of subMenus"
+        [routerLink]="[title, submenu]"
         [state]="{ main: title, sub: submenu }"
-        class="menu"
+        class="sub"
+        [style.backgroundColor]="
+          submenu === selected[1] ? '#aa977e' : 'transparent'
+        "
       >
         {{ submenu }}
       </p>
@@ -30,23 +42,33 @@ import { MenuItem } from '../shared/models';
   `,
   styles: [
     `
+      .menu-title {
+        display: flex;
+        justify-content: space-between;
+        margin: 1em 0 1em;
+      }
       p {
         padding: 0 13px 0 13px;
         line-height: 24px;
         cursor: pointer;
-      }
-      .menu:focus {
-        background-color: #aa977e !important;
         outline: none;
+      }
+      p:first-child.sub {
+        margin-top: 0;
+      }
+      p:last-child.sub {
+        margin-bottom: 0;
+      }
+      .title {
+        margin: 0;
       }
     `,
   ],
+  animations: subContent,
 })
 export class SideNavExpContentComponent implements OnInit {
   @Input() menuItem: MenuItem;
-  @Input() index: number;
-  @Input() $selected: Observable<number>;
-  @Output() expandMenu = new EventEmitter<number>();
+  @Input() selected: string[];
   constructor() {}
 
   ngOnInit(): void {}

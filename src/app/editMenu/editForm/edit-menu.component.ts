@@ -33,12 +33,12 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   editMenuForm: FormGroup;
   valueSub: Subscription;
   valueSub2: Subscription;
-  checked = false;
   constructor(private fb: FormBuilder, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
     this.editMenuForm = this.fb.group({
       mainMenu: ['', Validators.required],
+      icon: ['', Validators.required],
       subMenus: this.fb.array([]),
     });
     this.addSubMenus();
@@ -46,7 +46,9 @@ export class EditMenuComponent implements OnInit, OnDestroy {
       this.addSubMenus();
     });
     this.valueSub2 = this.selectedMain.valueChanges.subscribe((value) => {
-      if (value) this.fillForm(value);
+      if (value) {
+        this.fillForm(value);
+      }
     });
   }
 
@@ -70,9 +72,19 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(editMenuForm: FormGroup): void {
+    const existing = this.menuItems.filter(
+      (el) =>
+        el.mainMenu === editMenuForm.value.mainMenu ||
+        el.mainMenu === this.selectedMain.value.mainMenu
+    );
+    const id =
+      existing.length != 0
+        ? existing[0].id
+        : this.menuItems.slice(-1)[0].id + 1;
     this.firestore
-      .doc('menuItems/sideMenu')
-      .set({ test: 'ale' }, { merge: true });
+      .doc('menuItems/sideMenu1')
+      .set({ [id]: { ...editMenuForm.value, id } }, { merge: true });
+    this.closeForm.emit();
   }
 
   ngOnDestroy(): void {

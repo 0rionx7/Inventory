@@ -15,20 +15,21 @@ import { MenuItem } from '../../shared/models';
   template: `
     <app-nav
       (showLogin)="onShowLogin()"
+      (homeButton)="onHomeButton()"
       (showEditMenu)="showEditMenu.emit()"
     ></app-nav>
     <div class="side-nav">
       <app-side-nav-sm
-        [$selected]="$selected"
-        [arrowToggle]="arrow"
+        [selected]="($currentUrl | async) && ($currentUrl | async)[0]"
+        [menuItems]="menuItems"
+        [arrowToggle]="($expand | async) ? 'left' : 'right'"
         (arrowClicked)="onExpandSidenav()"
         (iconClicked)="onIconClicked($event)"
       ></app-side-nav-sm>
       <app-side-nav-exp
         [menuItems]="menuItems"
-        [$selected]="$selected"
+        [selected]="$currentUrl | async"
         [$expand]="$expand"
-        (expandMenu)="onExpandMenu($event)"
         (closeNav)="onExpandSidenav()"
       ></app-side-nav-exp>
     </div>
@@ -49,10 +50,9 @@ export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
   @Output() showEditMenu = new EventEmitter<boolean>();
   @Input() menuItems: MenuItem[];
-  $selected = this.sidenavService.menu;
   $expand = this.sidenavService.expand;
+  $currentUrl = this.sidenavService.currentUrl;
   loginDiag = false;
-  arrow = 'right';
   constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {}
@@ -61,17 +61,15 @@ export class NavigationComponent {
     this.showLogin.emit((this.loginDiag = !this.loginDiag));
   }
 
-  onExpandMenu(index: number): void {
-    this.sidenavService.extraMenu(index);
+  onHomeButton(): void {
+    this.sidenavService.home();
   }
 
-  onExpandSidenav() {
-    this.arrow = this.arrow === 'right' ? 'left' : 'right';
+  onExpandSidenav(): void {
     this.sidenavService.arrowClicked();
   }
 
-  onIconClicked(index: number): void {
-    this.arrow = 'left';
-    this.sidenavService.sidenavIcon(index);
+  onIconClicked(title: string): void {
+    this.sidenavService.sidenavIcon(title);
   }
 }

@@ -4,6 +4,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   selector: 'app-nav',
   template: `
     <div class="main-header">
+      <mat-icon routerLink="/" (click)="this.homeButton.emit()">home</mat-icon>
       <div style="flex: 1;"></div>
       <div class="nav-el" (click)="this.showEditMenu.emit()">
         <span>Manage </span>
@@ -40,6 +41,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
       }
       mat-icon {
         margin-left: 4px;
+        cursor: pointer;
       }
     `,
   ],
@@ -47,6 +49,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
   @Output() showEditMenu = new EventEmitter();
+  @Output() homeButton = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}

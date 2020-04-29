@@ -85,3 +85,24 @@ export const mainContent = [
     transition('false <=> true', [animate('0.3s ease-in-out')]),
   ]),
 ];
+export const subContent = [
+  trigger('subContent', [
+    transition(':enter', [style({ height: 0 }), animate('0.3s ease-in')]),
+    transition(':leave', [animate('0.3s ease-in', style({ height: 0 }))]),
+  ]),
+  trigger('subArrow', [
+    state(
+      'right',
+      style({
+        transform: 'translateX(0)',
+      })
+    ),
+    state(
+      'down',
+      style({
+        transform: 'rotate(90deg)',
+      })
+    ),
+    transition('down <=> right', [animate('0.3s')]),
+  ]),
+];

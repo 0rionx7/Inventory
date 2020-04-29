@@ -9,6 +9,7 @@
 </div>
 <div style="display: flex;">
   <app-navigation
+    *ngIf="!loading"
     [menuItems]="menuItems"
     (showLogin)="loginDiag = !loginDiag"
     (showEditMenu)="editMenu = !editMenu"
