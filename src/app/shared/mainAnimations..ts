@@ -82,7 +82,16 @@ export const mainContent = [
         paddingLeft: '309px',
       })
     ),
-    transition('false <=> true', [animate('0.3s ease-in-out')]),
+    transition('false <=> true', [
+      group([
+        query('@mainContent', animateChild(), { optional: true }),
+        animate('0.3s ease-in-out'),
+      ]),
+    ]),
+  ]),
+  trigger('mainContent', [
+    transition(':enter', [style({ opacity: 0 }), animate('0.6s ease-in')]),
+    transition(':leave', [animate('0.3s ease-in', style({ opacity: 0 }))]),
   ]),
 ];
 export const subContent = [

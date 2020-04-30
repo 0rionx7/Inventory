@@ -1,6 +1,6 @@
-<div style="margin-top: 52px; overflow: auto;" *ngIf="!outlet.isActivated">
+<div @mainContent style="margin-top: 52px;" *ngIf="!outlet.isActivated">
   <div class="one">
-    <p style="background-color: aquamarine;">
+    <p>
       123456 789//// //ALELELEL ELALA,///// ///////// //////consec tetur a
       augue, imperdiet a risus sed, viverra consectetur sem. Praesent porttitor
       libero vitae vestibulum euismod. Ut id feugiat lectus. Donec id pulvinar
@@ -42,9 +42,21 @@
       sapien augue, non scelerisque arcu accumsan imperdiet. Proin ac magna eu
       nibh convallis ultrices quis vel elit.
     </p>
+    <!-- <div class="sides-container">
+      <div class="side-text">
+        <p>
+          porttitor libero vitae vestibulum euismod. Ut id feugiat lectus. Donec
+          id pulvinar sem. Suspendisse hendrerit arcu auctor turpis dapibus,
+          scelerisque sollicitudin lacus porttitor.
+        </p>
+      </div>
+      <div style="flex: 1;"></div>
+      <div class="side-text"></div>
+    </div> -->
+    <div class="window"></div>
   </div>
   <div class="two">
-    <p style="background-color: aquamarine;">
+    <p>
       123456 789//// //ALELELEL ELALA,///// ///////// //////consec tetur a
       augue, imperdiet a risus sed, viverra consectetur sem. Praesent porttitor
       libero vitae vestibulum euismod. Ut id feugiat lectus. Donec id pulvinar
@@ -86,9 +98,10 @@
       sapien augue, non scelerisque arcu accumsan imperdiet. Proin ac magna eu
       nibh convallis ultrices quis vel elit.
     </p>
+    <div class="window"></div>
   </div>
   <div class="three">
-    <p style="background-color: aquamarine;">
+    <p>
       123456 789//// //ALELELEL ELALA,///// ///////// //////consec tetur a
       augue, imperdiet a risus sed, viverra consectetur sem. Praesent porttitor
       libero vitae vestibulum euismod. Ut id feugiat lectus. Donec id pulvinar
@@ -130,6 +143,7 @@
       sapien augue, non scelerisque arcu accumsan imperdiet. Proin ac magna eu
       nibh convallis ultrices quis vel elit.
     </p>
+    <div class="window"></div>
   </div>
   <h1>{{ ($number | async).no }}</h1>
 </div>

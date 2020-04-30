@@ -1,14 +1,14 @@
 .one {
   background-image: url("../../../assets/images/unnamed (1).jpg");
-  height: 80vh;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  display: flex;
+  flex-direction: column;
 }
 .two {
   background-image: url("../../../assets/images/unnamed (3).jpg");
-  height: 100vh;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,7 +16,6 @@
 }
 .three {
   background-image: url("../../../assets/images/unnamed (6).jpg");
-  height: 80vh;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,4 +23,17 @@
 }
 p {
   margin: 0;
+  background-color: #7fffd45c;
+}
+.side-text {
+  width: 200px;
+  height: 100%;
+  background-color: wheat;
+}
+.sides-container {
+  display: flex;
+  height: 100%;
+}
+.window {
+  height: 60vh;
 }

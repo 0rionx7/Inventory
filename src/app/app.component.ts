@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pushMainContent = screen.availWidth < 420 ? false : true;
+    this.pushMainContent = screen.availWidth > 420;
     const preferedMenu = 'sideMenu1';
     this.firestore
       .collection('menuItems', (ref) =>

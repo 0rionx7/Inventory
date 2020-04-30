@@ -21,6 +21,7 @@ import { SubcontentComponent } from './content/subcontent/subcontent.component';
 import { EditMenuComponent } from './editMenu/editForm/edit-menu.component';
 import { environment } from 'src/environments/environment';
 import { ArrayInputComponent } from './editMenu/array-input/array-input.component';
+import { TabComponent } from './content/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ArrayInputComponent } from './editMenu/array-input/array-input.componen
     SubcontentComponent,
     EditMenuComponent,
     ArrayInputComponent,
+    TabComponent,
   ],
   imports: [
     BrowserModule,

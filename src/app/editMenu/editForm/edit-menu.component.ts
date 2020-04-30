@@ -72,6 +72,7 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(editMenuForm: FormGroup): void {
+    console.log(editMenuForm);
     const existing = this.menuItems.filter(
       (el) =>
         el.mainMenu === editMenuForm.value.mainMenu ||
