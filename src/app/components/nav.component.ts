@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +10,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
         <span>Manage </span>
         <mat-icon>playlist_add</mat-icon>
       </div>
-      <div class="nav-el" (click)="this.showLogin.emit()">
+      <div
+        class="nav-el"
+        routerLink="/tabs"
+        [state]="{ tabs: ['LogIn', 'SignUp'] }"
+      >
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>

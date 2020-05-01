@@ -1,0 +1,29 @@
+.tab-container {
+  display: flex;
+  height: 40px;
+  margin-top: 70px;
+  padding: 0 5vw 0 5vw;
+}
+.tab-start {
+  width: 5vw;
+  border-bottom: 1px solid black;
+}
+.tab-finish {
+  flex: 1;
+  border-bottom: 1px solid black;
+}
+.tab-mid {
+  width: 1vw;
+  border-bottom: 1px solid black;
+}
+.tab {
+  width: 7vw;
+  min-width: 56px;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid black;
+  box-shadow: -15px 0 15px -15px inset;
+  border-bottom: none;
+}
+.tab-el {
+  display: flex;
+}

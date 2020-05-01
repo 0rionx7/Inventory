@@ -1,1 +1,8 @@
-<p>tab works!</p>
+<div [@tabsWith]="state.show" class="tab-container">
+  <div class="tab-start"></div>
+  <div class="tab-el" *ngFor="let tab of state.tabs">
+    <div class="tab">{{ tab }}</div>
+    <div class="tab-mid"></div>
+  </div>
+  <div class="tab-finish"></div>
+</div>

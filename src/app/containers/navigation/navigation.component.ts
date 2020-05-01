@@ -53,6 +53,7 @@ export class NavigationComponent {
   $expand = this.sidenavService.expand;
   $currentUrl = this.sidenavService.currentUrl;
   loginDiag = false;
+
   constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {}

@@ -11,6 +11,7 @@ import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
+import { TabComponent } from './content/tab/tab.component';
 
 @Component({
   selector: 'app-root',
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit {
         children: childs,
       });
     }
+    config.push({ path: 'tabs', component: TabComponent });
     this.router.resetConfig(config);
   }
 

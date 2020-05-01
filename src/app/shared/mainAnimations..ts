@@ -85,6 +85,7 @@ export const mainContent = [
     transition('false <=> true', [
       group([
         query('@mainContent', animateChild(), { optional: true }),
+        query('@tabsWith', animateChild(), { optional: true }),
         animate('0.3s ease-in-out'),
       ]),
     ]),
@@ -92,6 +93,22 @@ export const mainContent = [
   trigger('mainContent', [
     transition(':enter', [style({ opacity: 0 }), animate('0.6s ease-in')]),
     transition(':leave', [animate('0.3s ease-in', style({ opacity: 0 }))]),
+  ]),
+  trigger('tabsWith', [
+    state(
+      'false',
+      style({
+        width: 'calc(100vw - 71px)',
+      })
+    ),
+    state(
+      'true',
+      style({
+        width: 'calc(100vw - 326px)',
+      })
+    ),
+
+    transition('false <=> true', [animate('0.3s ease-in')]),
   ]),
 ];
 export const subContent = [
