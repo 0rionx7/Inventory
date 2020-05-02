@@ -1,17 +1,10 @@
-import {
-  Component,
-  Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
-  Input,
-} from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 import { SidenavService } from 'src/app/shared/sidenav.service';
 import { MenuItem } from '../../shared/models';
 
 @Component({
   selector: 'app-navigation',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-nav
       (showLogin)="onShowLogin()"
@@ -19,19 +12,12 @@ import { MenuItem } from '../../shared/models';
       (showEditMenu)="showEditMenu.emit()"
     ></app-nav>
     <div class="side-nav">
-      <app-side-nav-sm
-        [selected]="($currentUrl | async) && ($currentUrl | async)[0]"
+      <app-sidenav
         [menuItems]="menuItems"
-        [arrowToggle]="($expand | async) ? 'left' : 'right'"
-        (arrowClicked)="onExpandSidenav()"
-        (iconClicked)="onIconClicked($event)"
-      ></app-side-nav-sm>
-      <app-side-nav-exp
-        [menuItems]="menuItems"
+        [expand]="$expand | async"
         [selected]="$currentUrl | async"
-        [$expand]="$expand"
-        (closeNav)="onExpandSidenav()"
-      ></app-side-nav-exp>
+        (iconClicked)="onIconClicked($event)"
+      ></app-sidenav>
     </div>
   `,
   styles: [
@@ -42,6 +28,7 @@ import { MenuItem } from '../../shared/models';
         left: 0;
         display: flex;
         height: calc(100% - 52px);
+        z-index: 10;
       }
     `,
   ],

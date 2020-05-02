@@ -26,7 +26,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 10;
+        z-index: 20;
         display: flex;
         align-items: center;
         width: 100%;

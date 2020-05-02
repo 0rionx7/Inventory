@@ -12,12 +12,6 @@ import {
 export const sidenavAnimations = [
   trigger('expandSidenav', [
     state(
-      'false',
-      style({
-        width: '0px',
-      })
-    ),
-    state(
       'true',
       style({
         width: '255px',
@@ -25,25 +19,29 @@ export const sidenavAnimations = [
     ),
     transition('false <=> true', [
       group([
-        query('@contentVisibility', animateChild()),
+        query('@subMenus', animateChild(), { optional: true }),
         animate('0.3s ease-in-out'),
       ]),
     ]),
   ]),
-  trigger('contentVisibility', [
+  trigger('subMenus', [
+    transition(':enter', [style({ height: 0 }), animate('0.3s ease-in')]),
+    transition(':leave', [animate('0.3s ease-in', style({ height: 0 }))]),
+  ]),
+  trigger('subArrow', [
     state(
       'false',
       style({
-        opacity: 0,
+        transform: 'translateX(0)',
       })
     ),
     state(
       'true',
       style({
-        opacity: 1,
+        transform: 'rotate(90deg)',
       })
     ),
-    transition('false <=> true', animate('0.3s')),
+    transition('true <=> false', [animate('0.3s')]),
   ]),
 ];
 
@@ -91,7 +89,10 @@ export const mainContent = [
     ]),
   ]),
   trigger('mainContent', [
-    transition(':enter', [style({ opacity: 0 }), animate('0.6s ease-in')]),
+    transition(':enter', [
+      style({ opacity: 0, 'z-index': -1 }),
+      animate('0.6s ease-in'),
+    ]),
     transition(':leave', [animate('0.3s ease-in', style({ opacity: 0 }))]),
   ]),
   trigger('tabsWith', [

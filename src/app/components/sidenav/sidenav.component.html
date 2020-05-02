@@ -1,0 +1,52 @@
+<div class="menu-item" *ngFor="let menuItem of menuItems">
+  <div
+    (click)="iconClicked.emit(menuItem.mainMenu)"
+    [routerLink]="menuItem.mainMenu"
+    class="icon"
+    [style.backgroundColor]="
+      menuItem.mainMenu === selected[0] ? '#aa977e' : 'bisque'
+    "
+  >
+    <mat-icon>{{ menuItem.icon }}</mat-icon>
+  </div>
+  <div
+    (click)="titleClicked(menuItem.mainMenu)"
+    [routerLink]="menuItem.mainMenu"
+    [@expandSidenav]="expand"
+    class="main-menu"
+    [style.backgroundColor]="
+      menuItem.mainMenu === selected[0] ? '#aa977e' : '#e0c5a3'
+    "
+  >
+    <p>{{ menuItem.mainMenu }}</p>
+    <div style="flex: 1;"></div>
+    <mat-icon
+      [@subArrow]="menuItem.mainMenu === selected[0] && openSub && expand"
+      style="margin-right: 29px;"
+      >keyboard_arrow_right</mat-icon
+    >
+  </div>
+  <div class="cell-filler"></div>
+  <div class="main-menu" [@expandSidenav]="expand">
+    <div
+      @subMenus
+      style="width: 100%;"
+      *ngIf="menuItem.mainMenu === selected[0] && openSub && expand"
+    >
+      <div
+        [routerLink]="[menuItem.mainMenu, subMenu]"
+        *ngFor="let subMenu of menuItem.subMenus"
+        class="sub-menus"
+        [style.backgroundColor]="
+          subMenu === selected[1] ? '#aa977e' : '#e0c5a3'
+        "
+      >
+        {{ subMenu }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="menu-item spacer">
+  <div class="icon"></div>
+  <div [@expandSidenav]="expand" class="main-menu"></div>
+</div>

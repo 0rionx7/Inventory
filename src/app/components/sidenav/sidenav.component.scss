@@ -1,0 +1,40 @@
+.menu-item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+}
+.icon {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+  outline: none;
+  background-color: bisque;
+}
+.main-menu {
+  display: flex;
+  align-items: center;
+  width: 0;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  background-color: #e0c5a3;
+}
+.sub-menus {
+  width: 100%;
+  padding-left: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  background-color: #e0c5a3;
+}
+.cell-filler {
+  background-color: bisque;
+}
+.spacer {
+  height: 100%;
+}
+p {
+  margin: 0;
+  padding-left: 10px;
+}
