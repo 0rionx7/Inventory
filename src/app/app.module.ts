@@ -17,10 +17,10 @@ import { MainContentComponent } from './content/main-content/main-content.compon
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
 import { EditMenuComponent } from './editMenu/editForm/edit-menu.component';
 import { environment } from 'src/environments/environment';
-import { ArrayInputComponent } from './editMenu/array-input/array-input.component';
 import { TabComponent } from './content/tab/tab.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TestComponent } from './test/test.component';
+import { ActiveRouteComponent } from './components/active-route.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +31,10 @@ import { TestComponent } from './test/test.component';
     MainContentComponent,
     SubcontentComponent,
     EditMenuComponent,
-    ArrayInputComponent,
     TabComponent,
     SidenavComponent,
     TestComponent,
+    ActiveRouteComponent,
   ],
   imports: [
     BrowserModule,

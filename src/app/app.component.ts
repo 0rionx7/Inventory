@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
   menuItems: MenuItem[];
   $show = this.sidenavService.expand;
+  $currentUrl = this.sidenavService.currentUrl;
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
@@ -71,6 +72,7 @@ export class AppComponent implements OnInit {
     }
     config.push({ path: 'tabs', component: TabComponent });
     this.router.resetConfig(config);
+    this.router.navigate(['AleLaMachine4/subMenu14']);
   }
 
   toDataBase(): void {

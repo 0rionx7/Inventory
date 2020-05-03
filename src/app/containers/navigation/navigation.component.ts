@@ -11,14 +11,13 @@ import { MenuItem } from '../../shared/models';
       (homeButton)="onHomeButton()"
       (showEditMenu)="showEditMenu.emit()"
     ></app-nav>
-    <div class="side-nav">
-      <app-sidenav
-        [menuItems]="menuItems"
-        [expand]="$expand | async"
-        [selected]="$currentUrl | async"
-        (iconClicked)="onIconClicked($event)"
-      ></app-sidenav>
-    </div>
+    <app-sidenav
+      [menuItems]="menuItems"
+      [expand]="$expand | async"
+      [selected]="$currentUrl | async"
+      (iconClicked)="onIconClicked($event)"
+      class="side-nav"
+    ></app-sidenav>
   `,
   styles: [
     `
