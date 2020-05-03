@@ -13,7 +13,7 @@
     <div
       (click)="titleClicked(menuItem.mainMenu)"
       [routerLink]="menuItem.mainMenu"
-      [@expandSidenav]="expand"
+      [style.width.px]="expand ? 255 : 0"
       class="main-menu"
       [style.backgroundColor]="
         menuItem.mainMenu === selected[0] ? '#aa977e' : '#e0c5a3'
@@ -22,13 +22,18 @@
       <p>{{ menuItem.mainMenu }}</p>
       <div style="flex: 1;"></div>
       <mat-icon
-        [@subArrow]="menuItem.mainMenu === selected[0] && openSub && expand"
+        class="arrow"
+        [style.transform]="
+          menuItem.mainMenu === selected[0] && openSub && expand
+            ? 'rotate(90deg)'
+            : 'rotate(0)'
+        "
         style="margin-right: 29px;"
         >keyboard_arrow_right</mat-icon
       >
     </div>
     <div class="cell-filler"></div>
-    <div class="main-menu" [@expandSidenav]="expand">
+    <div [style.width.px]="expand ? 255 : 0" class="main-menu">
       <div
         @subMenus
         style="width: 100%;"
@@ -49,6 +54,6 @@
   </div>
   <div class="menu-item" style="flex: 1;">
     <div class="icon"></div>
-    <div [@expandSidenav]="expand" class="main-menu"></div>
+    <div [style.width.px]="expand ? 255 : 0" class="main-menu"></div>
   </div>
 </div>

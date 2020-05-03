@@ -24,6 +24,7 @@
   cursor: pointer;
   outline: none;
   background-color: #e0c5a3;
+  transition: width 0.3s ease-in-out;
 }
 .sub-menus {
   width: 100%;
@@ -43,4 +44,7 @@
 p {
   margin: 0;
   padding-left: 10px;
+}
+.arrow {
+  transition: transform 0.3s;
 }
