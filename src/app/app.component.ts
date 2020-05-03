@@ -3,7 +3,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
-import { mainContent } from './shared/mainAnimations.';
 import { SidenavService } from './shared/sidenav.service';
 import { menuItems } from './shared/menuItems';
 import { MenuItem } from './shared/models';
@@ -17,7 +16,6 @@ import { TabComponent } from './content/tab/tab.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: mainContent,
 })
 export class AppComponent implements OnInit {
   @HostListener('window:resize')

@@ -14,7 +14,10 @@
     (showLogin)="loginDiag = !loginDiag"
     (showEditMenu)="editMenu = !editMenu"
   ></app-navigation>
-  <div [@expandSidenav]="pushMainContent && ($show | async)">
+  <div
+    class="main-content"
+    [style.padding-left]="pushMainContent && ($show | async) ? '309px' : '54px'"
+  >
     <router-outlet></router-outlet>
   </div>
 </div>
