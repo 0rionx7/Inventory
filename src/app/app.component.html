@@ -6,14 +6,13 @@
 ></app-edit-menu>
 <app-login class="modal" *ngIf="loginDiag"></app-login>
 <app-navigation
-  *ngIf="!loading"
   [menuItems]="menuItems"
   (showLogin)="loginDiag = !loginDiag"
   (showEditMenu)="editMenu = !editMenu"
 ></app-navigation>
 <div
   class="main-content"
-  [style.padding-left.px]="pushMainContent && ($show | async) ? '309' : '54'"
+  [style.padding-left.px]="pushMainContent && ($expand | async) ? '309' : '54'"
 >
   <app-active-route [$currentUrl]="$currentUrl"></app-active-route>
   <router-outlet></router-outlet>

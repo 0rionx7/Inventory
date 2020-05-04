@@ -52,10 +52,6 @@ export class NavigationComponent {
     this.sidenavService.home();
   }
 
-  onExpandSidenav(): void {
-    this.sidenavService.arrowClicked();
-  }
-
   onIconClicked(title: string): void {
     this.sidenavService.sidenavIcon(title);
   }

@@ -15,6 +15,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
         routerLink="/tabs"
         [state]="{ tabs: ['LogIn', 'SignUp'] }"
       >
+        <span>Tabs </span>
+      </div>
+      <div class="nav-el" (click)="this.showLogin.emit()">
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>

@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
     <div class="loaded-path">
       <mat-icon class="segment" routerLink="/">home</mat-icon>
       <div
-        [routerLink]="segment"
+        [routerLink]="path.slice(0, i + 1).join('/')"
         class="segment"
-        *ngFor="let segment of $currentUrl | async"
+        *ngFor="let segment of $currentUrl | async as path; index as i"
       >
         <mat-icon>keyboard_arrow_right</mat-icon>
         {{ segment }}

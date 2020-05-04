@@ -25,8 +25,6 @@ export class SidenavComponent implements OnInit {
 
   onIconClicked(title: string) {
     this.iconClicked.emit(title);
-    const check = title === this.selected[0];
-    this.expand = check ? !this.expand : true;
-    if (check && !this.openSub) this.openSub = true;
+    if (title === this.selected[0] && !this.openSub) this.openSub = true;
   }
 }
