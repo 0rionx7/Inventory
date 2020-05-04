@@ -21,6 +21,9 @@ import { TabComponent } from './content/tab/tab.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TestComponent } from './test/test.component';
 import { ActiveRouteComponent } from './components/active-route.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,14 @@ import { ActiveRouteComponent } from './components/active-route.component';
     BrowserAnimationsModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'Inventory',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ReqInterceptor, multi: true },
