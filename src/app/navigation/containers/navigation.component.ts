@@ -11,13 +11,7 @@ import { MenuItem } from '../models/models';
       (homeButton)="onHomeButton()"
       (showEditMenu)="showEditMenu.emit()"
     ></app-nav>
-    <app-sidenav
-      [menuItems]="menuItems"
-      [expand]="$expand | async"
-      [selected]="$currentUrl | async"
-      (iconClicked)="onIconClicked($event)"
-      class="side-nav"
-    ></app-sidenav>
+    <app-sidenav [menuItems]="menuItems" class="side-nav"></app-sidenav>
   `,
   styles: [
     `
@@ -36,8 +30,6 @@ export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
   @Output() showEditMenu = new EventEmitter<boolean>();
   @Input() menuItems: MenuItem[];
-  $expand = this.sidenavService.expand;
-  $currentUrl = this.sidenavService.currentUrl;
   loginDiag = false;
 
   constructor(private sidenavService: SidenavService) {}
@@ -50,9 +42,5 @@ export class NavigationComponent {
 
   onHomeButton(): void {
     this.sidenavService.home();
-  }
-
-  onIconClicked(title: string): void {
-    this.sidenavService.sidenavIcon(title);
   }
 }

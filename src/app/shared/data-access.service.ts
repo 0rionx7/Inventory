@@ -31,7 +31,6 @@ export class DataAccessService {
           const data = response[0].payload.doc.data() as {
             [key: number]: MenuItem;
           };
-          console.log(data);
           menuItems = [];
           for (const key in data) menuItems.push(data[key]);
           this.sidenavService.dynamicRoutes(menuItems);

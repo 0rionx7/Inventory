@@ -21,7 +21,6 @@ import { TestComponent } from './test/test.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { navigationReducer } from './navigation/store/reducers/sidenav.reducer';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,7 @@ import { navigationReducer } from './navigation/store/reducers/sidenav.reducer';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot(
-      { state: navigationReducer },
+      {},
       {
         metaReducers,
       }

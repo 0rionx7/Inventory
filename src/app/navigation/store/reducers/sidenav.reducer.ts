@@ -1,28 +1,40 @@
-import {
-  createReducer,
-  on,
-  createFeatureSelector,
-  createSelector,
-} from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 
 import { ExpandedSidenavActions, SmallSidenavActions } from '../actions';
-import { state } from '@angular/animations';
 
 export interface State {
-  expand: boolean;
-  selectedMain: number;
-  expandedSub: number;
+  expandSidenav: boolean;
+  selectedMenuIndex: number;
+  expandSub: boolean;
 }
 
 const initialState: State = {
-  expand: false,
-  selectedMain: null,
-  expandedSub: null,
+  expandSidenav: false,
+  selectedMenuIndex: null,
+  expandSub: null,
 };
 
-export const navigationReducer = createReducer(
+export const reducer = createReducer(
   initialState,
-  on(ExpandedSidenavActions.mainMenuClicked, (state, { mainMenu }) => {
-    return { ...state, selectedMain: mainMenu };
+  on(ExpandedSidenavActions.mainMenuClicked, (state, { menuIndex }) => {
+    return {
+      ...state,
+      selectedMenuIndex: menuIndex,
+      expandSub: menuIndex !== state.selectedMenuIndex || !state.expandSub,
+    };
+  }),
+  on(SmallSidenavActions.iconClicked, (state, { menuIndex }) => {
+    const expantion =
+      menuIndex !== state.selectedMenuIndex || !state.expandSidenav;
+    return {
+      ...state,
+      expandSidenav: expantion,
+      selectedMenuIndex: menuIndex,
+      expandSub: expantion,
+    };
   })
 );
+
+export const getExpandSidenav = (state: State) => state.expandSidenav;
+export const getSelectedMenuIndex = (state: State) => state.selectedMenuIndex;
+export const getExpandSub = (state: State) => state.expandSub;

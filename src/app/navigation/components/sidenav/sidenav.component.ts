@@ -4,7 +4,11 @@ import { Store, select } from '@ngrx/store';
 
 import { MenuItem } from '../../models/models';
 import { sidenavAnimations } from 'src/app/shared/mainAnimations.';
-import { mainMenuClicked } from '../../store/actions/expanded-sidenav.actions';
+import {
+  ExpandedSidenavActions,
+  SmallSidenavActions,
+} from '../../store/actions';
+import * as fromSidenav from '../../store/reducers';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,22 +17,29 @@ import { mainMenuClicked } from '../../store/actions/expanded-sidenav.actions';
   animations: sidenavAnimations,
 })
 export class SidenavComponent implements OnInit {
-  @Output() iconClicked = new EventEmitter<string>();
   @Input() menuItems: MenuItem[];
-  @Input() selected: string[];
-  @Input() expand: boolean;
-  openSub = true;
+  $selectedMenuIndex;
+  $expandSidenav;
+  $expandSub;
   constructor(private store: Store) {}
 
-  ngOnInit(): void {}
-
-  titleClicked(title: string, mainMenu) {
-    this.store.dispatch(mainMenuClicked({ mainMenu }));
-    this.openSub = title === this.selected[0] ? !this.openSub : true;
+  ngOnInit(): void {
+    this.$selectedMenuIndex = this.store.pipe(
+      select(fromSidenav.selectSidenavSelectedMenuIndex)
+    );
+    this.$expandSidenav = this.store.pipe(
+      select(fromSidenav.selectSidenavExpandSidenav)
+    );
+    this.$expandSub = this.store.pipe(
+      select(fromSidenav.selectSidenavExpandSub)
+    );
   }
 
-  onIconClicked(title: string) {
-    this.iconClicked.emit(title);
-    if (title === this.selected[0] && !this.openSub) this.openSub = true;
+  titleClicked(menuIndex: number) {
+    this.store.dispatch(ExpandedSidenavActions.mainMenuClicked({ menuIndex }));
+  }
+
+  onIconClicked(menuIndex: number) {
+    this.store.dispatch(SmallSidenavActions.iconClicked({ menuIndex }));
   }
 }
