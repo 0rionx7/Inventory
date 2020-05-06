@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="menu-item" *ngFor="let menuItem of menuItems">
+  <div class="menu-item" *ngFor="let menuItem of menuItems; index as i">
     <div
       (click)="onIconClicked(menuItem.mainMenu)"
       [routerLink]="menuItem.mainMenu"
@@ -11,7 +11,7 @@
       <mat-icon>{{ menuItem.icon }}</mat-icon>
     </div>
     <div
-      (click)="titleClicked(menuItem.mainMenu)"
+      (click)="titleClicked(menuItem.mainMenu, i)"
       [routerLink]="menuItem.mainMenu"
       [style.width.px]="expand ? 255 : 0"
       class="main-menu"

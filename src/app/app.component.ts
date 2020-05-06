@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
-import { MenuItem } from './shared/models';
-import { SidenavService } from './shared/sidenav.service';
+import { MenuItem } from './navigation/models/models';
+import { SidenavService } from './navigation/services/sidenav.service';
 import { DataAccessService } from './shared/data-access.service';
 
 @Component({

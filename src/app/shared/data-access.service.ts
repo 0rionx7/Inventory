@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 
-import { MenuItem } from './models';
-import { menuItems } from './menuItems';
-import { SidenavService } from './sidenav.service';
+import { MenuItem } from '../navigation/models/models';
+import { menuItems } from '../navigation/models/menuItems';
+import { SidenavService } from '../navigation/services/sidenav.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,10 @@ export class DataAccessService {
       .snapshotChanges()
       .pipe(
         map((response) => {
-          const data = response[0].payload.doc.data() as {};
+          const data = response[0].payload.doc.data() as {
+            [key: number]: MenuItem;
+          };
+          console.log(data);
           menuItems = [];
           for (const key in data) menuItems.push(data[key]);
           this.sidenavService.dynamicRoutes(menuItems);

@@ -18,7 +18,7 @@ import {
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 
-import { MenuItem } from '../../shared/models';
+import { MenuItem } from '../../navigation/models/models';
 
 @Component({
   selector: 'app-edit-menu',

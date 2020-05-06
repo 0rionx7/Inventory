@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 
-import { SidenavService } from 'src/app/shared/sidenav.service';
-import { MenuItem } from '../../shared/models';
+import { SidenavService } from 'src/app/navigation/services/sidenav.service';
+import { MenuItem } from '../models/models';
 
 @Component({
   selector: 'app-navigation',

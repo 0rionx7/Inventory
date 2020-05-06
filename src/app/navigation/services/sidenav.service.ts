@@ -4,10 +4,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { MenuItem } from './models';
-import { SubcontentComponent } from '../content/subcontent/subcontent.component';
-import { MainContentComponent } from '../content/main-content/main-content.component';
-import { TabComponent } from '../content/tab/tab.component';
+import { MenuItem } from '../models/models';
+import { SubcontentComponent } from '../../content/subcontent/subcontent.component';
+import { MainContentComponent } from '../../content/main-content/main-content.component';
+import { TabComponent } from '../../content/tab/tab.component';
 
 @Injectable({
   providedIn: 'root',
