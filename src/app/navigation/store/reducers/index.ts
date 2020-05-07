@@ -23,6 +23,10 @@ export const selectSidenavSelectedMenuIndex = createSelector(
   selectSidenavState,
   fromSidenav.getSelectedMenuIndex
 );
+export const selectSidenavSelectedSubIndex = createSelector(
+  selectSidenavState,
+  fromSidenav.getSelectedSubIndex
+);
 export const selectSidenavExpandSub = createSelector(
   selectSidenavState,
   fromSidenav.getExpandSub

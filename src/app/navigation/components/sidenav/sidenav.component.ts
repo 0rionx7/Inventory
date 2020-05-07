@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { MenuItem } from '../../models/models';
 import { sidenavAnimations } from 'src/app/shared/mainAnimations.';
@@ -18,9 +19,10 @@ import * as fromSidenav from '../../store/reducers';
 })
 export class SidenavComponent implements OnInit {
   @Input() menuItems: MenuItem[];
-  $selectedMenuIndex;
-  $expandSidenav;
-  $expandSub;
+  $selectedMenuIndex: Observable<number>;
+  $selectedSubIndex: Observable<number>;
+  $expandSidenav: Observable<boolean>;
+  $expandSub: Observable<boolean>;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -33,13 +35,20 @@ export class SidenavComponent implements OnInit {
     this.$expandSub = this.store.pipe(
       select(fromSidenav.selectSidenavExpandSub)
     );
+    this.$selectedSubIndex = this.store.pipe(
+      select(fromSidenav.selectSidenavSelectedSubIndex)
+    );
   }
 
-  titleClicked(menuIndex: number) {
+  onTitleClicked(menuIndex: number): void {
     this.store.dispatch(ExpandedSidenavActions.mainMenuClicked({ menuIndex }));
   }
 
-  onIconClicked(menuIndex: number) {
+  onIconClicked(menuIndex: number): void {
     this.store.dispatch(SmallSidenavActions.iconClicked({ menuIndex }));
+  }
+
+  onSubClicked(subIndex: number): void {
+    this.store.dispatch(ExpandedSidenavActions.subMenuClicked({ subIndex }));
   }
 }

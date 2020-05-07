@@ -5,5 +5,6 @@ export const mainMenuClicked = createAction(
   props<{ menuIndex: number }>()
 );
 export const subMenuClicked = createAction(
-  '[Expanded SideNav] Sub Menu Clicked'
+  '[Expanded SideNav] Sub Menu Clicked',
+  props<{ subIndex: number }>()
 );
