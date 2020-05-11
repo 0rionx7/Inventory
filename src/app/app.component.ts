@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
-import { MenuItem } from './navigation/models/models';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+import * as fromSidenav from './navigation/store/reducers';
 import { SidenavService } from './navigation/services/sidenav.service';
-import { DataAccessService } from './shared/data-access.service';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +16,17 @@ export class AppComponent implements OnInit {
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;
   }
-  menuItems: MenuItem[];
-  $expand = this.sidenavService.expand;
+  $expandSidenav: Observable<boolean>;
   $currentUrl = this.sidenavService.currentUrl;
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
-  constructor(
-    private sidenavService: SidenavService,
-    private dataBase: DataAccessService
-  ) {}
+  constructor(private store: Store, private sidenavService: SidenavService) {}
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth > 420;
-    this.dataBase.getMenuItems().subscribe((data) => (this.menuItems = data));
+    this.$expandSidenav = this.store.pipe(
+      select(fromSidenav.selectSidenavExpandSidenav)
+    );
   }
 }

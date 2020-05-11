@@ -1,3 +1,12 @@
+:host {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  display: flex;
+  height: calc(100% - 52px);
+  z-index: 10;
+}
+
 .container {
   height: 100%;
   overflow-y: auto;
@@ -38,6 +47,9 @@
 .cell-filler {
   background-color: bisque;
 }
+.filler {
+  cursor: initial;
+}
 .spacer {
   height: 100%;
 }
@@ -47,4 +59,7 @@ p {
 }
 .arrow {
   transition: transform 0.3s;
+}
+.bottom-arrow {
+  border-top: 1px solid black;
 }

@@ -1,8 +1,14 @@
-import { createReducer, on, Action } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
-import { ExpandedSidenavActions, SmallSidenavActions } from '../actions';
+import {
+  ExpandedSidenavActions,
+  SmallSidenavActions,
+  SidenavApiActions,
+} from '../actions';
+import { MenuItem } from '../../models/models';
 
 export interface State {
+  menuItems: MenuItem[];
   expandSidenav: boolean;
   expandSub: boolean;
   selectedMenuIndex: number;
@@ -10,6 +16,7 @@ export interface State {
 }
 
 const initialState: State = {
+  menuItems: [],
   expandSidenav: false,
   expandSub: null,
   selectedMenuIndex: null,
@@ -18,14 +25,16 @@ const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(ExpandedSidenavActions.mainMenuClicked, (state, { menuIndex }) => {
-    return {
-      ...state,
-      selectedMenuIndex: menuIndex,
-      selectedSubIndex: null,
-      expandSub: menuIndex !== state.selectedMenuIndex || !state.expandSub,
-    };
-  }),
+  on(SidenavApiActions.setMenuItems, (state, { items }) => ({
+    ...state,
+    menuItems: items,
+  })),
+  on(ExpandedSidenavActions.mainMenuClicked, (state, { menuIndex }) => ({
+    ...state,
+    selectedMenuIndex: menuIndex,
+    selectedSubIndex: null,
+    expandSub: menuIndex !== state.selectedMenuIndex || !state.expandSub,
+  })),
   on(SmallSidenavActions.iconClicked, (state, { menuIndex }) => {
     const expantion =
       menuIndex !== state.selectedMenuIndex || !state.expandSidenav;
@@ -37,14 +46,17 @@ export const reducer = createReducer(
       expandSub: expantion,
     };
   }),
-  on(ExpandedSidenavActions.subMenuClicked, (state, { subIndex }) => {
-    return {
-      ...state,
-      selectedSubIndex: subIndex,
-    };
-  })
+  on(ExpandedSidenavActions.subMenuClicked, (state, { subIndex }) => ({
+    ...state,
+    selectedSubIndex: subIndex,
+  })),
+  on(ExpandedSidenavActions.bottomArrowClicked, (state) => ({
+    ...state,
+    expandSidenav: !state.expandSidenav,
+  }))
 );
 
+export const getMenuItems = (state: State) => state.menuItems;
 export const getExpandSidenav = (state: State) => state.expandSidenav;
 export const getExpandSub = (state: State) => state.expandSub;
 export const getSelectedMenuIndex = (state: State) => state.selectedMenuIndex;

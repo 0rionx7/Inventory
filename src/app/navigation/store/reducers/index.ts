@@ -15,6 +15,10 @@ export function reducers(state: fromSidenav.State | undefined, action: Action) {
 // prettier-ignore
 export const selectSidenavState = createFeatureSelector<State,fromSidenav.State>(navigationFeatureKey);
 
+export const selectSidenavMenuItems = createSelector(
+  selectSidenavState,
+  fromSidenav.getMenuItems
+);
 export const selectSidenavExpandSidenav = createSelector(
   selectSidenavState,
   fromSidenav.getExpandSidenav

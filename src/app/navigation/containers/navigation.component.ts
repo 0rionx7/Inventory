@@ -1,46 +1,65 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
-import { SidenavService } from 'src/app/navigation/services/sidenav.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { MenuItem } from '../models/models';
+import * as fromSidenav from '../store/reducers';
 
 @Component({
   selector: 'app-navigation',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-nav
       (showLogin)="onShowLogin()"
-      (homeButton)="onHomeButton()"
       (showEditMenu)="showEditMenu.emit()"
     ></app-nav>
-    <app-sidenav [menuItems]="menuItems" class="side-nav"></app-sidenav>
+    <app-sidenav
+      [menuItems]="$menuItems | async"
+      [selectedMenuIndex]="$selectedMenuIndex | async"
+      [selectedSubIndex]="$selectedSubIndex | async"
+      [expandSidenav]="$expandSidenav | async"
+      [expandSub]="$expandSub | async"
+    ></app-sidenav>
   `,
-  styles: [
-    `
-      .side-nav {
-        position: fixed;
-        top: 52px;
-        left: 0;
-        display: flex;
-        height: calc(100% - 52px);
-        z-index: 10;
-      }
-    `,
-  ],
 })
 export class NavigationComponent {
   @Output() showLogin = new EventEmitter<boolean>();
   @Output() showEditMenu = new EventEmitter<boolean>();
-  @Input() menuItems: MenuItem[];
+  $menuItems: Observable<MenuItem[]>;
+  $selectedMenuIndex: Observable<number>;
+  $selectedSubIndex: Observable<number>;
+  $expandSidenav: Observable<boolean>;
+  $expandSub: Observable<boolean>;
+
   loginDiag = false;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.$menuItems = this.store.pipe(
+      select(fromSidenav.selectSidenavMenuItems)
+    );
+    this.$selectedMenuIndex = this.store.pipe(
+      select(fromSidenav.selectSidenavSelectedMenuIndex)
+    );
+    this.$selectedSubIndex = this.store.pipe(
+      select(fromSidenav.selectSidenavSelectedSubIndex)
+    );
+    this.$expandSidenav = this.store.pipe(
+      select(fromSidenav.selectSidenavExpandSidenav)
+    );
+    this.$expandSub = this.store.pipe(
+      select(fromSidenav.selectSidenavExpandSub)
+    );
+  }
 
   onShowLogin(): void {
     this.showLogin.emit((this.loginDiag = !this.loginDiag));
-  }
-
-  onHomeButton(): void {
-    this.sidenavService.home();
   }
 }

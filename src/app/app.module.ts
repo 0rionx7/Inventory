@@ -1,4 +1,3 @@
-import { NavigationModule } from './navigation/navigation.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,10 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 
+import { NavigationModule } from './navigation/navigation.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
 import { LoginComponent } from './login/login.component';
 import { ReqInterceptor } from './shared/request.interceptor';
 import { MainContentComponent } from './content/main-content/main-content.component';
@@ -18,9 +20,8 @@ import { EditMenuComponent } from './editMenu/editForm/edit-menu.component';
 import { environment } from 'src/environments/environment';
 import { TabComponent } from './content/tab/tab.component';
 import { TestComponent } from './test/test.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { metaReducers } from './store/reducers';
+import { RootEffects } from './store/effects/root.effects';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         metaReducers,
       }
     ),
+    EffectsModule.forRoot([RootEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Inventory',
       maxAge: 25,
