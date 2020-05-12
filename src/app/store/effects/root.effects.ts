@@ -7,8 +7,8 @@ import {
   createEffect,
   ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { of, pipe } from 'rxjs';
+import { switchMap, map, catchError, filter } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';
 import { MenuItem } from 'src/app/navigation/models/models';
@@ -17,12 +17,12 @@ import { SidenavApiActions } from 'src/app/navigation/store/actions';
 @Injectable()
 export class RootEffects {
   constructor(
-    private action$: Actions,
+    private actions$: Actions,
     private sidenavService: SidenavService
   ) {}
 
   init$ = createEffect(() =>
-    this.action$.pipe(
+    this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() =>
         this.sidenavService.getMenuItems().pipe(

@@ -22,6 +22,9 @@ import { TabComponent } from './content/tab/tab.component';
 import { TestComponent } from './test/test.component';
 import { metaReducers } from './store/reducers';
 import { RootEffects } from './store/effects/root.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterEffects } from './store/effects/router.effects';
+import * as fromRoot from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -42,18 +45,16 @@ import { RootEffects } from './store/effects/root.effects';
     RouterModule.forRoot([{ path: '**', redirectTo: '/' }]),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    StoreModule.forRoot(
-      {},
-      {
-        metaReducers,
-      }
-    ),
-    EffectsModule.forRoot([RootEffects]),
+    StoreModule.forRoot(fromRoot.reducers, {
+      metaReducers,
+    }),
+    EffectsModule.forRoot([RootEffects, RouterEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Inventory',
       maxAge: 25,
       logOnly: environment.production,
     }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ReqInterceptor, multi: true },

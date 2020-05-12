@@ -34,7 +34,7 @@ import { Observable } from 'rxjs';
   ],
 })
 export class ActiveRouteComponent implements OnInit {
-  @Input() $currentUrl: Observable<string>;
+  @Input() $currentUrl: Observable<string[]>;
 
   constructor() {}
 
