@@ -15,5 +15,6 @@
   "
 >
   <app-active-route [$currentUrl]="$currentUrl"></app-active-route>
+  <app-books [books]="books$ | async"></app-books>
   <router-outlet></router-outlet>
 </div>

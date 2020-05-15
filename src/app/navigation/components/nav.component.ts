@@ -1,12 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
   template: `
     <div class="main-header">
-      <mat-icon routerLink="/">home</mat-icon>
+      <mat-icon routerLink="/" (click)="homeButton.emit()">home</mat-icon>
       <div style="flex: 1;"></div>
-      <div class="nav-el" (click)="this.showEditMenu.emit()">
+      <div class="nav-el" (click)="showEditMenu.emit()">
         <span>Manage </span>
         <mat-icon>playlist_add</mat-icon>
       </div>
@@ -17,7 +17,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
       >
         <span>Tabs </span>
       </div>
-      <div class="nav-el" (click)="this.showLogin.emit()">
+      <div class="nav-el" (click)="showLogin.emit()">
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>
@@ -56,6 +56,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
   @Output() showEditMenu = new EventEmitter();
+  @Output() homeButton = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}

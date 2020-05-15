@@ -30,6 +30,7 @@
         <div
           (click)="onSubClicked(i)"
           [routerLink]="[menuItem.mainMenu, subMenu]"
+          [state]="{ extra: 17 }"
           *ngFor="let subMenu of menuItem.subMenus; index as i"
           class="sub-menus"
           [style.backgroundColor]="

@@ -25,6 +25,8 @@ import { RootEffects } from './store/effects/root.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterEffects } from './store/effects/router.effects';
 import * as fromRoot from './store/reducers';
+import { BooksComponent } from './content/books/books.component';
+import { BookComponent } from './content/books/book.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import * as fromRoot from './store/reducers';
     EditMenuComponent,
     TabComponent,
     TestComponent,
+    BooksComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,7 @@ import * as fromRoot from './store/reducers';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot(fromRoot.reducers, {
-      metaReducers,
+      // metaReducers,
     }),
     EffectsModule.forRoot([RootEffects, RouterEffects]),
     StoreDevtoolsModule.instrument({

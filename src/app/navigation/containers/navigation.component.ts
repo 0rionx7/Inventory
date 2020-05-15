@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 
 import { MenuItem } from '../models/models';
 import * as fromSidenav from '../store/reducers';
+import { NavBarActions } from '../store/actions';
 
 @Component({
   selector: 'app-navigation',
@@ -18,6 +19,7 @@ import * as fromSidenav from '../store/reducers';
     <app-nav
       (showLogin)="onShowLogin()"
       (showEditMenu)="showEditMenu.emit()"
+      (homeButton)="onHomeButtonClicked()"
     ></app-nav>
     <app-sidenav
       [menuItems]="$menuItems | async"
@@ -61,5 +63,9 @@ export class NavigationComponent {
 
   onShowLogin(): void {
     this.showLogin.emit((this.loginDiag = !this.loginDiag));
+  }
+
+  onHomeButtonClicked(): void {
+    this.store.dispatch(NavBarActions.homeButtonClicked());
   }
 }

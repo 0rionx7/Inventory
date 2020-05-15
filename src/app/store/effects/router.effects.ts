@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { ROUTER_NAVIGATED, ROUTER_REQUEST } from '@ngrx/router-store';
-import { switchMap, tap, map, mergeMap } from 'rxjs/operators';
-import { Action } from '@ngrx/store';
-import { of } from 'rxjs';
+import { ROUTER_NAVIGATED } from '@ngrx/router-store';
+import { tap, map, mergeMap, scan, take, switchMap } from 'rxjs/operators';
+import { concat, merge } from 'rxjs';
 
 @Injectable()
 export class RouterEffects {
@@ -17,16 +16,13 @@ export class RouterEffects {
   navigationEnded$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(ROUTER_REQUEST),
-        tap((_) => console.log('INSIDE')),
-        map((sd: Action) => {
-          console.log(sd['payload'].routerState.url);
+        ofType(ROUTER_NAVIGATED),
+        switchMap(() => {
           let route = this.activatedRoute;
           while (route.firstChild) route = route.firstChild;
-          return route;
-        }),
-        mergeMap((asd) => asd.url),
-        tap((x) => console.log(x))
+          const pathUrls = route.pathFromRoot.map((route) => route.url);
+          return merge(...pathUrls);
+        })
       ),
     { dispatch: false }
   );

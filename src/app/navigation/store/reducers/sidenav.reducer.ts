@@ -4,6 +4,7 @@ import {
   ExpandedSidenavActions,
   SmallSidenavActions,
   SidenavApiActions,
+  NavBarActions,
 } from '../actions';
 import { MenuItem } from '../../models/models';
 
@@ -53,6 +54,10 @@ export const reducer = createReducer(
   on(ExpandedSidenavActions.bottomArrowClicked, (state) => ({
     ...state,
     expandSidenav: !state.expandSidenav,
+  })),
+  on(NavBarActions.homeButtonClicked, (state) => ({
+    ...state,
+    expandSidenav: false,
   }))
 );
 
