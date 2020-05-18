@@ -36,26 +36,3 @@ select {
 .drop-down {
   width: 60px;
 }
-
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  color: white;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  padding: 6px 12px;
-  font-size: 14px;
-  border-radius: 4px;
-  width: 69px;
-}
-
-.btn.green {
-  background-color: rgba(45, 184, 17, 0.938);
-}
-
-.btn.red {
-  background-color: rgba(226, 35, 35, 0.986);
-}

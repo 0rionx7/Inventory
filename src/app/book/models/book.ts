@@ -29,7 +29,8 @@ export const mockBook: Book = {
     ratingsCount: 5,
     imageLinks: {
       thumbnail: 'string',
-      smallThumbnail: 'string',
+      smallThumbnail:
+        'http://books.google.com/books/content?id=-fZkzQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
     },
   },
 };

@@ -4,11 +4,10 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import * as fromSidenav from './navigation/store/reducers';
-import * as fromBook from './store/actions/book.actions';
-import * as fromRoot from './store/reducers';
+import * as fromBook from './book/store/reducers';
 import { SidenavService } from './navigation/services/sidenav.service';
-import { BooksService } from './shared/books.service';
-import { Book } from './shared/book';
+import { BooksService } from './book/services/books.service';
+import { Book, mockBook } from './book/models/book';
 
 @Component({
   selector: 'app-root',
@@ -37,11 +36,7 @@ export class AppComponent implements OnInit {
     this.$expandSidenav = this.store.pipe(
       select(fromSidenav.selectSidenavExpandSidenav)
     );
-    this.bookService
-      .getBooks()
-      .subscribe((books: Book[]) =>
-        this.store.dispatch(fromBook.loadBooks({ books }))
-      );
-    this.books$ = this.store.pipe(select(fromRoot.selectAllBooks));
+    this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
+    this.bookService.getBooksFromFirestore();
   }
 }

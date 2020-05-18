@@ -12,21 +12,20 @@ import { AngularFireModule } from '@angular/fire';
 
 import { NavigationModule } from './navigation/navigation.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './shared/login/login.component';
 import { ReqInterceptor } from './shared/request.interceptor';
-import { MainContentComponent } from './content/main-content/main-content.component';
-import { SubcontentComponent } from './content/subcontent/subcontent.component';
-import { EditMenuComponent } from './editMenu/editForm/edit-menu.component';
+import { MainContentComponent } from './shared/content/main-content/main-content.component';
+import { SubcontentComponent } from './shared/content/subcontent/subcontent.component';
+import { EditMenuComponent } from './shared/editForm/edit-menu.component';
 import { environment } from 'src/environments/environment';
-import { TabComponent } from './content/tab/tab.component';
-import { TestComponent } from './test/test.component';
+import { TabComponent } from './shared/content/tab/tab.component';
+import { TestComponent } from './shared/test/test.component';
 import { metaReducers } from './store/reducers';
 import { RootEffects } from './store/effects/root.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterEffects } from './store/effects/router.effects';
 import * as fromRoot from './store/reducers';
-import { BooksComponent } from './content/books/books.component';
-import { BookComponent } from './content/books/book.component';
+import { BookModule } from './book/book.module';
 
 @NgModule({
   declarations: [
@@ -37,14 +36,13 @@ import { BookComponent } from './content/books/book.component';
     EditMenuComponent,
     TabComponent,
     TestComponent,
-    BooksComponent,
-    BookComponent,
   ],
   imports: [
+    NavigationModule,
+    BookModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NavigationModule,
     HttpClientModule,
     RouterModule.forRoot([{ path: '**', redirectTo: '/' }]),
     BrowserAnimationsModule,

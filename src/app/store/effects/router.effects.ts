@@ -22,7 +22,8 @@ export class RouterEffects {
           while (route.firstChild) route = route.firstChild;
           const pathUrls = route.pathFromRoot.map((route) => route.url);
           return merge(...pathUrls);
-        })
+        }),
+        // tap(console.log)
       ),
     { dispatch: false }
   );

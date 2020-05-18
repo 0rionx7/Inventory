@@ -7,18 +7,22 @@ import {
   createEffect,
   ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
-import { of, pipe } from 'rxjs';
+import { of, pipe, forkJoin } from 'rxjs';
 import { switchMap, map, catchError, filter } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';
 import { MenuItem } from 'src/app/navigation/models/models';
 import { SidenavApiActions } from 'src/app/navigation/store/actions';
+import { BookActions } from '../../book/store/actions';
+import { BooksService } from 'src/app/book/services/books.service';
+import { Book } from 'src/app/book/models/book';
 
 @Injectable()
 export class RootEffects {
   constructor(
     private actions$: Actions,
-    private sidenavService: SidenavService
+    private sidenavService: SidenavService,
+    private bookService: BooksService
   ) {}
 
   init$ = createEffect(() =>
@@ -29,6 +33,19 @@ export class RootEffects {
           map((menuItems: MenuItem[]) =>
             SidenavApiActions.setMenuItems({ items: menuItems })
           ),
+          catchError((error: HttpErrorResponse) =>
+            of(SidenavApiActions.fetchError({ msg: error.error }))
+          )
+        )
+      )
+    )
+  );
+  init2$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROOT_EFFECTS_INIT),
+      switchMap(() =>
+        this.bookService.getBooksFromFirestore().pipe(
+          map((books: Book[]) => BookActions.loadBooks({ books })),
           catchError((error: HttpErrorResponse) =>
             of(SidenavApiActions.fetchError({ msg: error.error }))
           )

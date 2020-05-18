@@ -1,0 +1,10 @@
+<div class="book-card">
+  <div class="header">
+    <p class="title">{{ book.volumeInfo.title }}</p>
+    <img *ngIf="thumbnail" [src]="thumbnail" />
+  </div>
+  <div style="flex: 1;">
+    {{ book.volumeInfo.description | bcEllipsis }}
+  </div>
+  <button class="btn btn-success" (click)="onClick()">To Shopping Card</button>
+</div>

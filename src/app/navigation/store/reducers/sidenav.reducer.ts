@@ -19,7 +19,7 @@ export interface State {
 const initialState: State = {
   menuItems: [],
   expandSidenav: false,
-  expandSub: null,
+  expandSub: false,
   selectedMenuIndex: null,
   selectedSubIndex: null,
 };
@@ -56,8 +56,8 @@ export const reducer = createReducer(
     expandSidenav: !state.expandSidenav,
   })),
   on(NavBarActions.homeButtonClicked, (state) => ({
-    ...state,
-    expandSidenav: false,
+    ...initialState,
+    menuItems: state.menuItems,
   }))
 );
 

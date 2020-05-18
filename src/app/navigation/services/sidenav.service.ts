@@ -8,9 +8,11 @@ import * as firebase from 'firebase/app';
 
 import { MenuItem } from '../models/models';
 import { menuItems } from '../models/menuItems';
-import { SubcontentComponent } from '../../content/subcontent/subcontent.component';
-import { MainContentComponent } from '../../content/main-content/main-content.component';
-import { TabComponent } from '../../content/tab/tab.component';
+import { SubcontentComponent } from '../../shared/content/subcontent/subcontent.component';
+import { MainContentComponent } from '../../shared/content/main-content/main-content.component';
+import { TabComponent } from '../../shared/content/tab/tab.component';
+import { BooksComponent } from 'src/app/book/components/books.component';
+import { DataResolver } from '../../shared/data.resolver';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +49,7 @@ export class SidenavService {
           return menuItems;
         })
       );
-    // setTimeout(() => this.toDataBase(), 1000);
+    // setTimeout(() => this.saveToDataBase(), 1000);
   }
 
   saveToDataBase(): void {
@@ -61,7 +63,17 @@ export class SidenavService {
 
   dynamicRoutes(menuItems: MenuItem[]): void {
     const config = [];
-    for (let i = 0; i < menuItems.length; i++) {
+    config.push({
+      path: 'MainMenu1',
+      component: BooksComponent,
+      resolve: { items: DataResolver },
+    });
+    config.push({
+      path: 'MainMenu2',
+      component: BooksComponent,
+      resolve: { items: DataResolver },
+    });
+    for (let i = 2; i < menuItems.length; i++) {
       const childs = [];
       for (let j = 0; j < menuItems[i].subMenus.length; j++) {
         childs.push({

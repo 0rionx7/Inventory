@@ -1,34 +1,15 @@
-import {
-  ActionReducerMap,
-  MetaReducer,
-  ActionReducer,
-  createFeatureSelector,
-} from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, ActionReducer } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
 import { environment } from '../../../environments/environment';
-import * as fromBook from './book.reducer';
 
 export interface State {
   router: fromRouter.RouterReducerState<any>;
-  [fromBook.booksFeatureKey]: fromBook.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
-  [fromBook.booksFeatureKey]: fromBook.reducer,
 };
-
-export const bookState = createFeatureSelector<State, fromBook.State>(
-  fromBook.booksFeatureKey
-);
-
-export const {
-  selectIds,
-  selectEntities,
-  selectAll: selectAllBooks,
-  selectTotal,
-} = fromBook.adapter.getSelectors(bookState);
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
