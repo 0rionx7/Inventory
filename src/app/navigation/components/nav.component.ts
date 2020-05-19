@@ -1,5 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+
+import { SidenavService } from '../services/sidenav.service';
+import { CartActions } from '../../book/store/actions';
+
 @Component({
   selector: 'app-nav',
   template: `
@@ -17,7 +22,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
       >
         <span>Tabs </span>
       </div>
-      <div class="nav-el" (click)="showLogin.emit()">
+      <div class="nav-el" (click)="onClick()">
         <span>Login </span>
         <mat-icon>person</mat-icon>
       </div>
@@ -57,7 +62,12 @@ export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
   @Output() showEditMenu = new EventEmitter();
   @Output() homeButton = new EventEmitter();
-  constructor() {}
+
+  constructor(private navService: SidenavService, private store: Store) {}
 
   ngOnInit(): void {}
+
+  onClick() {
+    this.store.dispatch(CartActions.checkOut());
+  }
 }

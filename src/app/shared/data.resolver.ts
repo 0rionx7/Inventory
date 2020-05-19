@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 import * as fromBook from '../book/store/reducers';
 import { mockBook } from '../book/models/book';
-import { take, first } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class DataResolver implements Resolve<any> {
@@ -20,7 +20,7 @@ export class DataResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
     return state.url === '/MainMenu1'
-      ? this.store.pipe(select(fromBook.selectAllBooks), first())
+      ? this.store.pipe(select(fromBook.selectAllBooks), first()) // The Router guards require an observable to complete,which means it has emitted all of its values.
       : [mockBook];
   }
 }

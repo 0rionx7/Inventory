@@ -11,10 +11,10 @@
 <div
   class="main-content"
   [style.padding-left.px]="
-    pushMainContent && ($expandSidenav | async) ? '309' : '54'
+    pushMainContent && (expandSidenav$ | async) ? '309' : '54'
   "
 >
-  <app-active-route [$currentUrl]="$currentUrl"></app-active-route>
+  <app-active-route [$currentUrl]="currentUrl$"></app-active-route>
   <!-- <app-books [books]="books$ | async"></app-books> -->
   <router-outlet></router-outlet>
 </div>

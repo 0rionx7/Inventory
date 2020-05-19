@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+import * as fromSidenav from '../store/reducers';
+import { ExpandedSidenavActions } from '../store/actions';
 
 @Component({
   selector: 'app-active-route',
@@ -8,11 +12,12 @@ import { Observable } from 'rxjs';
     <div class="loaded-path">
       <mat-icon class="segment" routerLink="/">home</mat-icon>
       <div
-        [routerLink]="path.slice(0, i + 1).join('/')"
-        class="segment"
         *ngFor="let segment of $currentUrl | async as path; index as i"
+        [routerLink]="path.slice(0, i + 1).join('/')"
+        (click)="onClick(segment)"
+        class="segment"
       >
-        <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-icon *ngIf="segment">keyboard_arrow_right</mat-icon>
         {{ segment }}
       </div>
     </div>
@@ -36,7 +41,15 @@ import { Observable } from 'rxjs';
 export class ActiveRouteComponent implements OnInit {
   @Input() $currentUrl: Observable<string[]>;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
+
+  onClick(segment: string): void {
+    this.store
+      .pipe(select(fromSidenav.selectSidenavMenuItemByName, { name: segment }))
+      .subscribe((id) =>
+        this.store.dispatch(ExpandedSidenavActions.mainMenuClicked(id))
+      );
+  }
 }

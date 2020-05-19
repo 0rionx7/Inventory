@@ -1,7 +1,13 @@
-import { createFeatureSelector, createSelector, Action } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  Action,
+  props,
+} from '@ngrx/store';
 
 import * as fromRoot from '../../../store/reducers';
 import * as fromSidenav from './sidenav.reducer';
+import { MenuItem } from '../../models/models';
 
 export const navigationFeatureKey = 'sidenav';
 
@@ -34,4 +40,9 @@ export const selectSidenavSelectedSubIndex = createSelector(
 export const selectSidenavExpandSub = createSelector(
   selectSidenavState,
   fromSidenav.getExpandSub
+);
+export const selectSidenavMenuItemByName = createSelector(
+  selectSidenavMenuItems,
+  (menuItems: MenuItem[], props: { name: string }) =>
+    menuItems.find((el) => el.mainMenu === props.name).id
 );

@@ -5,9 +5,9 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
+import * as fromRoot from './store/reducers';
 import { SidenavService } from './navigation/services/sidenav.service';
-import { BooksService } from './book/services/books.service';
-import { Book, mockBook } from './book/models/book';
+import { Book } from './book/models/book';
 
 @Component({
   selector: 'app-root',
@@ -19,24 +19,20 @@ export class AppComponent implements OnInit {
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;
   }
-  $expandSidenav: Observable<boolean>;
+  expandSidenav$: Observable<boolean>;
   books$: Observable<Book[]>;
-  $currentUrl = this.sidenavService.currentUrl;
+  currentUrl$: Observable<string[] | string>;
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
-  constructor(
-    private store: Store,
-    private sidenavService: SidenavService,
-    private bookService: BooksService
-  ) {}
+  constructor(private store: Store, private sidenavService: SidenavService) {}
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth > 420;
-    this.$expandSidenav = this.store.pipe(
+    this.expandSidenav$ = this.store.pipe(
       select(fromSidenav.selectSidenavExpandSidenav)
     );
     this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
-    this.bookService.getBooksFromFirestore();
+    this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
   }
 }

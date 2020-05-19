@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 
@@ -18,17 +18,7 @@ import { DataResolver } from '../../shared/data.resolver';
   providedIn: 'root',
 })
 export class SidenavService {
-  private _currentUrl = new BehaviorSubject<Array<string>>([]);
-  currentUrl: Observable<Array<string>> = this._currentUrl.asObservable();
-
-  constructor(private router: Router, private firestore: AngularFirestore) {
-    router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        const url = event.urlAfterRedirects.split('/').splice(1);
-        this._currentUrl.next(url);
-      });
-  }
+  constructor(private router: Router, private firestore: AngularFirestore) {}
 
   getMenuItems(): Observable<MenuItem[]> {
     const preferedMenu = 'sideMenu1';

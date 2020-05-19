@@ -33,7 +33,20 @@ import { CartActions } from '../store/actions';
       }
       .btn-success {
         background-color: teal;
+      }
+      .cart {
         align-self: flex-end;
+      }
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        margin-right: 5px;
+      }
+      input {
+        width: 40px;
+        height: 22px;
+        margin-right: 5px;
+        border-radius: 4px;
       }
     `,
   ],
@@ -54,7 +67,9 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onClick(): void {
-    this.store.dispatch(CartActions.addToCart({ id: this.book.id }));
+  onClick(amount: number): void {
+    this.store.dispatch(
+      CartActions.addToCart({ id: this.book.id, amount: +amount })
+    );
   }
 }

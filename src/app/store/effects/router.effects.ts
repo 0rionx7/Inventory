@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { ROUTER_NAVIGATED } from '@ngrx/router-store';
+import { ROUTER_NAVIGATED, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { tap, map, mergeMap, scan, take, switchMap } from 'rxjs/operators';
 import { concat, merge } from 'rxjs';
 
@@ -22,7 +22,15 @@ export class RouterEffects {
           while (route.firstChild) route = route.firstChild;
           const pathUrls = route.pathFromRoot.map((route) => route.url);
           return merge(...pathUrls);
-        }),
+        })
+        // tap(console.log)
+      ),
+    { dispatch: false }
+  );
+  navigationEnded2$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ROUTER_NAVIGATION)
         // tap(console.log)
       ),
     { dispatch: false }

@@ -9,5 +9,8 @@ export const loadCart = createAction(
 
 export const addToCart = createAction(
   '[Book Details] Add to Cart',
-  props<{ id: string }>()
+  props<{ id: string; amount: number }>()
 );
+
+export const checkOut = createAction('[Checkout Page] Checking Out');
+export const emptyCart = createAction('[Checkout Page] Emtry Cart');

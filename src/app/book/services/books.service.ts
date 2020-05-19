@@ -7,6 +7,8 @@ import { map, tap } from 'rxjs/operators';
 import { Book } from '../models/book';
 import { googleBooksEndpoint } from '../../shared/rest-const';
 import { NoInterceptors } from '../../shared/bypassInterceptors';
+import * as fromBooks from '../store/reducers';
+import { CartItem } from '../models/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -36,5 +38,11 @@ export class BooksService {
 
   saveBooks(books: Book[]): void {
     books.forEach((book) => this.firestore.doc(`books/${book.id}`).set(book));
+  }
+
+  saveInventory(items: CartItem[]): void {
+    items.forEach((item) =>
+      this.firestore.doc(`Inventory/${item.id}`).set(item)
+    );
   }
 }

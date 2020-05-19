@@ -11,18 +11,20 @@ import { CartItem } from '../../models/cart';
 
 export const CartFeatureKey = 'booksCart';
 
-export interface State extends EntityState<CartItem> {}
+export interface State extends EntityState<CartItem> {
+  total: number;
+}
 
 export const adapter: EntityAdapter<CartItem> = createEntityAdapter<CartItem>();
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  total: 0,
+});
 
 export const reducer = createReducer(
   initialState,
   on(CartActions.loadCart, (state, { items }) => adapter.setAll(items, state)),
-  // on(BookActions.addBook, (state, action) =>
-  //   adapter.addOne(action.book, state)
-  // ),
+  on(CartActions.emptyCart, () => initialState),
   // on(BookActions.upsertBook, (state, action) =>
   //   adapter.upsertOne(action.book, state)
   // ),
@@ -32,12 +34,15 @@ export const reducer = createReducer(
   // on(BookActions.upsertBooks, (state, action) =>
   //   adapter.upsertMany(action.books, state)
   // ),
-  on(CartActions.addToCart, (state, { id }) => {
+  on(CartActions.addToCart, (state, { id, amount }) => {
     const update: CartItem = {
       id,
-      amount: state.entities[id] ? state.entities[id].amount + 1 : 1,
+      amount: state.entities[id] ? state.entities[id].amount + amount : amount,
     };
-    return adapter.upsertOne(update, state);
+    return {
+      ...adapter.upsertOne(update, state),
+      total: state.total + amount,
+    };
   })
   // on(BookActions.updateBooks, (state, action) =>
   //   adapter.updateMany(action.books, state)

@@ -1,21 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
 import { Book } from '../models/book';
-import { ActivatedRoute } from '@angular/router';
+import * as fromRoot from '../../store/reducers';
+import * as fromBook from '../store/reducers';
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss'],
+  template: `
+    <div class="container">
+      <app-book *ngFor="let book of books$ | async" [book]="book"></app-book>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+    `,
+  ],
 })
 export class BooksComponent implements OnInit {
-  books: Book[];
-
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  books$: Observable<Book[]>;
+  count$: Observable<number>;
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ items }) => (this.books = items));
+    this.books$ = this.store.pipe(
+      select(fromRoot.selectRouteData),
+      pluck('items')
+    );
+    this.count$ = this.store.pipe(select(fromBook.selectCartTotal));
   }
 }

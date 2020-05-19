@@ -8,6 +8,7 @@ import { Action, createSelector } from '@ngrx/store';
 import * as fromRoot from '../../../store/reducers';
 import * as fromBook from './book.reducer';
 import * as fromCart from './cart.reducer';
+import { CartItem } from '../../models/cart';
 
 export const booksFeatureKey = 'books';
 
@@ -38,8 +39,29 @@ export const selectBookEntitiesState = createSelector(
 );
 
 export const {
+  selectIds: selectBookIds,
+  selectEntities: selectBookEntities,
+  selectAll: selectAllBooks,
+  selectTotal: selectBookTotal,
+} = fromBook.adapter.getSelectors(selectBookEntitiesState);
+
+export const selectCartEntitiesState = createSelector(
+  selectBooksState,
+  (state: BookState) => state.booksCart
+);
+
+export const {
   selectIds,
   selectEntities,
-  selectAll: selectAllBooks,
+  selectAll: selectAllItems,
   selectTotal,
-} = fromBook.adapter.getSelectors(selectBookEntitiesState);
+} = fromCart.adapter.getSelectors(selectCartEntitiesState);
+
+export const selectCartTotal = createSelector(
+  selectAllItems,
+  (items: CartItem[]) => {
+    let count = 0;
+    items.forEach((item) => (count += item.amount));
+    return count;
+  }
+);

@@ -7,8 +7,8 @@ import {
   createEffect,
   ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
-import { of, pipe, forkJoin } from 'rxjs';
-import { switchMap, map, catchError, filter } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';
 import { MenuItem } from 'src/app/navigation/models/models';
@@ -25,7 +25,7 @@ export class RootEffects {
     private bookService: BooksService
   ) {}
 
-  init$ = createEffect(() =>
+  loadMenuItems$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() =>
@@ -40,7 +40,7 @@ export class RootEffects {
       )
     )
   );
-  init2$ = createEffect(() =>
+  loadBooks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() =>

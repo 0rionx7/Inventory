@@ -1,4 +1,10 @@
-import { ActionReducerMap, MetaReducer, ActionReducer } from '@ngrx/store';
+import {
+  ActionReducerMap,
+  MetaReducer,
+  ActionReducer,
+  createFeatureSelector,
+  createSelector,
+} from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
 import { environment } from '../../../environments/environment';
@@ -10,6 +16,23 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
 };
+// prettier-ignore
+export const selectRouter =
+  createFeatureSelector<State, fromRouter.RouterReducerState<any>>('router');
+
+export const {
+  selectCurrentRoute, // select the current route
+  selectQueryParams, // select the current route query params
+  selectQueryParam, // factory function to select a query param
+  selectRouteParams, // select the current route params
+  selectRouteParam, // factory function to select a route param
+  selectRouteData, // select the current route data
+  selectUrl, // select the current url
+} = fromRouter.getSelectors(selectRouter);
+
+export const selectUrlSegments = createSelector(selectUrl, (url: string) =>
+  url ? url.split('/').splice(1) : url
+);
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

@@ -6,5 +6,11 @@
   <div style="flex: 1;">
     {{ book.volumeInfo.description | bcEllipsis }}
   </div>
-  <button class="btn btn-success" (click)="onClick()">To Shopping Card</button>
+  <div class="cart">
+    <label for="amount">Amount</label>
+    <input id="amount" type="number" #amount ngModel="1" min="0" />
+    <button class="btn btn-success" (click)="onClick(amount.value)">
+      To Shopping Card
+    </button>
+  </div>
 </div>
