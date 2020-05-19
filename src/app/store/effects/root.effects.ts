@@ -40,12 +40,15 @@ export class RootEffects {
       )
     )
   );
+
   loadBooks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() =>
         this.bookService.getBooksFromFirestore().pipe(
-          map((books: Book[]) => BookActions.loadBooks({ books })),
+          map((books: Book[]) =>
+            BookActions.loadBooks({ books, toDatabase: false })
+          ),
           catchError((error: HttpErrorResponse) =>
             of(SidenavApiActions.fetchError({ msg: error.error }))
           )

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { ROUTER_NAVIGATED, ROUTER_NAVIGATION } from '@ngrx/router-store';
-import { tap, map, mergeMap, scan, take, switchMap } from 'rxjs/operators';
-import { concat, merge } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { merge } from 'rxjs';
 
 @Injectable()
 export class RouterEffects {

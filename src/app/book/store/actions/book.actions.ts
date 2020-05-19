@@ -4,7 +4,7 @@ import { Book } from '../../models/book';
 
 export const loadBooks = createAction(
   '[Book/API] Load Books',
-  props<{ books: Book[] }>()
+  props<{ books: Book[]; toDatabase: boolean }>()
 );
 
 export const addBookToCart = createAction(

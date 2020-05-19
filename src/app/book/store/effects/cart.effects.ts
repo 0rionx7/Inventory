@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { switchMap, withLatestFrom, tap } from 'rxjs/operators';
+import { withLatestFrom, tap, map, switchMap } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 
 import { CartActions, BookActions } from '../actions';
@@ -21,18 +21,19 @@ export class CartEffects {
     @Inject(DATA_BASE) private db: firebase.firestore.Firestore
   ) {}
 
-  // loadItems$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(BookActions.loadBooks),
-  //     withLatestFrom(this.store.pipe(select(frombooks.selectBookIds))),
-  //     switchMap(([action, ids]) => {
-  //       const items = [];
-  //       ids.forEach((id: string | number) => items.push({ id, amount: 100 }));
-  //       // this.cartService.saveInventory(items);
-  //       return of(CartActions.loadCart({ items }));
-  //     })
-  //   )
-  // );
+  loadItems$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(BookActions.loadBooks),
+        withLatestFrom(this.store.pipe(select(frombooks.selectBookIds))),
+        tap(([action, ids]) => {
+          const items = [];
+          ids.forEach((id: string | number) => items.push({ id, amount: 100 }));
+          if (action.toDatabase) this.cartService.saveInventory(items);
+        })
+      ),
+    { dispatch: false }
+  );
 
   checkOut$ = createEffect(() =>
     this.actions$.pipe(
@@ -45,14 +46,9 @@ export class CartEffects {
         );
         batch.commit();
       }),
-      switchMap(() => of(CartActions.emptyCart()))
+      map(() => CartActions.emptyCart())
     )
   );
-
-  updateAmount(id: string, amount: number) {
-    const docRef = this.db.doc(`Inventory/${id}`);
-    docRef.update({ amount: firebase.firestore.FieldValue.increment(-amount) });
-  }
 
   batchUpdate(batch, id: string, amount: number) {
     var docRef = this.db.doc(`Inventory/${id}`);
