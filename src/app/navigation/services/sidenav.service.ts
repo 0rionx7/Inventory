@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,11 +8,11 @@ import * as firebase from 'firebase/app';
 
 import { MenuItem } from '../models/models';
 import { menuItems } from '../models/menuItems';
-import { SubcontentComponent } from '../../shared/content/subcontent/subcontent.component';
-import { MainContentComponent } from '../../shared/content/main-content/main-content.component';
-import { TabComponent } from '../../shared/content/tab/tab.component';
+import { SubcontentComponent } from '../../core/content/subcontent/subcontent.component';
+import { MainContentComponent } from '../../core/content/main-content/main-content.component';
+import { TabComponent } from '../../core/content/tab/tab.component';
 import { BooksComponent } from 'src/app/book/components/books.component';
-import { DataResolver } from '../../shared/data.resolver';
+import { DataResolver } from '../../core/data.resolver';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,7 @@ export class SidenavService {
   getMenuItems(): Observable<MenuItem[]> {
     const preferedMenu = 'sideMenu1';
     let menuItems: MenuItem[] = [];
+    // setTimeout(() => this.saveToDataBase(), 1000);
     return this.firestore
       .collection('menuItems', (ref) =>
         ref.where(firebase.firestore.FieldPath.documentId(), '==', preferedMenu)
@@ -39,7 +40,6 @@ export class SidenavService {
           return menuItems;
         })
       );
-    // setTimeout(() => this.saveToDataBase(), 1000);
   }
 
   saveToDataBase(): void {
@@ -52,7 +52,7 @@ export class SidenavService {
   }
 
   dynamicRoutes(menuItems: MenuItem[]): void {
-    const config = [];
+    const config: Route[] = [];
     config.push({
       path: 'MainMenu1',
       component: BooksComponent,
@@ -60,8 +60,8 @@ export class SidenavService {
     });
     config.push({
       path: 'MainMenu2',
-      component: BooksComponent,
-      resolve: { items: DataResolver },
+      loadChildren: () =>
+        import('../../albums/albums.module').then((m) => m.AlbumsModule),
     });
     for (let i = 2; i < menuItems.length; i++) {
       const childs = [];

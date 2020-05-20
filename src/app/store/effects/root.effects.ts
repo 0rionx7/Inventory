@@ -34,7 +34,7 @@ export class RootEffects {
         )
       ),
     this.bookService
-      .getBooksFromFirestore()
+      .getDataFromFirestore('ale')
       .pipe(
         map((books: Book[]) =>
           BookActions.loadBooks({ books, toDatabase: false })
@@ -62,7 +62,7 @@ export class RootEffects {
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() =>
-        this.bookService.getBooksFromFirestore().pipe(
+        this.bookService.getDataFromFirestore('books').pipe(
           map((books: Book[]) =>
             BookActions.loadBooks({ books, toDatabase: false })
           ),

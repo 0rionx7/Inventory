@@ -22,6 +22,7 @@
       <p>{{ menuItem.mainMenu }}</p>
       <div style="flex: 1;"></div>
       <mat-icon
+        *ngIf="menuItem.subMenus"
         class="arrow"
         [style.transform]="isSExpanded(i) ? 'rotate(90deg)' : 'rotate(0)'"
         style="margin-right: 29px;"

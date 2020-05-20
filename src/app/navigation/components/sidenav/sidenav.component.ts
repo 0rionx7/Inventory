@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 // prettier-ignore
 import { ExpandedSidenavActions, SmallSidenavActions,} from '../../store/actions';
 import { MenuItem } from '../../models/models';
-import { sidenavAnimations } from 'src/app/shared/mainAnimations.';
+import { sidenavAnimations } from 'src/app/core/mainAnimations.';
 
 @Component({
   selector: 'app-sidenav',

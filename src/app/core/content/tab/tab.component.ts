@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { mainContent } from 'src/app/shared/mainAnimations.';
+import { mainContent } from 'src/app/core/mainAnimations.';
 
 @Component({
   selector: 'app-tab',

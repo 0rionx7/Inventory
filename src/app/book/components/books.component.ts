@@ -7,6 +7,7 @@ import { pluck } from 'rxjs/operators';
 import { Book } from '../models/book';
 import * as fromRoot from '../../store/reducers';
 import * as fromBook from '../store/reducers';
+import * as fromAlbum from '../..//albums/store/reducers';
 
 @Component({
   selector: 'app-books',

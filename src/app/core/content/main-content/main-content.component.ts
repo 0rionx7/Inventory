@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { mainContent } from 'src/app/shared/mainAnimations.';
+import { mainContent } from 'src/app/core/mainAnimations.';
 
 @Component({
   selector: 'app-main-content',

@@ -6,14 +6,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromBook from './store/reducers';
-import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { BooksComponent } from './components/books.component';
-import { BookComponent } from './components/book.component';
 import { CartEffects } from './store/effects/cart.effects';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [BooksComponent, BookComponent, EllipsisPipe],
   imports: [
+    CoreModule,
     CommonModule,
     FormsModule,
     StoreModule.forFeature(fromBook.booksFeatureKey, fromBook.reducers),
