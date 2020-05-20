@@ -12,8 +12,14 @@ html {
   margin: 0;
 }
 
+:root {
+  --main-color: rgb(83, 83, 78);
+  --sidenav-color: #e0c5a3;
+  --highLight-color: #aa977e;
+}
+
 body {
-  background-color: rgb(83, 83, 78);
+  background-color: var(--main-color);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
 }

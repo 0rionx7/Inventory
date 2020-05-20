@@ -4,7 +4,9 @@
       (click)="onIconClicked(i)"
       [routerLink]="menuItem.mainMenu"
       class="icon"
-      [style.backgroundColor]="isSelected(i) ? '#aa977e' : 'bisque'"
+      [style.backgroundColor]="
+        isSelected(i) ? 'var(--highLight-color)' : 'bisque'
+      "
     >
       <mat-icon>{{ menuItem.icon }}</mat-icon>
     </div>
@@ -13,7 +15,9 @@
       [routerLink]="menuItem.mainMenu"
       [style.width.px]="expandSidenav ? 255 : 0"
       class="main-menu"
-      [style.backgroundColor]="isSelected(i) ? '#aa977e' : '#e0c5a3'"
+      [style.backgroundColor]="
+        isSelected(i) ? 'var(--highLight-color)' : 'var(--sidenav-color)'
+      "
     >
       <p>{{ menuItem.mainMenu }}</p>
       <div style="flex: 1;"></div>
@@ -34,7 +38,9 @@
           *ngFor="let subMenu of menuItem.subMenus; index as i"
           class="sub-menus"
           [style.backgroundColor]="
-            i === selectedSubIndex ? '#aa977e' : '#e0c5a3'
+            i === selectedSubIndex
+              ? 'var(--highLight-color)'
+              : 'var(--sidenav-color)'
           "
         >
           {{ subMenu }}

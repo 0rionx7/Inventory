@@ -33,15 +33,7 @@ import { BookModule } from './book/book.module';
 import { CustomSerializer } from './store/reducers/custom-route-serializer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    MainContentComponent,
-    SubcontentComponent,
-    EditMenuComponent,
-    TabComponent,
-    TestComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     NavigationModule,
     BookModule,
