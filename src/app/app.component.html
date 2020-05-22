@@ -1,6 +1,7 @@
 <app-edit-menu
-  class="modal edit"
+  class="backDrop edit"
   *ngIf="editMenu"
+  [menuItems]="menuItems$ | async"
   (closeForm)="editMenu = !editMenu"
 ></app-edit-menu>
 <app-login class="modal" *ngIf="loginDiag"></app-login>
@@ -14,7 +15,10 @@
     pushMainContent && (expandSidenav$ | async) ? '309' : '54'
   "
 >
+  <app-added-to-cart (click)="backDropClicked()"
+    *ngIf="showAdded$ | async"
+    [itemAdded]="itemAdded$ | async"
+  ></app-added-to-cart>
   <app-active-route [$currentUrl]="currentUrl$"></app-active-route>
-  <!-- <app-books [books]="books$ | async"></app-books> -->
   <router-outlet></router-outlet>
 </div>

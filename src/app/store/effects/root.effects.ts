@@ -25,23 +25,6 @@ export class RootEffects {
     private bookService: BooksService
   ) {}
 
-  obs = forkJoin([
-    this.sidenavService
-      .getMenuItems()
-      .pipe(
-        map((menuItems: MenuItem[]) =>
-          SidenavApiActions.setMenuItems({ items: menuItems })
-        )
-      ),
-    this.bookService
-      .getDataFromFirestore('ale')
-      .pipe(
-        map((books: Book[]) =>
-          BookActions.loadBooks({ books, toDatabase: false })
-        )
-      ),
-  ]);
-
   loadMenuItems$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
@@ -64,7 +47,7 @@ export class RootEffects {
       switchMap(() =>
         this.bookService.getDataFromFirestore('books').pipe(
           map((books: Book[]) =>
-            BookActions.loadBooks({ books, toDatabase: false })
+            BookActions.setBooks({ books, toDatabase: false })
           ),
           catchError((error: HttpErrorResponse) =>
             of(SidenavApiActions.fetchError({ msg: error.error }))

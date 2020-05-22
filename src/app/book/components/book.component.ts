@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Book } from '../models/book';
-import { CartActions } from '../store/actions';
+import { BookActions } from '../store/actions';
 
 @Component({
   selector: 'app-book',
@@ -69,7 +69,11 @@ export class BookComponent implements OnInit {
 
   onClick(amount: number): void {
     this.store.dispatch(
-      CartActions.addToCart({ id: this.book.id, amount: +amount })
+      BookActions.addToCart({
+        id: this.book.id,
+        amount: +amount,
+        product: this.book,
+      })
     );
   }
 }

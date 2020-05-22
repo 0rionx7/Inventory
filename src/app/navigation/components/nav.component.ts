@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { SidenavService } from '../services/sidenav.service';
 import { CartActions } from '../../book/store/actions';
 
 @Component({
@@ -28,9 +27,9 @@ import { CartActions } from '../../book/store/actions';
         >
           <span>Tabs </span>
         </div>
-        <div class="nav-el" (click)="onClick()">
-          <span>Login </span>
-          <mat-icon>person</mat-icon>
+        <div class="nav-el" routerLink="ShoppingCart" (click)="onClick()">
+          <span>Cart </span>
+          <mat-icon>add_shopping_cart</mat-icon>
         </div>
       </div>
     </div>
@@ -102,11 +101,11 @@ export class NavComponent implements OnInit {
   @Output() showEditMenu = new EventEmitter();
   @Output() homeButton = new EventEmitter();
 
-  constructor(private navService: SidenavService, private store: Store) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
   onClick() {
-    this.store.dispatch(CartActions.checkOut());
+    // this.store.dispatch(CartActions.checkOut());
   }
 }

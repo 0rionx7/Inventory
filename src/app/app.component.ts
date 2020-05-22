@@ -2,12 +2,15 @@ import { Component, OnInit, HostListener } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
 import * as fromRoot from './store/reducers';
-import { SidenavService } from './navigation/services/sidenav.service';
+import { CartActions } from './book/store/actions';
 import { Book } from './book/models/book';
+import { MenuItem } from './navigation/models/models';
+import { CartItem } from './book/models/cart';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +22,16 @@ export class AppComponent implements OnInit {
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;
   }
-  expandSidenav$: Observable<boolean>;
   books$: Observable<Book[]>;
+  menuItems$: Observable<MenuItem[]>;
+  showAdded$: Observable<boolean>;
+  itemAdded$: Observable<CartItem>;
+  expandSidenav$: Observable<boolean>;
   currentUrl$: Observable<string[] | string>;
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
-  constructor(private store: Store, private sidenavService: SidenavService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth > 420;
@@ -34,5 +40,17 @@ export class AppComponent implements OnInit {
     );
     this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
     this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
+    this.showAdded$ = this.store.pipe(select(fromBook.selectShowAdded));
+    this.menuItems$ = this.store.pipe(
+      select(fromSidenav.selectSidenavMenuItems)
+    );
+    this.itemAdded$ = this.store.pipe(
+      select(fromBook.selectAllCartItems),
+      map((items) => items[items.length - 1])
+    );
+  }
+
+  backDropClicked() {
+    this.store.dispatch(CartActions.closeAdded());
   }
 }

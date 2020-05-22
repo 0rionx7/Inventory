@@ -45,6 +45,10 @@ export const {
   selectTotal: selectBookTotal,
 } = fromBook.adapter.getSelectors(selectBookEntitiesState);
 
+export const mockBook = createSelector(selectAllBooks, (books) => [books[6]]);
+
+// Cart selectors
+
 export const selectCartEntitiesState = createSelector(
   selectBooksState,
   (state: BookState) => state.booksCart
@@ -53,15 +57,24 @@ export const selectCartEntitiesState = createSelector(
 export const {
   selectIds,
   selectEntities,
-  selectAll: selectAllItems,
+  selectAll: selectAllCartItems,
   selectTotal,
 } = fromCart.adapter.getSelectors(selectCartEntitiesState);
 
 export const selectCartTotal = createSelector(
-  selectAllItems,
+  selectAllCartItems,
   (items: CartItem[]) => {
     let count = 0;
     items.forEach((item) => (count += item.amount));
     return count;
   }
+);
+export const selectTotalItems = createSelector(
+  selectCartEntitiesState,
+  fromCart.getTotal
+);
+
+export const selectShowAdded = createSelector(
+  selectCartEntitiesState,
+  fromCart.getShowAdded
 );

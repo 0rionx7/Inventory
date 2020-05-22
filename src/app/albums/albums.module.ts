@@ -5,7 +5,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreModule } from '../core/core.module';
-import { DataResolver } from '../core/data.resolver';
 import { BooksComponent } from '../book/components/books.component';
 import { AlbumEffects } from './store/effects/album.effects';
 
@@ -15,9 +14,7 @@ import * as fromAlbum from './store/reducers';
   declarations: [],
   imports: [
     CoreModule,
-    RouterModule.forChild([
-      { path: '', component: BooksComponent, resolve: { items: DataResolver } },
-    ]),
+    RouterModule.forChild([{ path: '', component: BooksComponent }]),
     StoreModule.forFeature(fromAlbum.albumsFeatureKey, fromAlbum.reducers),
     EffectsModule.forFeature([AlbumEffects]),
   ],

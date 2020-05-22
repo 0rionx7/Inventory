@@ -43,6 +43,8 @@ export const selectSidenavExpandSub = createSelector(
 );
 export const selectSidenavMenuItemByName = createSelector(
   selectSidenavMenuItems,
-  (menuItems: MenuItem[], props: { name: string }) =>
-    menuItems.find((el) => el.mainMenu === props.name).id
+  (menuItems: MenuItem[], props: { name: string }) => {
+    const item = menuItems.find((el) => el.mainMenu === props.name);
+    return item ? item.id : 1;
+  }
 );

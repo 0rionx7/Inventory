@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
@@ -8,11 +9,10 @@ import { EditMenuComponent } from './editForm/edit-menu.component';
 import { TabComponent } from './content/tab/tab.component';
 import { TestComponent } from './test/test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
-import { BooksComponent } from '../book/components/books.component';
-import { BookComponent } from '../book/components/book.component';
 import { EllipsisPipe } from '../book/pipes/ellipsis.pipe';
+import { AddedToCartComponent } from '../book/components/cart/added-to-cart.component';
+import { CartItemComponent } from '../book/components/cart/cart-item.component';
 
 export const DECLARABLES = [
   LoginComponent,
@@ -21,8 +21,8 @@ export const DECLARABLES = [
   EditMenuComponent,
   TabComponent,
   TestComponent,
-  BooksComponent,
-  BookComponent,
+  CartItemComponent,
+  AddedToCartComponent,
   EllipsisPipe,
 ];
 

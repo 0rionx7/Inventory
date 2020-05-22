@@ -13,6 +13,7 @@ import { MainContentComponent } from '../../core/content/main-content/main-conte
 import { TabComponent } from '../../core/content/tab/tab.component';
 import { BooksComponent } from 'src/app/book/components/books.component';
 import { DataResolver } from '../../core/data.resolver';
+import { CartComponent } from 'src/app/book/components/cart/cart.component';
 
 @Injectable({
   providedIn: 'root',
@@ -50,9 +51,12 @@ export class SidenavService {
         .set({ [localMenuItems[i].id]: localMenuItems[i] }, { merge: true });
     }
   }
-
   dynamicRoutes(menuItems: MenuItem[]): void {
     const config: Route[] = [];
+    config.push({
+      path: 'ShoppingCart',
+      component: CartComponent,
+    });
     config.push({
       path: 'MainMenu1',
       component: BooksComponent,
@@ -62,6 +66,7 @@ export class SidenavService {
       path: 'MainMenu2',
       loadChildren: () =>
         import('../../albums/albums.module').then((m) => m.AlbumsModule),
+      resolve: { items: DataResolver },
     });
     for (let i = 2; i < menuItems.length; i++) {
       const childs = [];

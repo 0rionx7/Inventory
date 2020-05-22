@@ -58,9 +58,10 @@ export class EditMenuComponent implements OnInit, OnDestroy {
 
   fillForm(value: MenuItem) {
     this.subMenus.clear();
-    value.subMenus.forEach((_) =>
-      this.subMenus.push(this.fb.control(null, Validators.required))
-    );
+    if (value.subMenus)
+      value.subMenus.forEach((_) =>
+        this.subMenus.push(this.fb.control(null, Validators.required))
+      );
     this.editMenuForm.patchValue(value);
   }
 
