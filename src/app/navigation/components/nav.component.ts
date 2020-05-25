@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { CartActions } from '../../book/store/actions';
+import * as fromCart from '../../book/store/reducers';
 
 @Component({
   selector: 'app-nav',
@@ -20,16 +22,20 @@ import { CartActions } from '../../book/store/actions';
           <span>Manage </span>
           <mat-icon>playlist_add</mat-icon>
         </div>
-        <div
+        <!-- <div
           class="nav-el"
           routerLink="/tabs"
           [state]="{ tabs: ['LogIn', 'SignUp'] }"
         >
           <span>Tabs </span>
+        </div> -->
+        <div class="nav-el" (click)="showLogin.emit()">
+          Log In<mat-icon>how_to_reg</mat-icon>
         </div>
-        <div class="nav-el" routerLink="ShoppingCart" (click)="onClick()">
+        <div class="nav-el cart" routerLink="ShoppingCart" (click)="showCart()">
           <span>Cart </span>
-          <mat-icon>add_shopping_cart</mat-icon>
+          <mat-icon>add_shopping_cart</mat-icon
+          ><span class="total">{{ count$ | async }}</span>
         </div>
       </div>
     </div>
@@ -89,9 +95,22 @@ import { CartActions } from '../../book/store/actions';
         font-weight: 500;
         cursor: pointer;
       }
+      .cart {
+        padding: 5px;
+        background-color: var(--main-color);
+        border-radius: 10px;
+      }
       mat-icon {
         margin-left: 4px;
         cursor: pointer;
+      }
+      .total {
+        width: 29px;
+        padding: 5px;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #222425;
+        color: wheat;
       }
     `,
   ],
@@ -100,13 +119,15 @@ export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
   @Output() showEditMenu = new EventEmitter();
   @Output() homeButton = new EventEmitter();
+  count$: Observable<number>;
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.count$ = this.store.pipe(select(fromCart.selectTotalItems));
+  }
 
-  onClick() {
+  showCart(): void {
     this.store.dispatch(CartActions.showCart());
-    // this.store.dispatch(CartActions.checkOut());
   }
 }

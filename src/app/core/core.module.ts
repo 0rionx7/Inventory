@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { LoginComponent } from './login/login.component';
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
 import { EditMenuComponent } from './editForm/edit-menu.component';
@@ -15,7 +14,6 @@ import { AddedToCartComponent } from '../book/components/cart/added-to-cart.comp
 import { CartItemComponent } from '../book/components/cart/cart-item.component';
 
 export const DECLARABLES = [
-  LoginComponent,
   MainContentComponent,
   SubcontentComponent,
   EditMenuComponent,

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  @Output() cancel = new EventEmitter();
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
@@ -19,8 +20,9 @@ export class LoginComponent implements OnInit {
         email: loginform.value.username,
         password: loginform.value.password,
       })
-      .subscribe(console.log);
+      .subscribe((user) => {
+        this.cancel.emit();
+        console.log(user);
+      });
   }
-
-  onCancel() {}
 }

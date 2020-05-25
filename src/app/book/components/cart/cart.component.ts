@@ -13,7 +13,8 @@ import { CartActions } from '../../store/actions';
   template: `
     <div class="container">
       <div class="cart-title">
-        <p style="font-size: 18px;">Items in Cart</p>
+        <p style="font-size: 18px; flex: 1">Items in Cart</p>
+        <button class="btn green" (click)="checkOut()">Check Out</button>
       </div>
       <div class="item">
         <div style="text-align:initial">Item</div>
@@ -38,7 +39,6 @@ import { CartActions } from '../../store/actions';
       }
       .container {
         width: 80%;
-        border-radius: 15px;
         padding: 0.5rem;
       }
       .cart-title {
@@ -84,5 +84,9 @@ export class CartComponent implements OnInit {
           CartActions.update({ update: { id, changes: { amount } } })
         )
       : this.store.dispatch(CartActions.remove({ id }));
+  }
+
+  checkOut(): void {
+    this.store.dispatch(CartActions.checkOut());
   }
 }

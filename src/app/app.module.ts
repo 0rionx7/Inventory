@@ -23,6 +23,7 @@ import * as fromRoot from './store/reducers';
 import { BookModule } from './book/book.module';
 import { CoreModule } from './core/core.module';
 import { DataResolver } from './core/data.resolver';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { DataResolver } from './core/data.resolver';
     CoreModule,
     NavigationModule,
     BookModule,
+    AuthModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(

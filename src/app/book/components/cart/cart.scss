@@ -13,6 +13,15 @@
 .info {
   justify-content: flex-start;
 }
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+  height: 100%;
+  overflow: scroll;
+}
+.description::-webkit-scrollbar,
 .item-details::-webkit-scrollbar {
   display: none;
 }

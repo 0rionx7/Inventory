@@ -8,7 +8,7 @@ import { CartItem } from '../../models/cart';
     <div class="item">
       <div class="item-details info">
         <img [src]="item.product.volumeInfo.imageLinks.smallThumbnail" />
-        <div style="margin-left: 15px; height: 100%">
+        <div class="description">
           <h5>{{ item.product.volumeInfo.title }}</h5>
           <p>{{ item.product.volumeInfo.description | bcEllipsis: 69 }}</p>
         </div>

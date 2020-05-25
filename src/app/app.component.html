@@ -4,7 +4,11 @@
   [menuItems]="menuItems$ | async"
   (closeForm)="editMenu = !editMenu"
 ></app-edit-menu>
-<app-login class="modal" *ngIf="loginDiag"></app-login>
+<app-login
+  class="backDrop"
+  *ngIf="loginDiag"
+  (cancel)="loginDiag = false"
+></app-login>
 <app-navigation
   (showLogin)="loginDiag = !loginDiag"
   (showEditMenu)="editMenu = !editMenu"

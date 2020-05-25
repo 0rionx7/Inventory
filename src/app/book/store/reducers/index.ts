@@ -72,6 +72,7 @@ export const selectCartTotal = createSelector(
     return count;
   }
 );
+
 export const selectTotalItems = createSelector(
   selectCartEntitiesState,
   fromCart.getTotal

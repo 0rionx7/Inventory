@@ -17,10 +17,6 @@ import { CartItem } from './book/models/cart';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @HostListener('window:resize')
-  onWindowChange() {
-    this.pushMainContent = screen.availWidth > 420;
-  }
   books$: Observable<Book[]>;
   menuItems$: Observable<MenuItem[]>;
   showAdded$: Observable<{ item: CartItem; amount: number }>;
@@ -30,6 +26,10 @@ export class AppComponent implements OnInit {
   loginDiag = false;
   editMenu = false;
 
+  @HostListener('window:resize')
+  onWindowChange() {
+    this.pushMainContent = screen.availWidth > 420;
+  }
   constructor(private store: Store) {}
 
   ngOnInit(): void {
