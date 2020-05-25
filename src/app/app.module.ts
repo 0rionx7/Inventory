@@ -6,6 +6,10 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import {
+  StoreRouterConnectingModule,
+  NavigationActionTiming,
+} from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 
@@ -14,10 +18,6 @@ import { AppComponent } from './app.component';
 import { ReqInterceptor } from './core/request.interceptor';
 import { environment } from 'src/environments/environment';
 import { RootEffects } from './store/effects/root.effects';
-import {
-  StoreRouterConnectingModule,
-  NavigationActionTiming,
-} from '@ngrx/router-store';
 import { RouterEffects } from './store/effects/router.effects';
 import * as fromRoot from './store/reducers';
 import { BookModule } from './book/book.module';
@@ -47,7 +47,6 @@ import { DataResolver } from './core/data.resolver';
         preloadingStrategy: PreloadAllModules,
       }
     ),
-    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot(fromRoot.reducers, {
       // metaReducers,
@@ -63,6 +62,7 @@ import { DataResolver } from './core/data.resolver';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ReqInterceptor, multi: true },

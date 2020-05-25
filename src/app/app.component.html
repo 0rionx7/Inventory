@@ -15,9 +15,10 @@
     pushMainContent && (expandSidenav$ | async) ? '309' : '54'
   "
 >
-  <app-added-to-cart (click)="backDropClicked()"
-    *ngIf="showAdded$ | async"
-    [itemAdded]="itemAdded$ | async"
+  <app-added-to-cart
+    (click)="backDropClicked()"
+    *ngIf="(showAdded$ | async).item"
+    [itemAdded]="showAdded$ | async"
   ></app-added-to-cart>
   <app-active-route [$currentUrl]="currentUrl$"></app-active-route>
   <router-outlet></router-outlet>

@@ -8,19 +8,18 @@ export const CartFeatureKey = 'booksCart';
 
 export interface State extends EntityState<CartItem> {
   total: number;
-  showAdded: boolean;
+  showAdded: { id: string; amount: number };
 }
 
 export const adapter: EntityAdapter<CartItem> = createEntityAdapter<CartItem>();
 
 export const initialState: State = adapter.getInitialState({
+  showAdded: { id: null, amount: null },
   total: 0,
-  showAdded: false,
 });
 
 export const reducer = createReducer(
   initialState,
-  on(CartActions.loadCart, (state, { items }) => adapter.setAll(items, state)),
   on(CartActions.emptyCart, () => initialState),
   on(BookActions.addToCart, (state, { id, amount, product }) => {
     const update: CartItem = {
@@ -28,14 +27,36 @@ export const reducer = createReducer(
       amount: state.entities[id] ? state.entities[id].amount + amount : amount,
       product,
     };
+    const newState = adapter.upsertOne(update, state);
     return {
-      ...adapter.upsertOne(update, state),
-      total: state.total + amount,
-      showAdded: true,
+      ...calculateTotalItems(newState),
+      showAdded: { id, amount },
     };
   }),
-  on(CartActions.closeAdded, (state) => ({ ...state, showAdded: false }))
+  on(CartActions.closeAdded, (state) => ({
+    ...state,
+    showAdded: { id: null, amount: null },
+  })),
+  on(CartActions.update, (state, { update }) => {
+    const newState = adapter.updateOne(update, state);
+    return calculateTotalItems(newState);
+  }),
+  on(CartActions.remove, (state, { id }) => {
+    const newState = adapter.removeOne(id, state);
+    return calculateTotalItems(newState);
+  })
 );
+
+function calculateTotalItems(state: State): State {
+  let total = 0;
+  for (let key in state.entities) {
+    total += state.entities[key].amount;
+  }
+  return {
+    ...state,
+    total,
+  };
+}
 
 export const getTotal = (state: State) => state.total;
 export const getShowAdded = (state: State) => state.showAdded;

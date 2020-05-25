@@ -106,6 +106,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
+    this.store.dispatch(CartActions.showCart());
     // this.store.dispatch(CartActions.checkOut());
   }
 }

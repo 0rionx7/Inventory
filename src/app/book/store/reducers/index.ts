@@ -45,7 +45,10 @@ export const {
   selectTotal: selectBookTotal,
 } = fromBook.adapter.getSelectors(selectBookEntitiesState);
 
-export const mockBook = createSelector(selectAllBooks, (books) => [books[6]]);
+export const mockBook = createSelector(selectAllBooks, (books) => [
+  books[6],
+  books[4],
+]);
 
 // Cart selectors
 
@@ -77,4 +80,9 @@ export const selectTotalItems = createSelector(
 export const selectShowAdded = createSelector(
   selectCartEntitiesState,
   fromCart.getShowAdded
+);
+export const selectShowAddedItem = createSelector(
+  selectEntities,
+  selectShowAdded,
+  (entities, { id, amount }) => ({ item: entities[id], amount })
 );

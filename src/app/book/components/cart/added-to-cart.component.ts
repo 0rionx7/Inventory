@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { CartItem } from '../../models/cart';
 
 @Component({
@@ -6,8 +6,12 @@ import { CartItem } from '../../models/cart';
   template: `
     <div class="backDrop">
       <div class="container">
+        <h4>
+          {{ itemAdded.amount }} item{{ itemAdded.amount > 1 ? 's' : '' }} added
+          to your Cart
+        </h4>
         <app-cart-item
-          [item]="itemAdded"
+          [item]="itemAdded.item"
           (click)="$event.stopPropagation()"
         ></app-cart-item>
       </div>
@@ -16,15 +20,15 @@ import { CartItem } from '../../models/cart';
   styles: [
     `
       .container {
-        width: 80%;
+        width: 60%;
+        padding: 10px;
         background-color: rgb(202, 198, 189);
       }
     `,
   ],
 })
 export class AddedToCartComponent implements OnInit {
-  @Input() itemAdded: CartItem;
-
+  @Input() itemAdded: { item: CartItem; amount: number };
   constructor() {}
 
   ngOnInit(): void {}

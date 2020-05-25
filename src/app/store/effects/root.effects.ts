@@ -7,7 +7,7 @@ import {
   createEffect,
   ROOT_EFFECTS_INIT,
 } from '@ngrx/effects';
-import { of, forkJoin } from 'rxjs';
+import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';

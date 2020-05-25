@@ -1,8 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
@@ -24,13 +23,13 @@ export class AppComponent implements OnInit {
   }
   books$: Observable<Book[]>;
   menuItems$: Observable<MenuItem[]>;
-  showAdded$: Observable<boolean>;
-  itemAdded$: Observable<CartItem>;
+  showAdded$: Observable<{ item: CartItem; amount: number }>;
   expandSidenav$: Observable<boolean>;
   currentUrl$: Observable<string[] | string>;
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -40,13 +39,9 @@ export class AppComponent implements OnInit {
     );
     this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
     this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
-    this.showAdded$ = this.store.pipe(select(fromBook.selectShowAdded));
+    this.showAdded$ = this.store.pipe(select(fromBook.selectShowAddedItem));
     this.menuItems$ = this.store.pipe(
       select(fromSidenav.selectSidenavMenuItems)
-    );
-    this.itemAdded$ = this.store.pipe(
-      select(fromBook.selectAllCartItems),
-      map((items) => items[items.length - 1])
     );
   }
 

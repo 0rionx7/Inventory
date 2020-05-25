@@ -6,6 +6,7 @@ import {
   SidenavApiActions,
   NavBarActions,
 } from '../actions';
+import { CartActions } from '../../../book/store/actions';
 import { MenuItem } from '../../models/models';
 
 export interface State {
@@ -56,6 +57,11 @@ export const reducer = createReducer(
     expandSidenav: !state.expandSidenav,
   })),
   on(NavBarActions.homeButtonClicked, (state) => ({
+    ...initialState,
+    menuItems: state.menuItems,
+  })),
+
+  on(CartActions.showCart, (state) => ({
     ...initialState,
     menuItems: state.menuItems,
   }))
