@@ -7,17 +7,17 @@ import * as firebase from 'firebase/app';
 
 import { CartActions, BookActions } from '../actions';
 import * as fromBooks from '../reducers';
-import { BooksService } from '../../services/books.service';
 import { CartItem } from '../../models/cart';
 import { DATA_BASE } from '../../../material.module';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class CartEffects {
   constructor(
     private actions$: Actions,
     private store: Store,
-    private cartService: BooksService,
-    @Inject(DATA_BASE) private db: firebase.firestore.Firestore
+    @Inject(DATA_BASE) private db: firebase.firestore.Firestore,
+    private afs: AngularFirestore
   ) {}
 
   loadItems$ = createEffect(
@@ -27,11 +27,11 @@ export class CartEffects {
         withLatestFrom(this.store.pipe(select(fromBooks.selectBookIds))),
         tap(([action, ids]) => {
           if (action.toDatabase) {
-            const items = [];
+            const batch = this.afs.firestore.batch();
             ids.forEach((id: string | number) =>
-              items.push({ id, amount: 100 })
+              this.batchUpdate(batch, id, 100)
             );
-            this.cartService.saveInventory(items);
+            batch.commit();
           }
         })
       ),
@@ -43,7 +43,7 @@ export class CartEffects {
       ofType(CartActions.checkOut),
       withLatestFrom(this.store.pipe(select(fromBooks.selectAllCartItems))),
       tap(([action, items]) => {
-        const batch = this.db.batch();
+        const batch = this.afs.firestore.batch();
         items.forEach((item: CartItem) =>
           this.batchUpdate(batch, item.id, item.amount)
         );
@@ -53,7 +53,7 @@ export class CartEffects {
     )
   );
 
-  batchUpdate(batch, id: string, amount: number) {
+  batchUpdate(batch, id: string | number, amount: number) {
     const docRef = this.db.doc(`Inventory/${id}`);
     batch.update(docRef, {
       amount: firebase.firestore.FieldValue.increment(-amount),

@@ -7,7 +7,6 @@ import { map, tap } from 'rxjs/operators';
 import { Book } from '../models/book';
 import { googleBooksEndpoint } from '../../core/rest-const';
 import { NoInterceptors } from '../../core/bypassInterceptors';
-import { CartItem } from '../models/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ import { CartItem } from '../models/cart';
 export class BooksService {
   constructor(
     private noIntercept: NoInterceptors,
-    public firestore: AngularFirestore
+    public afs: AngularFirestore
   ) {}
 
   getBooks(): Observable<Book[]> {
@@ -26,7 +25,7 @@ export class BooksService {
   }
 
   getDataFromFirestore(type: string): Observable<Book[]> {
-    return this.firestore
+    return this.afs
       .collection(type)
       .snapshotChanges()
       .pipe(
@@ -37,12 +36,6 @@ export class BooksService {
   }
 
   saveBooks(books: Book[]): void {
-    books.forEach((book) => this.firestore.doc(`Albums/${book.id}`).set(book));
-  }
-
-  saveInventory(items: CartItem[]): void {
-    items.forEach((item) =>
-      this.firestore.doc(`Inventory/${item.id}`).set(item)
-    );
+    books.forEach((book) => this.afs.doc(`Albums/${book.id}`).set(book));
   }
 }

@@ -12,6 +12,7 @@ import {
 } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NavigationModule } from './navigation/navigation.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ import { AuthModule } from './auth/auth.module';
       }
     ),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     StoreModule.forRoot(fromRoot.reducers, {
       // metaReducers,
     }),

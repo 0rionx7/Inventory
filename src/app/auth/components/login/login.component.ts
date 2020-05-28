@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AuthService } from '../../../core/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +15,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(loginform: NgForm) {
-    this.authService
-      .login({
-        email: loginform.value.username,
-        password: loginform.value.password,
-      })
-      .subscribe((user) => {
-        this.cancel.emit();
-        console.log(user);
-      });
+    this.authService.login({
+      email: loginform.value.username,
+      password: loginform.value.password,
+    });
   }
 }

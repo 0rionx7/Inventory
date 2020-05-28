@@ -19,13 +19,13 @@ import { CartComponent } from 'src/app/book/components/cart/cart.component';
   providedIn: 'root',
 })
 export class SidenavService {
-  constructor(private router: Router, private firestore: AngularFirestore) {}
+  constructor(private router: Router, private afs: AngularFirestore) {}
 
   getMenuItems(): Observable<MenuItem[]> {
     const preferedMenu = 'sideMenu1';
     let menuItems: MenuItem[] = [];
     // setTimeout(() => this.saveToDataBase(), 1000);
-    return this.firestore
+    return this.afs
       .collection('menuItems', (ref) =>
         ref.where(firebase.firestore.FieldPath.documentId(), '==', preferedMenu)
       )
@@ -46,7 +46,7 @@ export class SidenavService {
   saveToDataBase(): void {
     const localMenuItems = menuItems;
     for (let i = 0; i < localMenuItems.length; i++) {
-      this.firestore
+      this.afs
         .doc('menuItems/sideMenu1')
         .set({ [localMenuItems[i].id]: localMenuItems[i] }, { merge: true });
     }

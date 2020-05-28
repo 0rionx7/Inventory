@@ -33,7 +33,7 @@ export class EditMenuComponent implements OnInit, OnDestroy {
   editMenuForm: FormGroup;
   valueSub: Subscription;
   valueSub2: Subscription;
-  constructor(private fb: FormBuilder, private firestore: AngularFirestore) {}
+  constructor(private fb: FormBuilder, private afs: AngularFirestore) {}
 
   ngOnInit(): void {
     this.editMenuForm = this.fb.group({
@@ -82,7 +82,7 @@ export class EditMenuComponent implements OnInit, OnDestroy {
       existing.length != 0
         ? existing[0].id
         : this.menuItems.slice(-1)[0].id + 1;
-    this.firestore
+    this.afs
       .doc('menuItems/sideMenu1')
       .set({ [id]: { ...editMenuForm.value, id } }, { merge: true });
     this.closeForm.emit();

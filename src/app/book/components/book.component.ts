@@ -15,10 +15,15 @@ import { BookActions } from '../store/actions';
         flex-direction: column;
         padding: 16px;
         margin-bottom: 10px;
-        width: 400px;
+        width: 100%;
         height: 320px;
         background-color: whitesmoke;
         box-shadow: 7px 6px 11px -1px rgba(0, 0, 0, 0.7);
+      }
+      @media (min-width: 420px) {
+        .book-card {
+          width: 400px;
+        }
       }
       .header {
         display: flex;
@@ -47,6 +52,7 @@ import { BookActions } from '../store/actions';
         height: 22px;
         margin-right: 5px;
         border-radius: 4px;
+        border: 1px solid #ccc;
       }
     `,
   ],
