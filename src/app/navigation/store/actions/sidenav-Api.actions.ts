@@ -8,5 +8,5 @@ export const setMenuItems = createAction(
 );
 export const fetchError = createAction(
   '[Sidenav Api] Fetched Failed',
-  props<{ msg: string }>()
+  props<{ msg: any }>()
 );

@@ -9,12 +9,15 @@ import { BooksComponent } from '../book/components/books.component';
 import { AlbumEffects } from './store/effects/album.effects';
 
 import * as fromAlbum from './store/reducers';
+import { DataResolver } from '../core/data.resolver';
 
 @NgModule({
   declarations: [],
   imports: [
     CoreModule,
-    RouterModule.forChild([{ path: '', component: BooksComponent }]),
+    RouterModule.forChild([
+      { path: '', component: BooksComponent, resolve: { items: DataResolver } },
+    ]),
     StoreModule.forFeature(fromAlbum.albumsFeatureKey, fromAlbum.reducers),
     EffectsModule.forFeature([AlbumEffects]),
   ],

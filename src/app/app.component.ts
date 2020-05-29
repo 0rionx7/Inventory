@@ -3,13 +3,15 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromSidenav from './navigation/store/reducers';
-import * as fromBook from './book/store/reducers';
-import * as fromRoot from './store/reducers';
-import { CartActions } from './book/store/actions';
 import { Book } from './book/models/book';
 import { MenuItem } from './navigation/models/models';
 import { CartItem } from './book/models/cart';
+import { Credentials } from './auth/models/user';
+import { CartActions } from './book/store/actions';
+import { AuthActions } from './auth/store/actions';
+import * as fromSidenav from './navigation/store/reducers';
+import * as fromBook from './book/store/reducers';
+import * as fromRoot from './store/reducers';
 
 @Component({
   selector: 'app-root',
@@ -37,15 +39,19 @@ export class AppComponent implements OnInit {
     this.expandSidenav$ = this.store.pipe(
       select(fromSidenav.selectSidenavExpandSidenav)
     );
-    this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
-    this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
-    this.showAdded$ = this.store.pipe(select(fromBook.selectShowAddedItem));
     this.menuItems$ = this.store.pipe(
       select(fromSidenav.selectSidenavMenuItems)
     );
+    this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
+    this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
+    this.showAdded$ = this.store.pipe(select(fromBook.selectShowAddedItem));
   }
 
-  backDropClicked() {
+  onLogin(credentials: Credentials | null): void {
+    this.store.dispatch(AuthActions.logIn({ credentials }));
+  }
+
+  backDropClicked(): void {
     this.store.dispatch(CartActions.closeAdded());
   }
 }

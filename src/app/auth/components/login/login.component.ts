@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AuthService } from '../../services/auth.service';
+import { Credentials } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +9,21 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Output() cancel = new EventEmitter();
-  constructor(private authService: AuthService) {}
+  @Output() submitted = new EventEmitter<Credentials | null>();
+  @Output() cancel = new EventEmitter<void>();
+  constructor() {}
 
   ngOnInit(): void {}
 
-  onSubmit(loginform: NgForm) {
-    this.authService.login({
-      email: loginform.value.username,
-      password: loginform.value.password,
-    });
+  onSubmit(loginform: NgForm): void {
+    this.submitted.emit(loginform.value);
+  }
+
+  googleSignIn(): void {
+    this.submitted.emit();
+  }
+
+  onCancel(): void {
+    this.cancel.emit();
   }
 }

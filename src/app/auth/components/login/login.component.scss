@@ -28,7 +28,10 @@ input {
 }
 
 .btn-group {
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 8px;
   text-align: center;
 }
 
@@ -51,6 +54,11 @@ label {
   border-radius: 4px;
 }
 
-.ng-invalid:not(form) {
-  border: 1px solid red;
+img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
+// .ng-invalid:not(form) {
+//   border: 1px solid red;
+// }

@@ -3,7 +3,7 @@ import { createAction, props } from '@ngrx/store';
 import { Book } from '../../models/book';
 
 export const setBooks = createAction(
-  '[Book/API] Load Books',
+  '[Book/API] Set Books',
   props<{ books: Book[]; toDatabase: boolean }>()
 );
 

@@ -42,7 +42,6 @@ import { AuthModule } from './auth/auth.module';
           path: 'MainMenu2',
           loadChildren: () =>
             import('./albums/albums.module').then((m) => m.AlbumsModule),
-          resolve: { items: DataResolver },
         },
       ],
       {

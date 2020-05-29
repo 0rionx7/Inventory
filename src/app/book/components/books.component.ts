@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { pluck, delay } from 'rxjs/operators';
 
 import { Book } from '../models/book';
 import * as fromRoot from '../../store/reducers';

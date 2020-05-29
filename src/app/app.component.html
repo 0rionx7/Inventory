@@ -8,6 +8,7 @@
   class="backDrop"
   *ngIf="loginDiag"
   (cancel)="loginDiag = false"
+  (submitted)="onLogin($event)"
 ></app-login>
 <app-navigation
   (showLogin)="loginDiag = !loginDiag"

@@ -43,14 +43,6 @@ export class SidenavService {
       );
   }
 
-  saveToDataBase(): void {
-    const localMenuItems = menuItems;
-    for (let i = 0; i < localMenuItems.length; i++) {
-      this.afs
-        .doc('menuItems/sideMenu1')
-        .set({ [localMenuItems[i].id]: localMenuItems[i] }, { merge: true });
-    }
-  }
   dynamicRoutes(menuItems: MenuItem[]): void {
     const config: Route[] = [];
     config.push({
@@ -85,5 +77,14 @@ export class SidenavService {
     }
     config.push({ path: 'tabs', component: TabComponent });
     this.router.resetConfig(config);
+  }
+
+  restoreDataBase(): void {
+    const localMenuItems = menuItems;
+    for (let i = 0; i < localMenuItems.length; i++) {
+      this.afs
+        .doc('menuItems/sideMenu1')
+        .set({ [localMenuItems[i].id]: localMenuItems[i] }, { merge: true });
+    }
   }
 }
