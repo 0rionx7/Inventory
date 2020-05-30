@@ -41,20 +41,26 @@ export class AuthEffects {
   loadUser$ = createEffect(() =>
     this.afs.user.pipe(
       tap((user) => {
-        var styleArray = [
-          `background-image: url(${user.photoURL})`,
-          'background-size: cover',
-          'padding: 10px 20px',
-          'line-height: 135px',
-          'border : 5px solid black',
-        ];
-        console.log(`%c${user.displayName}`, styleArray.join(';'));
-        user.getIdTokenResult().then((idTokenResult) => {
-          // Make sure all the times are in milliseconds!
-          console.log(idTokenResult);
-        });
+        if (user) {
+          var styleArray = [
+            `background-image: url(${user.photoURL})`,
+            'background-size: cover',
+            'padding: 10px 20px',
+            'line-height: 135px',
+            'border : 5px solid black',
+          ];
+          console.log(`%c${user.displayName}`, styleArray.join(';'));
+          user.getIdTokenResult().then((idTokenResult) => {
+            // Make sure all the times are in milliseconds!
+            console.log(idTokenResult);
+          });
+        }
       }),
-      switchMap(({ email, uid }) => of(AuthActions.authSuccess({ email, uid })))
+      map((user) =>
+        user
+          ? AuthActions.authSuccess({ email: user.email, uid: user.uid })
+          : AuthActions.authFailure({ error: 'Not Loged In' })
+      )
     )
   );
   constructor(

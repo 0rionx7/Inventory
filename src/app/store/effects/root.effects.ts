@@ -37,7 +37,7 @@ export class RootEffects {
             BookActions.setBooks({ books, toDatabase: false })
           ),
           catchError((error) =>
-            of(SidenavApiActions.fetchError({ msg: error.message }))
+            of(BookActions.fetchError({ msg: error.message }))
           )
         )
       )

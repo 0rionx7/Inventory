@@ -24,9 +24,9 @@ export class BooksService {
     );
   }
 
-  getDataFromFirestore(type: string): Observable<Book[]> {
+  getDataFromFirestore(collection: string): Observable<Book[]> {
     return this.afs
-      .collection(type)
+      .collection(collection)
       .snapshotChanges()
       .pipe(
         map((data) =>

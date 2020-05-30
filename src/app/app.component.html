@@ -26,5 +26,6 @@
     [itemAdded]="showAdded$ | async"
   ></app-added-to-cart>
   <app-active-route [$currentUrl]="currentUrl$"></app-active-route>
+  <button class="btn btn-success" (click)="onClick()">Ale La</button>
   <router-outlet></router-outlet>
 </div>

@@ -7,11 +7,12 @@ import { Book } from './book/models/book';
 import { MenuItem } from './navigation/models/models';
 import { CartItem } from './book/models/cart';
 import { Credentials } from './auth/models/user';
-import { CartActions } from './book/store/actions';
+import { CartActions, BookActions } from './book/store/actions';
 import { AuthActions } from './auth/store/actions';
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
 import * as fromRoot from './store/reducers';
+import { BooksService } from './book/services/books.service';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;
   }
-  constructor(private store: Store) {}
+  constructor(private store: Store, private bookService: BooksService) {}
 
   ngOnInit(): void {
     this.pushMainContent = screen.availWidth > 420;
@@ -53,5 +54,11 @@ export class AppComponent implements OnInit {
 
   backDropClicked(): void {
     this.store.dispatch(CartActions.closeAdded());
+  }
+
+  onClick(): void {
+    this.bookService
+      .getDataFromFirestore('books')
+      .subscribe((books) => console.log(books));
   }
 }
