@@ -7,7 +7,7 @@ import {
   NavBarActions,
 } from '../actions';
 import { CartActions } from '../../../book/store/actions';
-import { MenuItem } from '../../models/models';
+import { MenuItem } from '../../models/menuItem';
 
 export interface State {
   menuItems: MenuItem[];

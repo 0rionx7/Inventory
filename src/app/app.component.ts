@@ -3,15 +3,14 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Book } from './book/models/book';
-import { MenuItem } from './navigation/models/models';
-import { CartItem } from './book/models/cart';
-import { Credentials } from './auth/models/user';
-import { CartActions } from './book/store/actions';
-import { AuthActions } from './auth/store/actions';
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
 import * as fromRoot from './store/reducers';
+import { Book, CartItem } from '@inventory-app/book/models';
+import { Credentials } from './auth/models';
+import { AuthActions } from './auth/store/actions';
+import { MenuItem } from '@inventory-app/navigation/models';
+import { CartActions } from '@inventory-app/book/store/actions';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +26,6 @@ export class AppComponent implements OnInit {
   pushMainContent: boolean;
   loginDiag = false;
   editMenu = false;
-
   @HostListener('window:resize')
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;

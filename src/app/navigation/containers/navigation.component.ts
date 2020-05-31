@@ -8,7 +8,7 @@ import {
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { MenuItem } from '../models/models';
+import { MenuItem } from '../models/menuItem';
 import * as fromSidenav from '../store/reducers';
 import { NavBarActions } from '../store/actions';
 

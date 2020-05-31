@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 // prettier-ignore
 import { ExpandedSidenavActions, SmallSidenavActions,} from '../../store/actions';
-import { MenuItem } from '../../models/models';
+import { MenuItem } from '../../models/menuItem';
 import { sidenavAnimations } from 'src/app/core/mainAnimations.';
 
 @Component({

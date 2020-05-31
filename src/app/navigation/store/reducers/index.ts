@@ -7,7 +7,7 @@ import {
 
 import * as fromRoot from '../../../store/reducers';
 import * as fromSidenav from './sidenav.reducer';
-import { MenuItem } from '../../models/models';
+import { MenuItem } from '../../models/menuItem';
 
 export const navigationFeatureKey = 'sidenav';
 

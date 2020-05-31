@@ -6,7 +6,7 @@ import { of, forkJoin } from 'rxjs';
 import { switchMap, catchError, take } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';
-import { MenuItem } from 'src/app/navigation/models/models';
+import { MenuItem } from '@inventory-app/navigation/models/menuItem';
 import { SidenavApiActions } from 'src/app/navigation/store/actions';
 import { BookActions } from '../../book/store/actions';
 import { BooksService } from 'src/app/book/services/books.service';

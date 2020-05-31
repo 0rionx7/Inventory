@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 
-import { MenuItem } from '../models/models';
+import { MenuItem } from '../models/menuItem';
 import { menuItems } from '../models/menuItems';
 import { SubcontentComponent } from '../../core/content/subcontent/subcontent.component';
 import { MainContentComponent } from '../../core/content/main-content/main-content.component';
