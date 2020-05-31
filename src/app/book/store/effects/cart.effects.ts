@@ -53,7 +53,11 @@ export class CartEffects {
     )
   );
 
-  batchUpdate(batch, id: string | number, amount: number) {
+  batchUpdate(
+    batch: firebase.firestore.WriteBatch,
+    id: string | number,
+    amount: number
+  ) {
     const docRef = this.db.doc(`Inventory/${id}`);
     batch.update(docRef, {
       amount: firebase.firestore.FieldValue.increment(-amount),

@@ -12,7 +12,7 @@ import { ExpandedSidenavActions } from '../store/actions';
     <div class="loaded-path">
       <mat-icon class="segment" routerLink="/">home</mat-icon>
       <div
-        *ngFor="let segment of $currentUrl | async as path; index as i"
+        *ngFor="let segment of currentUrl$ | async as path; index as i"
         [routerLink]="path.slice(0, i + 1).join('/')"
         (click)="onClick(segment)"
         class="segment"
@@ -39,7 +39,7 @@ import { ExpandedSidenavActions } from '../store/actions';
   ],
 })
 export class ActiveRouteComponent implements OnInit {
-  @Input() $currentUrl: Observable<string[]>;
+  @Input() currentUrl$: Observable<string[] | string>;
 
   constructor(private store: Store) {}
 

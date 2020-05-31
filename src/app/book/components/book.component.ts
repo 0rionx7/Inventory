@@ -69,6 +69,7 @@ export class BookComponent implements OnInit {
         ''
       );
     }
+    return false;
   }
 
   ngOnInit(): void {}

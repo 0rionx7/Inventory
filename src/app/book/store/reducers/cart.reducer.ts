@@ -24,7 +24,7 @@ export const reducer = createReducer(
   on(BookActions.addToCart, (state, { id, amount, product }) => {
     const update: CartItem = {
       id,
-      amount: state.entities[id] ? state.entities[id].amount + amount : amount,
+      amount: state.entities[id] ? state.entities[id]!.amount + amount : amount,
       product,
     };
     const newState = adapter.upsertOne(update, state);
@@ -50,7 +50,7 @@ export const reducer = createReducer(
 function calculateTotalItems(state: State): State {
   let total = 0;
   for (let key in state.entities) {
-    total += state.entities[key].amount;
+    total += state.entities[key]!.amount;
   }
   return {
     ...state,

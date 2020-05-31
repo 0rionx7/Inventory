@@ -14,5 +14,5 @@ export const authFailure = createAction(
 
 export const logIn = createAction(
   '[Login Page] Log In',
-  props<{ credentials: Credentials }>()
+  props<{ credentials: Credentials | null }>()
 );

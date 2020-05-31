@@ -78,7 +78,7 @@ export class CartComponent implements OnInit {
     this.mockBook$ = this.store.pipe(select(fromBooks.mockBook));
   }
 
-  updateItem({ id, amount }): void {
+  updateItem({ id, amount }: { id: string; amount: number }): void {
     amount > 0
       ? this.store.dispatch(
           CartActions.update({ update: { id, changes: { amount } } })

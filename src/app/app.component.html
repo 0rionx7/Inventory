@@ -23,9 +23,9 @@
   <app-added-to-cart
     (click)="backDropClicked()"
     *ngIf="(showAdded$ | async).item"
-    [itemAdded]="showAdded$ | async"
+    [itemAdded]="'showAdded$ | async'"
   ></app-added-to-cart>
-  <app-active-route [$currentUrl]="currentUrl$"></app-active-route>
-  <button class="btn btn-success" (click)="onClick()">Ale La</button>
+  <app-active-route [currentUrl$]="currentUrl$"></app-active-route>
+  <!-- <button class="btn green" (click)="onClick()">Ale La</button> -->
   <router-outlet></router-outlet>
 </div>

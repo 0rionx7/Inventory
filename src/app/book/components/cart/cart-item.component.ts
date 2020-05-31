@@ -35,7 +35,7 @@ import { CartItem } from '../../models/cart';
 })
 export class CartItemComponent implements OnInit {
   @Input() item: CartItem;
-  @Output() update = new EventEmitter();
+  @Output() update = new EventEmitter<{ id: string; amount: number }>();
 
   constructor() {}
 
