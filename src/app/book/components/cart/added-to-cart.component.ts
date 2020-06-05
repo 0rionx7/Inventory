@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { CartItem } from '../../models/cart';
+
+import { CartItem } from '@inventory-app/book/models';
 
 @Component({
   selector: 'app-added-to-cart',

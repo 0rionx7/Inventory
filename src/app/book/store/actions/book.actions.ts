@@ -16,3 +16,18 @@ export const addToCart = createAction(
   '[Book Details] Add to Cart',
   props<{ id: string; amount: number; product: Book }>()
 );
+
+export const searchBook = createAction(
+  '[Book Details] Search Book',
+  props<{ query: string }>()
+);
+
+export const searchSuccess = createAction(
+  '[Books/API] Search Success',
+  props<{ books: Book[] }>()
+);
+
+export const searchFailure = createAction(
+  '[Books/API] Search Failure',
+  props<{ errorMsg: string }>()
+);

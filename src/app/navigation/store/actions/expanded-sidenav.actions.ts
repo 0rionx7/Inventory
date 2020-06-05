@@ -11,3 +11,4 @@ export const subMenuClicked = createAction(
 export const bottomArrowClicked = createAction(
   '[Expanded SideNav] Bottom Arrow Clicked'
 );
+export const closeSidenav = createAction('[App] Esc button Clicked');

@@ -50,12 +50,12 @@ export class SidenavService {
       component: CartComponent,
     });
     config.push({
-      path: 'MainMenu1',
+      path: 'Books',
       component: BooksComponent,
       resolve: { items: DataResolver },
     });
     config.push({
-      path: 'MainMenu2',
+      path: 'Albums',
       loadChildren: () =>
         import('../../albums/albums.module').then((m) => m.AlbumsModule),
       resolve: { items: DataResolver },

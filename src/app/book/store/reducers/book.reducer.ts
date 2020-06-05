@@ -1,8 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { Book } from '../../models/book';
-import * as BookActions from '../actions/book.actions';
+import { BookActions } from '@inventory-app/book/store/actions';
+import { Book } from '@inventory-app/book/models';
+
+export const BooksFeatureKey = 'books';
 
 export interface State extends EntityState<Book> {}
 

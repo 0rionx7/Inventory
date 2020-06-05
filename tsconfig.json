@@ -3,7 +3,7 @@
   "compilerOptions": {
     // "strict": true,
     "paths": { "@inventory-app/*": ["./src/app/*"] },
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noFallthroughCasesInSwitch": true,

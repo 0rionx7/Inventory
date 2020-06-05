@@ -3,10 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromBooks from '../../store/reducers';
-import { CartItem } from '../../models/cart';
-import { Book } from '../../models/book';
-import { CartActions } from '../../store/actions';
+import * as fromBooks from '@inventory-app/book/store/reducers';
+import { CartItem, Book } from '@inventory-app/book/models';
+import { CartActions } from '@inventory-app/book/store/actions';
 
 @Component({
   selector: 'app-cart',

@@ -11,6 +11,7 @@ import { Credentials } from './auth/models';
 import { AuthActions } from './auth/store/actions';
 import { MenuItem } from '@inventory-app/navigation/models';
 import { CartActions } from '@inventory-app/book/store/actions';
+import { ExpandedSidenavActions } from '@inventory-app/navigation/store/actions';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,10 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize')
   onWindowChange() {
     this.pushMainContent = screen.availWidth > 420;
+  }
+  @HostListener('document:keyup.escape')
+  onEsc() {
+    this.store.dispatch(ExpandedSidenavActions.closeSidenav());
   }
   constructor(private store: Store) {}
 

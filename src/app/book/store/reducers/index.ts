@@ -5,16 +5,18 @@ import {
 } from '@ngrx/store';
 import { Action, createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../../store/reducers';
-import * as fromBook from './book.reducer';
-import * as fromCart from './cart.reducer';
-import { CartItem } from '../../models/cart';
+import { CartItem, Book } from '@inventory-app/book/models';
+import * as fromRoot from '@inventory-app/store/reducers';
+import * as fromBook from '@inventory-app/book/store/reducers/book.reducer';
+import * as fromCart from '@inventory-app/book/store/reducers/cart.reducer';
+import * as fromSearch from '@inventory-app/book/store/reducers/search.reducer';
 
-export const booksFeatureKey = 'books';
+export const booksFeatureKey = 'booksStore';
 
 export interface BookState {
-  [booksFeatureKey]: fromBook.State;
+  [fromBook.BooksFeatureKey]: fromBook.State;
   [fromCart.CartFeatureKey]: fromCart.State;
+  [fromSearch.searchFeatureKey]: fromSearch.State;
 }
 export interface State extends fromRoot.State {
   [booksFeatureKey]: BookState;
@@ -25,8 +27,9 @@ export const reducers: ActionReducer<BookState> = (
   action: Action
 ) =>
   combineReducers({
-    [booksFeatureKey]: fromBook.reducer,
+    [fromBook.BooksFeatureKey]: fromBook.reducer,
     [fromCart.CartFeatureKey]: fromCart.reducer,
+    [fromSearch.searchFeatureKey]: fromSearch.reducer,
   })(state, action);
 
 export const selectBooksState = createFeatureSelector<State, BookState>(
@@ -45,12 +48,18 @@ export const {
   selectTotal: selectBookTotal,
 } = fromBook.adapter.getSelectors(selectBookEntitiesState);
 
+export const selectBookById = createSelector(
+  selectAllBooks,
+  (books: Book[], props: { id: string }) =>
+    books.filter((book) => book.id === props.id)
+);
+
 export const mockBook = createSelector(selectAllBooks, (books) => [
   books[6],
   books[4],
 ]);
 
-// Cart selectors
+// Cart Selectors
 
 export const selectCartEntitiesState = createSelector(
   selectBooksState,
@@ -86,4 +95,21 @@ export const selectShowAddedItem = createSelector(
   selectEntities,
   selectShowAdded,
   (entities, { id, amount }) => ({ item: entities[id], amount })
+);
+
+// Search Selectors
+
+export const selectSearchState = createSelector(
+  selectBooksState,
+  (state: BookState) => state.search
+);
+
+export const selectSearchResult = createSelector(
+  selectSearchState,
+  fromSearch.getBooks
+);
+
+export const selectSearchQuery = createSelector(
+  selectSearchState,
+  fromSearch.getQuery
 );

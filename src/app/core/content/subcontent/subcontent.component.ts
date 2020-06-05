@@ -9,5 +9,10 @@ export class SubcontentComponent implements OnInit {
   data = window.history.state;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const tag = document.createElement('script');
+
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
+  }
 }

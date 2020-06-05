@@ -39,7 +39,7 @@ import { AuthModule } from './auth/auth.module';
       [
         { path: '**', redirectTo: '/' },
         {
-          path: 'MainMenu2',
+          path: 'Albums',
           loadChildren: () =>
             import('./albums/albums.module').then((m) => m.AlbumsModule),
         },

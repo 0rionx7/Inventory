@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
 import { EditMenuComponent } from './editForm/edit-menu.component';
@@ -32,7 +34,8 @@ export const DECLARABLES = [
     ReactiveFormsModule,
     RouterModule,
     MaterialModule,
+    YouTubePlayerModule,
   ],
-  exports: [DECLARABLES, CommonModule, FormsModule],
+  exports: [DECLARABLES, CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class CoreModule {}

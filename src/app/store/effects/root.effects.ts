@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { createEffect } from '@ngrx/effects';
 import { of, forkJoin } from 'rxjs';
-import { switchMap, catchError, take } from 'rxjs/operators';
+import { switchMap, catchError, take, map } from 'rxjs/operators';
 
 import { SidenavService } from '../../navigation/services/sidenav.service';
 import { MenuItem } from '@inventory-app/navigation/models/menuItem';

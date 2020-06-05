@@ -1,0 +1,17 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <select (change)="onSelected($event)" [formControl]="selected">
+    <option *ngFor="let book of books$ | async" [value]="book.id">{{
+      book.id
+    }}</option>
+  </select>
+  <label for="title">
+    <input id="title" formControlName="title" />
+  </label>
+  <label for="subtitle">
+    <input id="subtitle" formControlName="subtitle" />
+  </label>
+  <label for="description">
+    <textarea id="description" formControlName="description"></textarea>
+  </label>
+  <button class="btn green">Ale La</button>
+</form>

@@ -60,10 +60,13 @@ export const reducer = createReducer(
     ...initialState,
     menuItems: state.menuItems,
   })),
-
   on(CartActions.showCart, (state) => ({
     ...initialState,
     menuItems: state.menuItems,
+  })),
+  on(ExpandedSidenavActions.closeSidenav, (state) => ({
+    ...state,
+    expandSidenav: false,
   }))
 );
 

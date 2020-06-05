@@ -4,13 +4,13 @@ export const menuItems: MenuItem[] = [
   {
     id: 1,
     icon: 'perm_identity',
-    mainMenu: 'MainMenu1',
+    mainMenu: 'Books',
     subMenus: ['subMenu1', 'subMenu2', 'subMenu3'],
   },
   {
     id: 2,
     icon: 'update',
-    mainMenu: 'MainMenu2',
+    mainMenu: 'Albums',
     subMenus: ['subMenu12', 'subMenu22', 'subMenu32'],
   },
   {
