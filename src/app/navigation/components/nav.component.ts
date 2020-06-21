@@ -1,10 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  HostListener,
+} from '@angular/core';
+import { transition, style, animate, trigger } from '@angular/animations';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CartActions } from '../../book/store/actions';
-import * as fromCart from '../../book/store/reducers';
+import { CartActions } from '@inventory-app/book/store/actions';
+import * as fromCart from '@inventory-app/book/store/reducers';
 
 @Component({
   selector: 'app-nav',
@@ -18,9 +25,23 @@ import * as fromCart from '../../book/store/reducers';
       <div class="header-content">
         <mat-icon routerLink="/" (click)="homeButton.emit()">home</mat-icon>
         <div style="flex: 1;"></div>
-        <div class="nav-el" (click)="showEditMenu.emit()">
-          <span>Manage </span>
-          <mat-icon>playlist_add</mat-icon>
+        <div class="dropDown">
+          <div
+            class="nav-el "
+            style="flex: 1 0 auto;"
+            (click)="showEditMenu.emit(); subMenu = !subMenu"
+            (mouseenter)="subMenu = !subMenu"
+          >
+            <span>Manage </span>
+            <mat-icon>playlist_add</mat-icon>
+          </div>
+          <div @dd class="dd-menu" *ngIf="subMenu">
+            <ul style="margin: 10px;">
+              <li>Link 1</li>
+              <li>Link 1</li>
+              <li>Link 1</li>
+            </ul>
+          </div>
         </div>
         <!-- <div
           class="nav-el"
@@ -59,10 +80,26 @@ import * as fromCart from '../../book/store/reducers';
       .header-content {
         display: none;
       }
+      .dropDown {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 115px;
+      }
+      .dd-menu {
+        flex: 1 0 auto;
+        width: 250px;
+        height: 150px;
+        margin-top: 0.5rem;
+        overflow: hidden;
+        border-radius: 5px;
+        background-color: #476d72ef;
+      }
       @media (min-width: 40rem) {
         .header-content {
           display: flex;
           align-items: center;
+          height: 100%;
         }
         .toggle-button {
           display: none;
@@ -91,6 +128,7 @@ import * as fromCart from '../../book/store/reducers';
       .nav-el {
         display: flex;
         align-items: center;
+        height: 100%;
         margin-left: 15px;
         font-weight: 500;
         cursor: pointer;
@@ -104,6 +142,9 @@ import * as fromCart from '../../book/store/reducers';
         margin-left: 4px;
         cursor: pointer;
       }
+      ul {
+        list-style-position: inside;
+      }
       .total {
         width: 29px;
         padding: 5px;
@@ -114,12 +155,19 @@ import * as fromCart from '../../book/store/reducers';
       }
     `,
   ],
+  animations: [
+    trigger('dd', [
+      transition(':enter', [style({ height: 0 }), animate('0.3s ease-in')]),
+      transition(':leave', [animate('0.3s ease-in'), style({ height: 0 })]),
+    ]),
+  ],
 })
 export class NavComponent implements OnInit {
   @Output() showLogin = new EventEmitter();
   @Output() showEditMenu = new EventEmitter();
   @Output() homeButton = new EventEmitter();
   count$: Observable<number>;
+  subMenu = false;
 
   constructor(private store: Store) {}
 

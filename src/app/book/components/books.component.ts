@@ -14,9 +14,20 @@ import { BookActions } from '@inventory-app/book/store/actions';
   template: `
     <div style="text-align: center">
       <input type="text" (keyup)="onTyping($event.target.value)" />
-      <div class="container">
+      <div
+        class="container"
+        *ngIf="(searchedBooks$ | async).length === 0; else searched"
+      >
         <app-book *ngFor="let book of books$ | async" [book]="book"></app-book>
       </div>
+      <ng-template #searched>
+        <div class="container">
+          <app-book
+            *ngFor="let book of searchedBooks$ | async"
+            [book]="book"
+          ></app-book>
+        </div>
+      </ng-template>
     </div>
   `,
   styles: [
@@ -39,7 +50,7 @@ import { BookActions } from '@inventory-app/book/store/actions';
 })
 export class BooksComponent implements OnInit {
   books$: Observable<Book[]>;
-  count$: Observable<number>;
+  searchedBooks$: Observable<Book[]>;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -47,8 +58,8 @@ export class BooksComponent implements OnInit {
       select(fromRoot.selectRouteData),
       pluck('items')
     );
+    this.searchedBooks$ = this.store.pipe(select(fromBook.selectSearchResult));
     // this.books$ = this.store.pipe(select(fromBook.selectSearchResult));
-    this.count$ = this.store.pipe(select(fromBook.selectCartTotal));
   }
 
   onTyping(query: string) {

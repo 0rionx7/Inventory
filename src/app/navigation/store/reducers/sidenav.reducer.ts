@@ -33,8 +33,8 @@ export const reducer = createReducer(
   })),
   on(ExpandedSidenavActions.mainMenuClicked, (state, { menuIndex }) => ({
     ...state,
-    selectedMenuIndex: menuIndex,
-    selectedSubIndex: null,
+    selectedMenuIndex: menuIndex != -1 ? menuIndex : state.selectedMenuIndex,
+    selectedSubIndex: menuIndex != -1 ? null : state.selectedSubIndex,
     expandSub: menuIndex !== state.selectedMenuIndex || !state.expandSub,
   })),
   on(SmallSidenavActions.iconClicked, (state, { menuIndex }) => {

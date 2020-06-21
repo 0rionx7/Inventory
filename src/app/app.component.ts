@@ -48,6 +48,10 @@ export class AppComponent implements OnInit {
     this.books$ = this.store.pipe(select(fromBook.selectAllBooks));
     this.currentUrl$ = this.store.pipe(select(fromRoot.selectUrlSegments));
     this.showAdded$ = this.store.pipe(select(fromBook.selectShowAddedItem));
+    this.showAdded$.subscribe((show) => {
+      if (show.item)
+        setTimeout(() => this.store.dispatch(CartActions.closeAdded()), 2000);
+    });
   }
 
   onLogin(credentials: Credentials | null): void {

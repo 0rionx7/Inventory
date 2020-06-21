@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { MainContentComponent } from './content/main-content/main-content.component';
 import { SubcontentComponent } from './content/subcontent/subcontent.component';
@@ -14,6 +16,7 @@ import { MaterialModule } from '../material.module';
 import { EllipsisPipe } from '../book/pipes/ellipsis.pipe';
 import { AddedToCartComponent } from '../book/components/cart/added-to-cart.component';
 import { CartItemComponent } from '../book/components/cart/cart-item.component';
+import { Dropdown2Directive } from './dropdown2.directive';
 
 export const DECLARABLES = [
   MainContentComponent,
@@ -24,6 +27,7 @@ export const DECLARABLES = [
   CartItemComponent,
   AddedToCartComponent,
   EllipsisPipe,
+  Dropdown2Directive,
 ];
 
 @NgModule({
@@ -35,6 +39,8 @@ export const DECLARABLES = [
     RouterModule,
     MaterialModule,
     YouTubePlayerModule,
+    ClipboardModule,
+    GoogleMapsModule,
   ],
   exports: [DECLARABLES, CommonModule, FormsModule, ReactiveFormsModule],
 })

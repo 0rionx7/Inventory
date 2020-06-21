@@ -29,7 +29,7 @@ export class DataResolver implements Resolve<any> {
               ? this.store.pipe(select(fromBook.selectSearchResult))
               : this.store.pipe(select(fromBook.selectAllBooks));
           }),
-          take(1)edit booksFeatureKey
+          take(1)
         )
       : this.store.pipe(
           select(fromBook.selectSearchQuery),

@@ -12,3 +12,16 @@
   videoId="2iiLOO5qwI0
 "
 ></youtube-player>
+<fieldset>
+  <legend>Static Content</legend>
+  <button cdkCopyToClipboard="hello you copied me!" appDropdown2>Click to Copy</button>
+</fieldset>
+<fieldset>
+  <input [value]="code" [(ngModel)]="code" />
+  <button [cdkCopyToClipboard]="code">click me to copy text</button>
+</fieldset>
+<fieldset>
+  <legend>Paste Content Here</legend>
+  <textarea rows="10"> </textarea>
+</fieldset>
+<google-map> </google-map>

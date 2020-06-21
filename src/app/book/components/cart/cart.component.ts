@@ -16,10 +16,13 @@ import { CartActions } from '@inventory-app/book/store/actions';
         <button class="btn green" (click)="checkOut()">Check Out</button>
       </div>
       <div class="item">
-        <div style="text-align:initial">Item</div>
+        <div style="text-align: initial">Item</div>
         <div>Amount</div>
         <div>Price</div>
         <div>Total</div>
+      </div>
+      <div *ngIf="!(total$ | async)" style="text-align: center;color: wheat;">
+        Shopping Cart is Empty
       </div>
       <div *ngFor="let item of items$ | async">
         <app-cart-item
@@ -45,6 +48,7 @@ import { CartActions } from '@inventory-app/book/store/actions';
         align-items: center;
         height: 50px;
         padding: 5px;
+        border-radius: 4px;
         background-color: rgb(190, 182, 167);
       }
       .item {
@@ -69,12 +73,14 @@ import { CartActions } from '@inventory-app/book/store/actions';
 export class CartComponent implements OnInit {
   items$: Observable<CartItem[]>;
   mockBook$: Observable<Book[]>;
+  total$: Observable<number>;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.items$ = this.store.pipe(select(fromBooks.selectAllCartItems));
     this.mockBook$ = this.store.pipe(select(fromBooks.mockBook));
+    this.total$ = this.store.pipe(select(fromBooks.selectTotal));
   }
 
   updateItem({ id, amount }: { id: string; amount: number }): void {

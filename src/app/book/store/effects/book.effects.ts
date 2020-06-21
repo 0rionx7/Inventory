@@ -16,11 +16,12 @@ export class BookEffects {
     this.actions$.pipe(
       ofType(BookActions.searchBook),
       withLatestFrom(this.store.pipe(select(fromBook.selectAllBooks))),
-      debounceTime(1000),
+      debounceTime(100),
       switchMap(([{ query }, books]) => {
-        const result = books.filter(
+        let result = books.filter(
           (book) => book.volumeInfo.title.search(query) != -1
         );
+        if (query === '' || query === ' ') result = [];
         return of(BookActions.searchSuccess({ books: result }));
       })
     )

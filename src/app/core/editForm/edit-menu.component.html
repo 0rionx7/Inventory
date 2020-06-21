@@ -5,11 +5,11 @@
     class="form-layout"
   >
     <h3 style="align-self: center;">
-      {{ selectedMain.value ? 'Edit : ' : 'Add'
-      }}{{ selectedMain.value?.mainMenu }}
+      {{ selectedMain.value ? 'Edit : ' : 'Add : '
+      }}{{ selectedMain.value ? selectedMain.value.mainMenu : main.value }}
     </h3>
     <label for="mainMenu">MainMenu</label>
-    <input id="mainMenu" formControlName="mainMenu" required />
+    <input id="mainMenu" #main formControlName="mainMenu" required />
     <select
       id="mainMenu"
       ngModel

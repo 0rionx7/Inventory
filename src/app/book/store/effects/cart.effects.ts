@@ -43,7 +43,7 @@ export class CartEffects {
       ofType(CartActions.checkOut),
       withLatestFrom(this.store.pipe(select(fromBooks.selectAllCartItems))),
       tap(([action, items]) => {
-        const batch = this.afs.firestore.batch();
+        const batch = this.db.batch();
         items.forEach((item: CartItem) =>
           this.batchUpdate(batch, item.id, item.amount)
         );

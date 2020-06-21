@@ -47,6 +47,7 @@ import { AuthModule } from './auth/auth.module';
       {
         // onSameUrlNavigation: 'reload',
         preloadingStrategy: PreloadAllModules,
+        anchorScrolling: 'enabled',
       }
     ),
     AngularFireModule.initializeApp(environment.firebaseConfig),

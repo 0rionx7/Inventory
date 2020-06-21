@@ -45,6 +45,6 @@ export const selectSidenavMenuItemByName = createSelector(
   selectSidenavMenuItems,
   (menuItems: MenuItem[], props: { name: string }) => {
     const item = menuItems.find((el) => el.mainMenu === props.name);
-    return item ? item.id : 1;
+    return item ? item.id : -1;
   }
 );

@@ -24,6 +24,7 @@ import { MenuItem } from '../../navigation/models/menuItem';
   selector: 'app-edit-menu',
   templateUrl: './edit-menu.component.html',
   styleUrls: ['./edit-menu.component.scss'],
+  preserveWhitespaces: true,
 })
 export class EditMenuComponent implements OnInit, OnDestroy {
   @ViewChild('subMenusNo', { static: true }) subMenusNo: FormControl;

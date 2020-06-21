@@ -22,6 +22,7 @@ export class RootEffects {
           this.bookService.getDataFromFirestore('books').pipe(take(1)),
         ]).pipe(
           switchMap(([menuItems, books]: [MenuItem[], Book[]]) => {
+            //  or ({ 0: menuItems, 1: books }) => { ... }
             return [
               SidenavApiActions.setMenuItems({ items: menuItems }),
               BookActions.setBooks({ books, toDatabase: false }),

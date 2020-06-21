@@ -15,9 +15,7 @@ import { DataResolver } from '../core/data.resolver';
   declarations: [],
   imports: [
     CoreModule,
-    RouterModule.forChild([
-      { path: '', component: BooksComponent, resolve: { items: DataResolver } },
-    ]),
+    RouterModule.forChild([{ path: '', component: BooksComponent }]),
     StoreModule.forFeature(fromAlbum.albumsFeatureKey, fromAlbum.reducers),
     EffectsModule.forFeature([AlbumEffects]),
   ],
