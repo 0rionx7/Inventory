@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     // "strict": true,
-    "paths": { "@inventory-app/*": ["./src/app/*"] },
+    "paths": { "src/app/*": ["src/app/*"] },
     // "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

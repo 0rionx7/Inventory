@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
-import { Dropdown2Directive } from '@inventory-app/core/dropdown2.directive';
+import { Dropdown2Directive } from 'src/app/core/dropdown2.directive';
 
 @Component({
   selector: 'app-subcontent',

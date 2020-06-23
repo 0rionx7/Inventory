@@ -5,8 +5,8 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { switchMap, withLatestFrom, debounceTime } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { BookActions } from '@inventory-app/book/store/actions';
-import * as fromBook from '@inventory-app/book/store/reducers';
+import { BookActions } from 'src/app/book/store/actions';
+import * as fromBook from 'src/app/book/store/reducers';
 
 @Injectable()
 export class BookEffects {

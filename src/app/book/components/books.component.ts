@@ -4,10 +4,10 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
-import * as fromRoot from '@inventory-app/store/reducers';
-import * as fromBook from '@inventory-app/book/store/reducers';
-import { Book } from '@inventory-app/book/models';
-import { BookActions } from '@inventory-app/book/store/actions';
+import * as fromRoot from 'src/app/store/reducers';
+import * as fromBook from 'src/app/book/store/reducers';
+import { Book } from 'src/app/book/models';
+import { BookActions } from 'src/app/book/store/actions';
 
 @Component({
   selector: 'app-books',

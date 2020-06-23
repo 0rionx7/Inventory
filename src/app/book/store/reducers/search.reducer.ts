@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { BookActions } from '@inventory-app/book/store/actions';
-import { Book } from '@inventory-app/book/models';
+import { BookActions } from 'src/app/book/store/actions';
+import { Book } from 'src/app/book/models';
 
 export const searchFeatureKey = 'search';
 

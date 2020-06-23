@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 import * as fromSidenav from './navigation/store/reducers';
 import * as fromBook from './book/store/reducers';
 import * as fromRoot from './store/reducers';
-import { Book, CartItem } from '@inventory-app/book/models';
+import { Book, CartItem } from 'src/app/book/models';
 import { Credentials } from './auth/models';
 import { AuthActions } from './auth/store/actions';
-import { MenuItem } from '@inventory-app/navigation/models';
-import { CartActions } from '@inventory-app/book/store/actions';
-import { ExpandedSidenavActions } from '@inventory-app/navigation/store/actions';
+import { MenuItem } from 'src/app/navigation/models';
+import { CartActions } from 'src/app/book/store/actions';
+import { ExpandedSidenavActions } from 'src/app/navigation/store/actions';
 
 @Component({
   selector: 'app-root',

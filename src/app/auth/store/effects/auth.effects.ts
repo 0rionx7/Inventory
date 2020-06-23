@@ -12,9 +12,9 @@ import {
 } from 'rxjs/operators';
 import { of, pipe } from 'rxjs';
 
-import { Credentials } from '@inventory-app/auth/models';
-import { AuthService } from '@inventory-app/auth/services/auth.service';
-import { AuthActions } from '@inventory-app/auth/store/actions';
+import { Credentials } from 'src/app/auth/models';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthActions } from 'src/app/auth/store/actions';
 
 @Injectable()
 export class AuthEffects {

@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { Book } from '@inventory-app/book/models';
-import { BookActions } from '@inventory-app/book/store/actions';
+import { Book } from 'src/app/book/models';
+import { BookActions } from 'src/app/book/store/actions';
 
 @Component({
   selector: 'app-book',

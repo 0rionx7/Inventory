@@ -5,8 +5,8 @@ import { Store, select } from '@ngrx/store';
 import { switchMap, take, tap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Book } from '@inventory-app/book/models';
-import * as fromBook from '@inventory-app/book/store/reducers';
+import { Book } from 'src/app/book/models';
+import * as fromBook from 'src/app/book/store/reducers';
 
 @Component({
   selector: 'app-edit-book',

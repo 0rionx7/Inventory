@@ -10,8 +10,8 @@ import { transition, style, animate, trigger } from '@angular/animations';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CartActions } from '@inventory-app/book/store/actions';
-import * as fromCart from '@inventory-app/book/store/reducers';
+import { CartActions } from 'src/app/book/store/actions';
+import * as fromCart from 'src/app/book/store/reducers';
 
 @Component({
   selector: 'app-nav',

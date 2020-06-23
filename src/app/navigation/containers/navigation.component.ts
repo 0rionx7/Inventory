@@ -9,9 +9,9 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromSidenav from '../store/reducers';
-import { MenuItem } from '@inventory-app/navigation/models';
+import { MenuItem } from 'src/app/navigation/models';
 import { NavBarActions } from '../store/actions';
-import { menuItems } from '@inventory-app/navigation/models/menuItems';
+import { menuItems } from 'src/app/navigation/models/menuItems';
 
 @Component({
   selector: 'app-navigation',

@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromBook from './store/reducers';
-import { CoreModule } from '@inventory-app/core/core.module';
+import { CoreModule } from 'src/app/core/core.module';
 import { BooksComponent } from './components/books.component';
 import { BookComponent } from './components/book.component';
 import { CartComponent } from './components/cart/cart.component';

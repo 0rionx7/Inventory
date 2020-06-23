@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Credentials } from '@inventory-app/auth/models';
+import { Credentials } from 'src/app/auth/models';
 
 export const authSuccess = createAction(
   '[Auth] Auth Success',

@@ -5,11 +5,11 @@ import {
 } from '@ngrx/store';
 import { Action, createSelector } from '@ngrx/store';
 
-import { CartItem, Book } from '@inventory-app/book/models';
-import * as fromRoot from '@inventory-app/store/reducers';
-import * as fromBook from '@inventory-app/book/store/reducers/book.reducer';
-import * as fromCart from '@inventory-app/book/store/reducers/cart.reducer';
-import * as fromSearch from '@inventory-app/book/store/reducers/search.reducer';
+import { CartItem, Book } from 'src/app/book/models';
+import * as fromRoot from 'src/app/store/reducers';
+import * as fromBook from 'src/app/book/store/reducers/book.reducer';
+import * as fromCart from 'src/app/book/store/reducers/cart.reducer';
+import * as fromSearch from 'src/app/book/store/reducers/search.reducer';
 
 export const booksFeatureKey = 'booksStore';
 
