@@ -8,9 +8,10 @@ import {
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { MenuItem } from '../models/menuItem';
 import * as fromSidenav from '../store/reducers';
+import { MenuItem } from '@inventory-app/navigation/models';
 import { NavBarActions } from '../store/actions';
+import { menuItems } from '@inventory-app/navigation/models/menuItems';
 
 @Component({
   selector: 'app-navigation',
@@ -38,6 +39,7 @@ export class NavigationComponent {
   $selectedSubIndex: Observable<number>;
   $expandSidenav: Observable<boolean>;
   $expandSub: Observable<boolean>;
+  localMenuItems = menuItems;
 
   loginDiag = false;
 
